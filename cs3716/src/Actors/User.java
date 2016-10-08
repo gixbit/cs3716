@@ -1,8 +1,8 @@
 package Actors;
 
-public class Person {
+public class User {
 	private String Name;
-	public Person(String N) {
+	public User(String N) {
 		this.Name = N;
 	}
 }

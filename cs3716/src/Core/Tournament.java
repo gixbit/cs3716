@@ -1,25 +1,34 @@
 package Core;
 
 import Actors.Organizer;
-import Actors.Person;
+import Rules.Rules;
 
 public class Tournament {
-	public Tournament() {
-		
+	private String Name;
+	private String Date;
+	private Rules Rules;
+	private Organizer Organizer;
+	public Tournament(Organizer o,String name, String date) {
+		this.Name = name;
+		this.Date = date;
+		this.Organizer = o;
 	}
-	public Person GetOrganizer() {
-		return null;
+	public Organizer GetOrganizer() {
+		return this.Organizer;
 	}
-	public Info GetInfo() {
-		return null;
+	public String GetName() {
+		return this.Name;
 	}
-	public Type GetType() {
-		return null;
+	public String GetDate() {
+		return this.Date;
 	}
-	public void ChangeInfo(Person P, Info I) {
-		if (P instanceof Organizer) {
-			return;
-		}
-		return;
+	public void AddTeam(Team t) {
+		Rules.AddTeam(t);
+	}
+	public Rules GetType() {
+		return this.Rules;
+	}
+	public void BroadCast() {
+		//Send Details
 	}
 }
