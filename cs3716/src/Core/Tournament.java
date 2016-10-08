@@ -6,7 +6,9 @@ import Rules.Rules;
 public class Tournament {
 	private String Name;
 	private String Date;
-	private Rules Rules;
+	private Rules Type;
+	private int TeamSize;
+	private ScoreBoard ScoreBoard;
 	private Organizer Organizer;
 	public Tournament(Organizer o,String name, String date) {
 		this.Name = name;
@@ -23,10 +25,10 @@ public class Tournament {
 		return this.Date;
 	}
 	public void AddTeam(Team t) {
-		Rules.AddTeam(t);
+		Type.AddTeam(this,t);
 	}
 	public Rules GetType() {
-		return this.Rules;
+		return this.Type;
 	}
 	public void BroadCast() {
 		//Send Details

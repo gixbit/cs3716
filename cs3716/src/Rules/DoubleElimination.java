@@ -1,18 +1,19 @@
 package Rules;
 
 import Core.Team;
+import Core.Tournament;
 
 public class DoubleElimination implements Rules {
 	@Override
-	public boolean AddTeam(Team t) {
+	public boolean AddTeam(Tournament t, Team n) {
 		return true;
 	}
 	@Override
-	public boolean RemoveTeam(Team t) {
+	public boolean RemoveTeam(Tournament t, Team n) {
 		return true;
 	}
 	@Override
-	public boolean HasWinner() {
+	public boolean HasWinner(Tournament t) {
 		return false;
 	}
 }
