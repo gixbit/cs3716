@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Tournament {
-	String startDate;			//Start and end dates are when one is allowed to register for the tournament
-	String endDate;
+	private String startDate;			//Start and end dates are when one is allowed to register for the tournament
+	private String endDate;
 	//Tournament Type
-	String tournamentName;
-	ArrayList<Team> teamList = new ArrayList<Team>();
+	private String tournamentName;
+	private ArrayList<Team> teamList = new ArrayList<Team>();
 
 	public Tournament(String name, String sDate, String eDate){
 		startDate = sDate;

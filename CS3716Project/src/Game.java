@@ -1,17 +1,17 @@
 
-public class Game {
-	String venue; //If we need a venue object we can make that later
-	String time;
-	Team teamOne;
-	Team teamTwo;
-	int teamOneScore;
-	int teamTwoScore;
-	boolean complete;
+public class Game {		//coming back later to add time and venue if we want them
+	private String venue; //If we need a venue object we can make that later
+	private String time;	
+	private Team teamOne;
+	private Team teamTwo;
+	private int teamOneScore;
+	private int teamTwoScore;
+	private boolean complete;
 	
-	public Game(Team one, Team two, String location, String time){
+	public Game(Team one, Team two){
 		teamOne = one;
 		teamTwo = two;
-		venue = location;
+//		venue = location;
 		complete = false;
 	}
 	public void setScoreOne(int i){

@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Team {
-	String teamName;
-	ArrayList<String> playerList = new ArrayList<String>();
-	ArrayList<String> coaches = new ArrayList<String>();
-	int points;
-	int wins;
+	private String teamName;
+	private ArrayList<String> playerList = new ArrayList<String>();
+	private ArrayList<String> coaches = new ArrayList<String>();
+	private int points;
+	private int wins;
 	
 	public Team(String name, ArrayList<String> pList, ArrayList<String> cList){
 		teamName = name;
