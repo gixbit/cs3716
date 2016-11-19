@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Bracket {
-	private ArrayList<Team> teamList;
-	private ArrayList<Game> gameList;
+	private ArrayList<Team> teamList = new ArrayList<Team>();
+	private ArrayList<Game> gameList = new ArrayList<Game>();
 	private boolean odd;
 	
 	public Bracket(ArrayList<Team> list){

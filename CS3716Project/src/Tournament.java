@@ -3,14 +3,15 @@ import java.util.ArrayList;
 public class Tournament {
 	private String startDate;			//Start and end dates are when one is allowed to register for the tournament
 	private String endDate;
-	//Tournament Type
+	private int tType;
 	private String tournamentName;
 	private ArrayList<Team> teamList = new ArrayList<Team>();
 
-	public Tournament(String name, String sDate, String eDate){
+	public Tournament(String name, String sDate, String eDate, int structure){
 		startDate = sDate;
 		endDate = eDate;
 		tournamentName = name;
+		tType = structure;
 	}
 	
 	public String getName(){
@@ -36,6 +37,12 @@ public class Tournament {
 	}
 	public ArrayList<Team> getTeamList(){
 		return teamList;
+	}
+	public int getType(){
+		return tType;
+	}
+	public void setType(int t){
+		tType = t;
 	}
 	
 }

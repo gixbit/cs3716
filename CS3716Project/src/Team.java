@@ -7,10 +7,10 @@ public class Team {
 	private int points;
 	private int wins;
 	
-	public Team(String name, ArrayList<String> pList, ArrayList<String> cList){
+	public Team(String name){
 		teamName = name;
-		playerList = pList;
-		coaches = cList;
+	//	playerList = pList;
+	//	coaches = cList;
 		points = 0;
 		wins = 0;
 	}
