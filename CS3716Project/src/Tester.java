@@ -54,6 +54,31 @@ public class Tester {
 		for (int i = 0; i < s.getBrackets().size(); i++) {
 			for (int j = 0; j < s.getBrackets().get(i).getWinners().size(); j++){System.out.print(s.getBrackets().get(i).getWinners().get(j).getTeamName() + " ");} 
 		}
+		
 		System.out.println("");
+		s.advanceTournament();
+		
+		for (int i = 0; i < s.getBrackets().size(); i++){
+			for(int j = 0; j < s.getBrackets().get(i).getGames().size(); j++){
+				s.getBrackets().get(i).getGames().get(j).setScoreOne(15);
+				s.getBrackets().get(i).getGames().get(j).setScoreTwo(13);
+				s.getBrackets().get(i).getGames().get(j).completeGame();
+			}
+		}
+		
+		
+		s.advanceTournament();
+		
+		for (int i = 0; i < s.getBrackets().size(); i++){
+			for(int j = 0; j < s.getBrackets().get(i).getGames().size(); j++){
+				s.getBrackets().get(i).getGames().get(j).setScoreOne(15);
+				s.getBrackets().get(i).getGames().get(j).setScoreTwo(13);
+				s.getBrackets().get(i).getGames().get(j).completeGame();
+			}
+		}
+		
+		for (int i = 0; i < s.getBrackets().size(); i++) {
+			for (int j = 0; j < s.getBrackets().get(i).getWinners().size(); j++){System.out.print(s.getBrackets().get(i).getWinners().get(j).getTeamName() + " ");} 
+		}
 	}
 }
