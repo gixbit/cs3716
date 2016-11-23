@@ -56,4 +56,10 @@ public class Game {		//coming back later to add time and venue if we want them
 	public Team getLoser(){		//Don't call this unless you've already checked if the game is complete
 		if (teamOneScore < teamTwoScore){return teamOne;} else {return teamTwo;}
 	}
+	public int getWinnerScore(){
+		if (teamOneScore > teamTwoScore){return teamOneScore;} else {return teamTwoScore;}
+	}
+	public int getLoserScore(){
+		if (teamOneScore < teamTwoScore){return teamOneScore;} else {return teamTwoScore;}
+	}
 }
