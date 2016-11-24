@@ -1,4 +1,12 @@
 
+/**
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ */
 public class Game {		//coming back later to add time and venue if we want them
 	private String venue; //If we need a venue object we can make that later
 	private String time;	

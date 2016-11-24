@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ */
 public class Tournament {
 	private String startDate;			//Start and end dates are when one is allowed to register for the tournament
 	private String endDate;

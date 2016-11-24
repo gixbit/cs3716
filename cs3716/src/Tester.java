@@ -1,6 +1,13 @@
 import java.util.Scanner;		//Just testing stuff
 
-
+/**
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ */
 public class Tester {
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);

@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ */
 public class Divisions implements Structure {
 	private ArrayList<Bracket> bList = new ArrayList<Bracket>();
 	private int bNumber;

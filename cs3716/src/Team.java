@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ */
 public class Team {
 	private String teamName;
 	private ArrayList<String> playerList = new ArrayList<String>();
