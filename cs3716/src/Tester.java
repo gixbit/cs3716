@@ -1,6 +1,7 @@
 import java.util.Scanner;		//Just testing stuff
 
 /**
+ * Testing for this tournament is undergone in this class
  * 
  * @author John Hollett
  * @author Keir Strickland Murphy
@@ -9,6 +10,10 @@ import java.util.Scanner;		//Just testing stuff
  * @author Kristan James Hart
  */
 public class Tester {
+	/**
+	 * The tester main method
+	 * @param args
+	 */
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);
 		String name = scan.nextLine();
