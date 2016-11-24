@@ -46,26 +46,55 @@ public class Game {		//coming back later to add time and venue if we want them
 //		venue = location;
 		complete = false;
 	}
+	/**
+	 * Set the score for the first team to i
+	 * @param i - score
+	 */
 	public void setScoreOne(int i){
 		teamOneScore = i;
 		complete = false;						//To prevent completing the game and then going back and entering a new result that doesn't work.
 	}
+	/**
+	 * Set the score for the second team to i
+	 * @param i - score
+	 */
 	public void setScoreTwo(int i){
 		teamTwoScore = i;
 		complete = false;	
 	}
+	/**
+	 * Get the score of the first team
+	 * @return teamOne - score
+	 */
 	public int getScoreOne(){
 		return teamOneScore;
 	}
+	/**
+	 * Get the score of the second team
+	 * @return teamTwo - score
+	 */
 	public int getScoreTwo(){
 		return teamTwoScore;
 	}
+	/**
+	 * Set the location of this game.
+	 * In other words, Set the venue of this game.
+	 * @param location - Venue
+	 */
 	public void setLocation(String location){
 		venue = location;
 	}
+	/**
+	 * Set the time of this game
+	 * @param t - Time
+	 */
 	public void setTime(String t){
 		time = t;
 	}
+	/**
+	 * Get the venue of this game
+	 * @return venue - String
+	 */
 	public String getVenue(){
 		return venue;
 	}
