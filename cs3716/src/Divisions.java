@@ -60,7 +60,6 @@ public class Divisions implements Structure {
 			bList.get(q).makeGames();
 		}
 	}
-	
 	@Override
 	public void createBrackets(ArrayList<Team> teamList) {
 		bList.add(new Bracket(teamList));

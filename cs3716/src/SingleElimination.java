@@ -9,8 +9,14 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  */
 public class SingleElimination implements Structure{
-	private ArrayList<Bracket> bList = new ArrayList<Bracket>();;
-	
+	/**
+	 * List of brackets this Single Elimination holds
+	 */
+	private ArrayList<Bracket> bList = new ArrayList<Bracket>();
+	/**
+	 * Constructor for a single elimination
+	 * @param teamList
+	 */
 	public SingleElimination(ArrayList<Team> teamList){
 		createBrackets(teamList);
 		bList.get(0).makeGames();
