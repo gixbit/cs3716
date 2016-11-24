@@ -1,5 +1,8 @@
 
 /**
+ * Describes a Game used in a tournament.
+ * Each game has two teams and scores for both.
+ * Keeps track of the completion and venue as well.
  * 
  * @author John Hollett
  * @author Keir Strickland Murphy
@@ -8,12 +11,33 @@
  * @author Kristan James Hart
  */
 public class Game {		//coming back later to add time and venue if we want them
+	/**
+	 * The venue this game is located
+	 */
 	private String venue; //If we need a venue object we can make that later
-	private String time;	
+	/**
+	 * The time of this game
+	 */
+	private String time;
+	/**
+	 * The first team
+	 */
 	private Team teamOne;
+	/**
+	 * The second team
+	 */
 	private Team teamTwo;
+	/**
+	 * The first team's score
+	 */
 	private int teamOneScore;
+	/**
+	 * The second team's score.
+	 */
 	private int teamTwoScore;
+	/**
+	 * If this is true, the game has concluded.
+	 */
 	private boolean complete;
 	
 	public Game(Team one, Team two){
