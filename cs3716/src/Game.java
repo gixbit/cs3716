@@ -9,6 +9,7 @@
  * @author Rory Campbell
  * @author Jaimee Bessey
  * @author Kristan James Hart
+ * @author Karl Chiasson
  */
 public class Game {		//coming back later to add time and venue if we want them
 	/**
