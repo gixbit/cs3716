@@ -89,8 +89,9 @@ public class TournamentType extends JFrame{
 			tournament.setType(numType);
 			listOfTourns.set(tournIndex, tournament);
 			JFrame frame1 = new ManageTournament(listOfTourns);
-			frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame1.setVisible(true);
+//			dispose();
 		}
 	}
 

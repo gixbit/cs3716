@@ -47,18 +47,21 @@ public class MainScreen extends JFrame{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == organButton){
 				JFrame frame1 = new ManageTournament(listOfTourns);
-				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
+				dispose();
 			}
 			else if(event.getSource() == bracButton){
-				JFrame frame1 = new SingleElim();
-				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				JFrame frame1 = new CreateBracket(8);
+//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
+				dispose();
 			}
 			else{//event.getSource() == CoachButton
 				JFrame frame1 = new Register(listOfTourns);
 				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
+				dispose();
 			}
 		}
 	}
