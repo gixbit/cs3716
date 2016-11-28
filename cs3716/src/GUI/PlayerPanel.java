@@ -1,4 +1,4 @@
-package skeletonCode;
+package GUI;
 
 import javax.swing.*;
 

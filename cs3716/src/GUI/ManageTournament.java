@@ -1,4 +1,4 @@
-package skeletonCode;
+package GUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
+
+import SkeletonCode.Tournament;
 
 public class ManageTournament extends JFrame{
 	private JLabel greetingLabel;

@@ -1,10 +1,12 @@
-package skeletonCode;
+package GUI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+
+import SkeletonCode.Tournament;
 
 public class TournamentPanel extends JPanel{
 	private JLabel tournLabel;
@@ -53,6 +55,7 @@ public class TournamentPanel extends JPanel{
 	private void getInfo(){
 		numOfTeams = thisTournament.getTeamList().size();
  		tournName = thisTournament.getName();
+		//TODO: FIX ME JAIMEE
  		venueName = thisTournament.getVenue();
  		startDate = thisTournament.getStartDate();
  		regDate = thisTournament.getEndDate();

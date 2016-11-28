@@ -1,3 +1,4 @@
+package SkeletonCode;
 /*package skeletonCode;
 
 public class Test {

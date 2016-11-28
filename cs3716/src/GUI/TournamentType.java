@@ -1,10 +1,12 @@
-package skeletonCode;
+package GUI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+
+import SkeletonCode.Tournament;
 
 public class TournamentType extends JFrame{
 	private JLabel headerLabel;

@@ -1,10 +1,13 @@
-package skeletonCode;
+package GUI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+
+import SkeletonCode.Team;
+import SkeletonCode.Tournament;
 
 public class Register extends JFrame{
 	private JPanel panel;
@@ -189,6 +192,7 @@ public class Register extends JFrame{
 				int index = 0;
 				for(int i=0; i < tournNames.size(); i++){
 					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
+						//TODO: FIX ME JAIMEE
 						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;

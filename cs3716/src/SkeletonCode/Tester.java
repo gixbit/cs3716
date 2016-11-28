@@ -1,8 +1,9 @@
+package SkeletonCode;
 import java.util.Scanner;		//Just testing stuff
 
-import skeletonCode.SingleElimination;
-import skeletonCode.Team;
-import skeletonCode.Tournament;
+import SkeletonCode.SingleElimination;
+import SkeletonCode.Team;
+import SkeletonCode.Tournament;
 
 //This file is cancer please god, kill it.
 public class Tester {
