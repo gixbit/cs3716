@@ -107,10 +107,12 @@ public class TournamentPanel extends JPanel{
 			if(event.getSource() == generateButton){
 				if(tType.equals("unspecified")){
 					JFrame frame1 = new TournamentType(tournaments, index);
+					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame1.setVisible(true);
 				}
 				else{
 					JFrame frame1 = new TournamentType(tournaments, index, tType);
+					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame1.setVisible(true);
 				}
 			}

@@ -165,6 +165,7 @@ public class Register extends JFrame{
 				if(n >= 40){
 					JFrame frame1 = new popUp("You Have Reached the Max Number of Players.");
 					frame1.setVisible(true);
+					dispose();
 				}
 				else{
 					n++;
@@ -195,10 +196,10 @@ public class Register extends JFrame{
 				}
 				JFrame frame1 = new ListOfTeams(listOfTourns.get(index), listOfTourns);
 				frame1.setVisible(true);
+				dispose();
 				System.out.println(organizNameField.getText());
 				for(int i=0; i < n; i++){
 					if(listOfPlayers[i].getPlayerName() != null && listOfPlayers[i].getPlayerAge() != null){
-//						players[i] = new Player(listOfPlayers[i].getPlayerName(), listOfPlayers[i].getPlayerAge());
 						System.out.println(listOfPlayers[i].getPlayerName());
 						System.out.println(listOfPlayers[i].getPlayerAge());
 					}

@@ -81,13 +81,15 @@ public class ListOfTeams extends JFrame{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
 				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
-				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
+				dispose();
 			}
 			else{	//event.getSource() == contButton
 				JFrame frame1 = new MainScreen(listOfTourns);
-				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
+				dispose();
 			}
 		}
 	}
