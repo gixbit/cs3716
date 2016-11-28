@@ -1,5 +1,6 @@
 package SkeletonCode;
 
+
 /**
  * Describes a Game used in a tournament.
  * Each game has two teams and scores for both.
@@ -10,7 +11,6 @@ package SkeletonCode;
  * @author Rory Campbell
  * @author Jaimee Bessey
  * @author Kristan James Hart
- * @author Karl Chiasson
  */
 public class Game {		//coming back later to add time and venue if we want them
 	/**
@@ -64,6 +64,20 @@ public class Game {		//coming back later to add time and venue if we want them
 		teamTwoScore = i;
 		complete = false;	
 	}
+	
+	public Team getTeamOne(){
+		return teamOne;
+	}
+	public Team getTeamTwo(){
+		return teamTwo;
+	}
+	public void setTeamOne(Team team){
+		teamOne = team;
+	}
+	public void setTeamTwo(Team team){
+		teamTwo = team;
+	}
+	
 	/**
 	 * Get the score of the first team
 	 * @return teamOne - score

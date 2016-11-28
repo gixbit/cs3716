@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * @author Rory Campbell
  * @author Jaimee Bessey
  * @author Kristan James Hart
- * @author Karl Chiasson
  */
 public interface Structure {
 	/**
