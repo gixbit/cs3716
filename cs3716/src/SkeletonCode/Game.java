@@ -1,85 +1,5 @@
 package SkeletonCode;
-
-<<<<<<< HEAD
-
-/**
- * Describes a Game used in a tournament.
- * Each game has two teams and scores for both.
- * Keeps track of the completion and venue as well.
- * 
- * @author John Hollett
- * @author Keir Strickland Murphy
- * @author Rory Campbell
- * @author Jaimee Bessey
- * @author Kristan James Hart
- */
-public class Game {		//coming back later to add time and venue if we want them
-	/**
-	 * The venue this game is located
-	 */
-	private String venue; //If we need a venue object we can make that later
-	/**
-	 * The time of this game
-	 */
-	private String time;
-	/**
-	 * The first team
-	 */
-	private Team teamOne;
-	/**
-	 * The second team
-	 */
-	private Team teamTwo;
-	/**
-	 * The first team's score
-	 */
-	private int teamOneScore;
-	/**
-	 * The second team's score.
-	 */
-	private int teamTwoScore;
-	/**
-	 * If this is true, the game has concluded.
-	 */
-	private boolean complete;
 	
-	public Game(Team one, Team two){
-		teamOne = one;
-		teamTwo = two;
-//		venue = location;
-		complete = false;
-	}
-	/**
-	 * Set the score for the first team to i
-	 * @param i - score
-	 */
-	public void setScoreOne(int i){
-		teamOneScore = i;
-		complete = false;						//To prevent completing the game and then going back and entering a new result that doesn't work.
-	}
-	/**
-	 * Set the score for the second team to i
-	 * @param i - score
-	 */
-	public void setScoreTwo(int i){
-		teamTwoScore = i;
-		complete = false;	
-	}
-	
-	public Team getTeamOne(){
-		return teamOne;
-	}
-	public Team getTeamTwo(){
-		return teamTwo;
-	}
-	public void setTeamOne(Team team){
-		teamOne = team;
-	}
-	public void setTeamTwo(Team team){
-		teamTwo = team;
-	}
-	
-=======
 /**
  * Describes a Game used in a tournament.
  * Each game has two teams and scores for both.
@@ -144,7 +64,6 @@ public class Game {		//coming back later to add time and venue if we want them
 		teamTwoScore = i;
 		complete = false;	
 	}
->>>>>>> refs/remotes/origin/jaimeeThursdayNov24
 	/**
 	 * Get the score of the first team
 	 * @return teamOne - score
