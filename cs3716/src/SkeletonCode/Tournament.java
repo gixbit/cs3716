@@ -14,6 +14,10 @@ import java.util.ArrayList;
  */
 public class Tournament {
 	/**
+	 * The place where the tournament is taking place.
+	 */
+	private String venue;
+	/**
 	 * The date this tournament will start
 	 */
 	private String startDate;			//Start and end dates are when one is allowed to register for the tournament
@@ -40,11 +44,12 @@ public class Tournament {
 	 * @param eDate - String
 	 * @param structure - Integer
 	 */
-	public Tournament(String name, String sDate, String eDate, int structure){
-		startDate = sDate;
-		endDate = eDate;
-		tournamentName = name;
-		tType = structure;
+	public Tournament(String name, String sDate, String eDate, String venue, int structure){
+		this.startDate = sDate;
+		this.endDate = eDate;
+		this.tournamentName = name;
+		this.tType = structure;
+		this.setVenue(venue);
 	}
 	/**
 	 * Returns the name of this tournament
@@ -115,6 +120,20 @@ public class Tournament {
 	 */
 	public void setType(int t){
 		tType = t;
+	}
+	/**
+	 * Returns the venue of this tournament
+	 * @return venue - String
+	 */
+	public String getVenue() {
+		return venue;
+	}
+	/**
+	 * Sets the venue of this tournament
+	 * @param venue - String
+	 */
+	public void setVenue(String venue) {
+		this.venue = venue;
 	}
 	
 }

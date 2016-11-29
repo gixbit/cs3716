@@ -1,5 +1,6 @@
 package SkeletonCode;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * 
@@ -34,11 +35,12 @@ public class Team {
 	/**
 	 * The constructor for a team
 	 * @param name - String
+	 * @param c - String params
 	 */
-	public Team(String name){
+	public Team(String name, String ... c){
 		teamName = name;
 	//	playerList = pList;
-	//	coaches = cList;
+		coaches = (ArrayList<String>)Arrays.asList(c);
 		points = 0;
 		wins = 0;
 	}
