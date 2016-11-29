@@ -82,9 +82,9 @@ public class ListOfTeams extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
-				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
+//				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame1.setVisible(true);
+//				frame1.setVisible(true);
 				dispose();
 			}
 			else{	//event.getSource() == contButton

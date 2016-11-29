@@ -1,6 +1,7 @@
 package SkeletonCode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 
@@ -19,11 +20,11 @@ public class Team {
 	/**
 	 * The list of the players on this team
 	 */
-	private ArrayList<String> playerList = new ArrayList<String>();
+	private List<String> playerList = new ArrayList<String>();
 	/**
 	 * The list of coaches for this team
 	 */
-	private ArrayList<String> coaches = new ArrayList<String>();
+	private List<String> coaches = new ArrayList<String>();
 	/**
 	 * The number of points this team has acrued
 	 */
@@ -40,22 +41,22 @@ public class Team {
 	public Team(String name, String ... c){
 		this.teamName = name;
 	//	this.playerList = pList;
-		this.coaches = (ArrayList<String>)Arrays.asList(c);
+		this.coaches = Arrays.asList(c);
 		this.points = 0;
 		this.wins = 0;
 	}
 	/**
 	 * Returns the list of coaches this team contains.
-	 * @return coaches -  ArrayList&ltString&gt
+	 * @return coaches -  List&ltString&gt
 	 */
-	public ArrayList<String> getCoaches(){
+	public List<String> getCoaches(){
 		return this.coaches;
 	}
 	/**
 	 * Returns the list of players this team contains
-	 * @return roster - ArrayList&ltString&gt
+	 * @return roster - List&ltString&gt
 	 */
-	public ArrayList<String> getRoster(){
+	public List<String> getRoster(){
 		return this.playerList;
 	}
 	/**
