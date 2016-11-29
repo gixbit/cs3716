@@ -6,6 +6,16 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+/**
+ * SingleElimination represented as a JPanel.
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson *
+ */
 public class SingleElim extends JPanel{
 	private JPanel panel;
 	private int numOfTeams;
@@ -18,6 +28,15 @@ public class SingleElim extends JPanel{
 	private String teamName;
 	private ArrayList<JTextArea> panList = new ArrayList<JTextArea>();
 
+	/**
+	 * Constructor for SingleElimination.
+	 * <br>
+	 * Takes three integer parameters.
+	 * 
+	 * @param n - Integer
+	 * @param i - Integer
+	 * @param c - Integer
+	 */
 	public SingleElim(int n, int i, int c){
 		super();
 		this.setBackground(Color.WHITE);
@@ -29,6 +48,9 @@ public class SingleElim extends JPanel{
 		createPanel();
 	}
 	
+	/**
+	 * Creates panels for this SingleElimination object.
+	 */
 	private void createPanel(){
 		MatteBorder line;
 		TitledBorder title;
