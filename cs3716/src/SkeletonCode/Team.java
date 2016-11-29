@@ -38,59 +38,59 @@ public class Team {
 	 * @param c - String params
 	 */
 	public Team(String name, String ... c){
-		teamName = name;
-	//	playerList = pList;
-		coaches = (ArrayList<String>)Arrays.asList(c);
-		points = 0;
-		wins = 0;
+		this.teamName = name;
+	//	this.playerList = pList;
+		this.coaches = (ArrayList<String>)Arrays.asList(c);
+		this.points = 0;
+		this.wins = 0;
 	}
 	/**
 	 * Returns the list of coaches this team contains.
 	 * @return coaches -  ArrayList&ltString&gt
 	 */
 	public ArrayList<String> getCoaches(){
-		return coaches;
+		return this.coaches;
 	}
 	/**
 	 * Returns the list of players this team contains
 	 * @return roster - ArrayList&ltString&gt
 	 */
 	public ArrayList<String> getRoster(){
-		return playerList;
+		return this.playerList;
 	}
 	/**
 	 * Returns the name of this team
 	 * @return name - String
 	 */
 	public String getTeamName(){
-		return teamName;
+		return this.teamName;
 	}
 	/**
 	 * This is called when a team wins a game.
 	 * Increments the wins of this team.
 	 */
 	public void win(){							//Call when a team wins a game
-		wins++;
+		this.wins++;
 	}
 	/**
 	 * Adds to the total points this team has
 	 * @param addition - Integer
 	 */
 	public void addPoints(int addition){		//Add points when a game is completed
-		points += addition;
+		this.points += addition;
 	}
 	/**
 	 * Returns the number of wins this team has
 	 * @return wins - Integer
 	 */
 	public int getWins(){						//Gets number of wins
-		return wins;
+		return this.wins;
 	}
 	/**
 	 * Returns the number of points this team has
 	 * @return points - Integer
 	 */
 	public int getPoints(){						//Gets point total accross all games
-		return points;
+		return this.points;
 	}
 }

@@ -56,77 +56,77 @@ public class Tournament {
 	 * @return tournamentName - String
 	 */
 	public String getName(){
-		return tournamentName;
+		return this.tournamentName;
 	}
 	/**
 	 * Sets the name of this tournament
 	 * @param name - String
 	 */
 	public void setName(String name){
-		tournamentName = name;
+		this.tournamentName = name;
 	}
 	/**
 	 * Returns the start date of this Tournament
 	 * return startDate - String
 	 */
 	public String getStartDate(){
-		return startDate;
+		return this.startDate;
 	}
 	/**
 	 * Set the start date of this tournament
 	 * @param date - String
 	 */
 	public void setStartDate(String date){
-		startDate = date;
+		this.startDate = date;
 	}
 	/**
 	 * Returns the end date of this Tournament
 	 * @return endDate - String
 	 */
 	public String getEndDate(){
-		return endDate;
+		return this.endDate;
 	}
 	/**
 	 * Sets the end date of this Tournament
 	 * @param date - String
 	 */
 	public void setEndDate(String date){
-		endDate = date;
+		this.endDate = date;
 	}
 	/**
 	 * Add a team to the tournament
 	 * @param team - Team
 	 */
 	public void addTeam(Team team){
-		teamList.add(team);
+		this.teamList.add(team);
 	}
 	/**
 	 * Returns the list of teams of this Tournament
 	 * @return teamList - ArrayList&ltTeam&gt
 	 */
 	public ArrayList<Team> getTeamList(){
-		return teamList;
+		return this.teamList;
 	}
 	/**
 	 * Returns the type of this tournament
 	 * @return tType - Integer
 	 */
 	public int getType(){
-		return tType;
+		return this.tType;
 	}
 	/**
 	 * Set the Tournament type
 	 * @param t - Integer
 	 */
 	public void setType(int t){
-		tType = t;
+		this.tType = t;
 	}
 	/**
 	 * Returns the venue of this tournament
 	 * @return venue - String
 	 */
 	public String getVenue() {
-		return venue;
+		return this.venue;
 	}
 	/**
 	 * Sets the venue of this tournament

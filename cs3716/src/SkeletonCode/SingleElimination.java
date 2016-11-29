@@ -24,34 +24,34 @@ public class SingleElimination implements Structure{
 	 */
 	public SingleElimination(ArrayList<Team> teamList){
 		createBrackets(teamList);
-		bList.get(0).makeGames();
+		this.bList.get(0).makeGames();
 	}
 	
 	@Override
 	public void createBrackets(ArrayList<Team> teamList) {
-		bList.add(new Bracket(teamList));
+		this.bList.add(new Bracket(teamList));
 	}
 	@Override
 	public ArrayList<Bracket> getBrackets(){
-		return bList;
+		return this.bList;
 	}
 
 	@Override
 	public void advanceTournament() {
 		boolean complete = true;
-		for (int i = 0; i < bList.size(); i++){
-			if (!bList.get(i).checkComplete()){complete = false;}
+		for (int i = 0; i < this.bList.size(); i++){
+			if (!this.bList.get(i).checkComplete()){complete = false;}
 		}
 		if (complete){
-			for (int i = 0; i < bList.size(); i++){
-				for (int j = 0; j < bList.get(i).getGames().size(); j++){
-					bList.get(i).getGames().get(j).getWinner().win();
-					bList.get(i).getGames().get(j).getWinner().addPoints(bList.get(i).getGames().get(j).getWinnerScore());
+			for (int i = 0; i < this.bList.size(); i++){
+				for (int j = 0; j < this.bList.get(i).getGames().size(); j++){
+					this.bList.get(i).getGames().get(j).getWinner().win();
+					this.bList.get(i).getGames().get(j).getWinner().addPoints(this.bList.get(i).getGames().get(j).getWinnerScore());
 
-					bList.get(i).getGames().get(j).getLoser().addPoints(bList.get(i).getGames().get(j).getLoserScore());
+					this.bList.get(i).getGames().get(j).getLoser().addPoints(this.bList.get(i).getGames().get(j).getLoserScore());
 				}
-				bList.set(i, new Bracket(bList.get(i).getWinners() ));
-				bList.get(i).makeGames();
+				this.bList.set(i, new Bracket(this.bList.get(i).getWinners() ));
+				this.bList.get(i).makeGames();
 			}
 			
 		}
