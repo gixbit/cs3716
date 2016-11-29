@@ -24,7 +24,7 @@ public class CreateBracket extends JFrame{
 		panel = new JPanel(new GridLayout(1,numOfColns,0,0));
 
 		for(int i = 0; i < numOfColns+1; i++){
-			panel.add(new SingleElim(numOfTeams, i));
+			panel.add(new SingleElim(numOfTeams, i, numOfColns));
 		}		
 		area = new JScrollPane(panel);
 		add(area);

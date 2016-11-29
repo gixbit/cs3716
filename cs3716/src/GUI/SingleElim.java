@@ -9,17 +9,21 @@ import javax.swing.border.*;
 public class SingleElim extends JPanel{
 	private JPanel panel;
 	private int numOfTeams;
+	private int numOfColns;
 	private int colnNum;
 	private int spacers;
 	private int side;
 	private int top;
 	private int bottom;
+	private String teamName;
 	private ArrayList<JTextArea> panList = new ArrayList<JTextArea>();
 
-	public SingleElim(int n, int i){
+	public SingleElim(int n, int i, int c){
 		super();
 		this.setBackground(Color.WHITE);
+//		this.setSize(450, 610);
 		colnNum = i;
+		numOfColns = c;
 		numOfTeams = n;
 		spacers = (int) Math.pow(2, colnNum)-1;
 		createPanel();
@@ -29,7 +33,7 @@ public class SingleElim extends JPanel{
 		MatteBorder line;
 		TitledBorder title;
 		Border empty = BorderFactory.createEmptyBorder();
-		title = BorderFactory.createTitledBorder(empty, "title");
+		title = BorderFactory.createTitledBorder(empty, teamName);
 		title.setTitlePosition(TitledBorder.RIGHT);
 
 		panel = new JPanel(new GridLayout(2*numOfTeams-1, 1,0,0));
@@ -61,12 +65,15 @@ public class SingleElim extends JPanel{
 			panList.get(j).setEditable(false);
 			panel.add(panList.get(j));
 		}
-/*		for(int k){
-			for(int i = spacers; i < height+spacers; i++){
-				line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
-				panList.get(i).setBorder(line);
+		for(int i = 0; i < (Math.pow(2,numOfColns-colnNum)-1); i++){
+			for(int j = 0; j < height; j++){
+				if(i%2 == 1){
+					line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
+					panList.get(spacers + i*height + j).setBorder(line);
+				}
 			}
-*/		line = BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black);
+		}
+		line = BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black);
 		panList.get(2*numOfTeams-spacers-2).setBorder(line);
 		add(panel);
 	}
