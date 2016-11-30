@@ -18,7 +18,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class TournamentPanel extends JPanel {
+public class TournamentPanel extends JPanel implements PanelAccess{
 	private JLabel tournLabel;
 	private JLabel venueLabel;
 	private JLabel startDateLabel;
@@ -44,7 +44,9 @@ public class TournamentPanel extends JPanel {
 	private String tType;
 	private Tournament thisTournament;
 	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
-	
+
+	private boolean newMenu = false;
+	private String nextMenuName = "";
 	/**
 	 * Constructor for a TournamentPanel, uses {@link #getInfo()},{@link #createItems()}, {@link #createButtons()}
 	 * and {@link #createPanels()}, to create a TournamentPanel
@@ -151,37 +153,42 @@ public class TournamentPanel extends JPanel {
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == generateButton){
 				if(tType.equals("unspecified")){
-					JPanel jpan1 = new TournamentType(tournaments, index);
-					//frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					//frame1.setVisible(true);
+					JPanel frame1 = new TournamentType(tournaments, index);
+					frame1.setVisible(true);
 				}
 				else{
-					JPanel jpan1 = new TournamentType(tournaments, index, tType);
-					//frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					//frame1.setVisible(true);
+					JPanel frame1 = new TournamentType(tournaments, index, tType);
+					frame1.setVisible(true);
 				}
 			}
+			
 			else if(event.getSource() == teamsButton){
-//				JFrame frame1 = new ListOfTeams(thisTournament, tournaments);
-//				frame1.setVisible(true);
+				JPanel frame1 = new ListOfTeams(thisTournament, tournaments);
+				frame1.setVisible(true);
 			}
 			else if(event.getSource() == deleteButton){
 				tournaments.remove(index);
-//				JFrame frame1 = new ManageTournament(tournaments);
-//				frame1.setVisible(true);
-			}
-			else{	//event.getSource() == editButton
-				tournaments.remove(index);
-				JFrame frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo, tournaments);
+				JPanel frame1 = new ManageTournament(tournaments);
 				frame1.setVisible(true);
 			}
+			
+			//Changed the frame to a panel
+			else{	//event.getSource() == editButton
+				tournaments.remove(index);
+				CreateTournament frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo, tournaments);
+				frame1.setVisible(true);
+			
+			}
+			
 		}
 	}
+	
 	/**
 	 * Creates panels for this object.
 	 */
+	
 	private void createPanels(){
-		borderlayout = new JPanel(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		gridlayout = new JPanel(new GridLayout(4,2));
 		btnPanel = new JPanel();
 
@@ -197,10 +204,27 @@ public class TournamentPanel extends JPanel {
 		btnPanel.add(generateButton);
 		btnPanel.add(teamsButton);
 
-		borderlayout.add(gridlayout, BorderLayout.CENTER);
-		borderlayout.add(btnPanel, BorderLayout.SOUTH);
-		borderlayout.setBorder(BorderFactory.createRaisedBevelBorder());
+		this.add(gridlayout, BorderLayout.CENTER);
+		this.add(btnPanel, BorderLayout.SOUTH);
+		//panel.setBorder(BorderFactory.createRaisedBevelBorder());
 
-		add(borderlayout);
+		//add(panel);
+	}
+	//Added empty methods
+	
+	@Override
+	public boolean newMenu() {
+		return newMenu;
+	}
+	
+	@Override
+	public String getNextMenu() {
+		return "";
+	}
+	
+	@Override
+	public void setNewMenu() {
+		this.newMenu = true;
+		
 	}
 }
