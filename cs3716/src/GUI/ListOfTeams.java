@@ -8,16 +8,16 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
-public class ListOfTeams extends JFrame{
-	private JTextArea textArea1;
+public class ListOfTeams extends JPanel {
+	private JTextArea listText;
 	private JScrollPane listArea;
 	private JLabel listLabel;
 	private JLabel teamLabel;
-	private JLabel listLabel1;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
+	private JLabel teamName;
+	private JPanel borderLayout;
+	private JPanel btnPanel;
+	private JPanel teamPanel;
+	private JPanel northTeamPanel;
 	private JPanel textPanel;
 	private JButton contButton;
 	private JButton regButton;
@@ -26,15 +26,14 @@ public class ListOfTeams extends JFrame{
 	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
 	private int n = 0;
 
-	public ListOfTeams(){
+	public ListOfTeams() {
 		createItems();
 		createText();
 		createPanel();
 		setSize(500,500);
-		setTitle("");
 	}
 
-	public ListOfTeams(Tournament t, ArrayList<Tournament> listT){
+	public ListOfTeams(Tournament t, ArrayList<Tournament> listT) {
 		tour = t;
 		tName = t.getName();
 		n++;
@@ -44,25 +43,24 @@ public class ListOfTeams extends JFrame{
 		createText();
 		createPanel();
 		setSize(500,500);
-		setTitle("");
 	}
 	
-	private void createItems(){
+	private void createItems() {
 		listLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
 		listLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-		listLabel1 = new JLabel(tName, SwingConstants.CENTER);
-		listLabel1.setFont(new Font("Arial", Font.BOLD, 24));
+		teamName = new JLabel(tName, SwingConstants.CENTER);
+		teamName.setFont(new Font("Arial", Font.BOLD, 24));
 
 		teamLabel = new JLabel("Team Name");
 		teamLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		
-		textArea1 = new JTextArea(19,35);
-		textArea1.setFont(new Font("Arial", Font.PLAIN, 16));
-		textArea1.setEditable(false);
+		listText = new JTextArea(19,35);
+		listText.setFont(new Font("Arial", Font.PLAIN, 16));
+		listText.setEditable(false);
 	}
 
-	private void createButton(){
+	private void createButton() {
 		ActionListener listener = new choiceListener();
 		contButton = new JButton("Home");
 		contButton.addActionListener(listener);
@@ -75,47 +73,45 @@ public class ListOfTeams extends JFrame{
 
 	private void createText(){
 		for(int i = 0; i < tour.getTeamList().size(); i++){
-			textArea1.append(tour.getTeamList().get(i).getTeamName() + "\n");
+			listText.append(tour.getTeamList().get(i).getTeamName() + "\n");
 		}
 	}
 	
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			if(event.getSource() == regButton){
+			if(event.getSource() == regButton) {
 //				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //				frame1.setVisible(true);
-				dispose();
 			}
-			else{	//event.getSource() == contButton
+			else {	//event.getSource() == contButton
 				JFrame frame1 = new MainScreen(listOfTourns);
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
-				dispose();
 			}
 		}
 	}
 	
-	private void createPanel(){
-		panel = new JPanel(new BorderLayout());
-		panel1 = new JPanel();
-		panel2 = new JPanel(new GridLayout(1,2));		
-		panel3 = new JPanel(new GridLayout(3,1));		
+	private void createPanel() {
+		borderLayout = new JPanel(new BorderLayout());
+		btnPanel = new JPanel();
+		teamPanel = new JPanel(new GridLayout(1,2));		
+		northTeamPanel = new JPanel(new GridLayout(3,1));		
 		textPanel = new JPanel();
 		
-		textPanel.add(textArea1);
+		textPanel.add(listText);
 		listArea = new JScrollPane(textPanel);
 		
-		panel1.add(regButton);
-		panel1.add(contButton);
-		panel2.add(teamLabel);
-		panel3.add(listLabel);
-		panel3.add(listLabel1);
-		panel3.add(panel2);
+		btnPanel.add(regButton);
+		btnPanel.add(contButton);
+		teamPanel.add(teamLabel);
+		northTeamPanel.add(listLabel);
+		northTeamPanel.add(teamName);
+		northTeamPanel.add(teamPanel);
 		
-		panel.add(panel3, BorderLayout.NORTH);
-		panel.add(listArea, BorderLayout.CENTER);
-		panel.add(panel1, BorderLayout.SOUTH);
-		add(panel);
+		borderLayout.add(northTeamPanel, BorderLayout.NORTH);
+		borderLayout.add(listArea, BorderLayout.CENTER);
+		borderLayout.add(btnPanel, BorderLayout.SOUTH);
+		add(borderLayout);
 	}
 }

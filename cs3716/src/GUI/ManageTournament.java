@@ -22,7 +22,7 @@ public class ManageTournament extends JFrame{
 	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	private int numOfTourns;
 	
-	public ManageTournament(){
+	public ManageTournament() {
 		numOfTourns = 10;
 		createItems();
 		createButtons();

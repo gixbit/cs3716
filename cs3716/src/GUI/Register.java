@@ -9,7 +9,7 @@ import javax.swing.*;
 import SkeletonCode.Team;
 import SkeletonCode.Tournament;
 
-public class Register extends JFrame{
+public class Register extends JFrame {
 	private JPanel grid;
 	private JPanel name;
 	private JPanel teamName;

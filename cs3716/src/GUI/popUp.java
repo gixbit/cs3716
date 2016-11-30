@@ -4,7 +4,7 @@ package GUI;
 import java.awt.*;
 import javax.swing.*;
 
-public class popUp extends JFrame{
+public class popUp extends JFrame {
 	private JLabel alert;
 	private JPanel panel;
 	
@@ -16,6 +16,7 @@ public class popUp extends JFrame{
 		setSize(500,200);
 		setTitle("Alert");
 	}
+	
 	public popUp(String word){
 		alert = new JLabel(word);
 		alert.setFont(new Font("Arial", Font.PLAIN, 20));

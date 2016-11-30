@@ -9,15 +9,15 @@ import javax.swing.*;
 import SkeletonCode.Tournament;
 
 public class CreateTournament extends JFrame{
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
-	private JPanel panel4;
-	private JPanel panel5;
-	private JPanel panel6;
-	private JPanel panel7;
-	private JPanel panel8;
+	private JPanel borderPanel;
+	private JPanel tournGridPanel;
+	private JPanel dateGridPanel;
+	private JPanel tournPanel;
+	private JPanel venuePanel;
+	private JPanel orgNamePanel;
+	private JPanel orgInfoPanel;
+	private JPanel centerPanel;
+	private JPanel btnPanel;
 	private JLabel tournLabel;
 	private JLabel venueLabel;
 	private JLabel dateLabel;
@@ -143,7 +143,6 @@ public class CreateTournament extends JFrame{
 				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				//TODO: FIX ME JAIMEE
 				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
 				JFrame frame1 = new ManageTournament(tournaments);
 				frame1.setVisible(true);
@@ -152,49 +151,49 @@ public class CreateTournament extends JFrame{
 		}
 	}
 	
-	private void createPanel(){
-		panel = new JPanel(new BorderLayout());
-		panel1 = new JPanel(new GridLayout(4,1));
-		panel2 = new JPanel(new GridLayout(4,1));
-		panel3 = new JPanel();
-		panel4 = new JPanel();
-		panel5 = new JPanel();
-		panel6 = new JPanel();
-		panel7 = new JPanel();
-		panel8 = new JPanel();
+	private void createPanel() {
+		borderPanel = new JPanel(new BorderLayout());
+		tournGridPanel = new JPanel(new GridLayout(4,1));
+		dateGridPanel = new JPanel(new GridLayout(4,1));
+		tournPanel = new JPanel();
+		venuePanel = new JPanel();
+		orgNamePanel = new JPanel();
+		orgInfoPanel = new JPanel();
+		centerPanel = new JPanel();
+		btnPanel = new JPanel();
 		
-		panel3.add(tournLabel);
-		panel3.add(tournField);
-		panel4.add(venueLabel);
-		panel4.add(venueField);
-		panel5.add(organizerNameLabel);
-		panel5.add(organizerNameField);
-		panel6.add(organizerInfoLabel);
-		panel6.add(organizerInfoField);
+		tournPanel.add(tournLabel);
+		tournPanel.add(tournField);
+		venuePanel.add(venueLabel);
+		venuePanel.add(venueField);
+		orgNamePanel.add(organizerNameLabel);
+		orgNamePanel.add(organizerNameField);
+		orgInfoPanel.add(organizerInfoLabel);
+		orgInfoPanel.add(organizerInfoField);
 
 		dates[0] = new DatePanel();
 		dates[1] = new DatePanel();
 		
-		panel8.add(cancelButton);
-		panel8.add(createButton);
+		btnPanel.add(cancelButton);
+		btnPanel.add(createButton);
 
-		panel1.add(panel3);
-		panel1.add(panel4);
-		panel1.add(panel5);
-		panel1.add(panel6);
+		tournGridPanel.add(tournPanel);
+		tournGridPanel.add(venuePanel);
+		tournGridPanel.add(orgNamePanel);
+		tournGridPanel.add(orgInfoPanel);
 
-		panel2.add(dateLabel);
-		panel2.add(dates[0]);
-		panel2.add(regDateLabel);
-		panel2.add(dates[1]);
+		dateGridPanel.add(dateLabel);
+		dateGridPanel.add(dates[0]);
+		dateGridPanel.add(regDateLabel);
+		dateGridPanel.add(dates[1]);
 
-		panel7.add(panel1);
-		panel7.add(panel2);
+		centerPanel.add(tournGridPanel);
+		centerPanel.add(dateGridPanel);
 		
-		panel.add(greetingLabel, BorderLayout.NORTH);
-		panel.add(panel7, BorderLayout.CENTER);
-		panel.add(panel8, BorderLayout.SOUTH);
-		add(panel);
+		borderPanel.add(greetingLabel, BorderLayout.NORTH);
+		borderPanel.add(centerPanel, BorderLayout.CENTER);
+		borderPanel.add(btnPanel, BorderLayout.SOUTH);
+		add(borderPanel);
 	}
 
 	public ArrayList<Tournament> getTournaments(){

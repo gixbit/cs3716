@@ -3,7 +3,7 @@ package GUI;
 import java.awt.*;
 import javax.swing.*;
 
-public class DatePanel extends JPanel{
+public class DatePanel extends JPanel {
 	private JLabel monthLabel;
 	private JLabel dayLabel;
 	private JLabel yearLabel;
@@ -15,14 +15,14 @@ public class DatePanel extends JPanel{
 	private JComboBox monthBox;
 	private JComboBox dayBox;
 	private JComboBox yearBox;
-	private JPanel panel;
-	private JPanel panel1;
+	private JPanel datePanelUpper;
+	private JPanel datePanelLower;
 	private String[] days = new String[31]; 
 	private String[] year = new String[51];
 	private String[] min = new String[60];
 	private String[] hour = new String[12];
 	
-	public DatePanel(){
+	public DatePanel() {
 		createLabels();
 		createBoxes();
 		createPanels();
@@ -73,25 +73,25 @@ public class DatePanel extends JPanel{
 		yearBox = new JComboBox(year);
 	}	
 	
-	private void createPanels(){
-		panel = new JPanel();
-		panel1 = new JPanel();
+	private void createPanels() {
+		datePanelUpper = new JPanel();
+		datePanelLower = new JPanel();
 		
-		panel.add(monthLabel);
-		panel.add(monthBox);
-		panel.add(dayLabel);
-		panel.add(dayBox);
-		panel.add(yearLabel);
-		panel.add(yearBox);
-		panel1.add(timeLabel);
-		panel1.add(hourBox);
-		panel1.add(sepLabel);
-		panel1.add(minBox);
-		panel1.add(ampmBox);
+		datePanelUpper.add(monthLabel);
+		datePanelUpper.add(monthBox);
+		datePanelUpper.add(dayLabel);
+		datePanelUpper.add(dayBox);
+		datePanelUpper.add(yearLabel);
+		datePanelUpper.add(yearBox);
+		datePanelLower.add(timeLabel);
+		datePanelLower.add(hourBox);
+		datePanelLower.add(sepLabel);
+		datePanelLower.add(minBox);
+		datePanelLower.add(ampmBox);
 
 		this.setLayout(new GridLayout(2,1));
-		add(panel);
-		add(panel1);
+		add(datePanelUpper);
+		add(datePanelLower);
 	}
 	
 	public String getMonth(){

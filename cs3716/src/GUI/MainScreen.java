@@ -8,7 +8,7 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
-public class MainScreen extends JFrame{
+public class MainScreen extends JFrame {
 	private JPanel panel;
 	private JButton bracButton;
 	private JButton organButton;
