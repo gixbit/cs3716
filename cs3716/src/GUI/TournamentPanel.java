@@ -8,6 +8,16 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
+/**
+ * This TournmentPanel extended from a JPanel, is used to create panels for a tournament.
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class TournamentPanel extends JPanel{
 	private JLabel tournLabel;
 	private JLabel venueLabel;
@@ -35,6 +45,10 @@ public class TournamentPanel extends JPanel{
 	private Tournament thisTournament;
 	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	
+	/**
+	 * Constructor for a TournamentPanel, uses {@link #getInfo()},{@link #createItems()}, {@link #createButtons()}
+	 * and {@link #createPanels()}, to create a TournamentPanel
+	 */
 	public TournamentPanel(){
 		getInfo();
 		createItems();
@@ -42,6 +56,17 @@ public class TournamentPanel extends JPanel{
 		createPanels();
 	}
 
+	/**
+	 * Constructor for a TournamentPanel, uses {@link #getInfo()}, {@link #createItems()}, {@link #createButtons()}
+	 * and {@link #createPanels()}, to create a TournamentPanel
+	 * 
+	 * <br><br>
+	 * Also takes a Tournament Object, ArrayList&ltTournament&gt, and an integer
+	 * 
+	 * @param tourn - Tournament
+	 * @param tourns - ArrayList&ltTournament&gt
+	 * @param i - Integer
+	 */
 	public TournamentPanel(Tournament tourn, ArrayList<Tournament> tourns, int i){
 		tournaments = tourns;
 		thisTournament = tourn;
@@ -51,17 +76,21 @@ public class TournamentPanel extends JPanel{
 		createButtons();
 		createPanels();
 	}
-
+	/**
+	 * This sets information for this object. This is a housekeeping method.
+	 */
 	private void getInfo(){
 		numOfTeams = thisTournament.getTeamList().size();
  		tournName = thisTournament.getName();
-		//TODO: FIX ME JAIMEE
  		venueName = thisTournament.getVenue();
  		startDate = thisTournament.getStartDate();
  		regDate = thisTournament.getEndDate();
  		tType = String.valueOf(thisTournament.getType());
 	}
 
+	/**
+	 * This creates JLabels for this object. This is a housekeeping method.
+	 */
 	private void createItems(){
 		tournLabel = new JLabel("Name: " + tournName);
 		tournLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -85,7 +114,9 @@ public class TournamentPanel extends JPanel{
 		else if(tType.equals("2")){		structureLabel.setText("Structure: Double Elimination");	}
 		else 					{		structureLabel.setText("Structure: Divisions");	}
 	}
-		
+	/**
+	 * This creates buttons for this object. This is a housekeeping method.
+	 */
 	private void createButtons(){
 		ActionListener listener = new choiceListener();
 		editButton = new JButton("Edit");
@@ -104,7 +135,18 @@ public class TournamentPanel extends JPanel{
 		deleteButton.addActionListener(listener);
 		deleteButton.setFont(new Font("Arial", Font.PLAIN, 16));	
 	}
-
+	/**
+	 * Inner-Class implementing an ActionListener.
+	 * 
+	 * <br>
+	 * If source is generateButton, creates a frame for tournament.
+	 * <br>
+	 * If source is teamsButton, creates a teams frame for this tournament
+	 * <br>
+	 * If source is deleteButton, deletes the index of this object from the tournaments list
+	 * <br>
+	 * Else Opens a CreateTournament Frame, also removes the index of this object from the tournaments list
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == generateButton){
@@ -135,7 +177,9 @@ public class TournamentPanel extends JPanel{
 			}
 		}
 	}
-		
+	/**
+	 * Creates panels for this object.
+	 */
 	private void createPanels(){
 		panel = new JPanel(new BorderLayout());
 		panel1 = new JPanel(new GridLayout(4,2));
