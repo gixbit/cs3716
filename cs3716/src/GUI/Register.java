@@ -9,7 +9,7 @@ import javax.swing.*;
 import SkeletonCode.Team;
 import SkeletonCode.Tournament;
 
-public class Register extends JFrame {
+public class Register extends JPanel {
 	private JPanel grid;
 	private JPanel name;
 	private JPanel teamName;
@@ -61,7 +61,6 @@ public class Register extends JFrame {
 		createButton();
 		createPanel();
 		setSize(dimA,dimB);
-		setTitle("Register for Tournament");
 	}
 
 	public Register(ArrayList<Team> lt, ArrayList<Tournament> listT, Tournament t){
@@ -72,7 +71,6 @@ public class Register extends JFrame {
 		createButton();
 		createPanel();
 		setSize(dimA,dimB);
-		setTitle("Register for Tournament");
 	}
 
 	private void getInfo(){
@@ -168,7 +166,6 @@ public class Register extends JFrame {
 				if(n >= 40){
 					JFrame frame1 = new popUp("You Have Reached the Max Number of Players.");
 					frame1.setVisible(true);
-					dispose();
 				}
 				else{
 					n++;
@@ -181,26 +178,22 @@ public class Register extends JFrame {
 			else if(event.getSource() == cancelButton){
 				JFrame frame1 = new MainScreen(listOfTourns);
 				frame1.setVisible(true);
-				dispose();
 			}
 			else if(event.getSource() == clearButton){
-				JFrame frame1 = new Register(listOfTourns);
-				frame1.setVisible(true);
-				dispose();
+				//JFrame frame1 = new Register(listOfTourns);
+				//frame1.setVisible(true);
 			}
 			else{	//event.getSource() == RegisterButton
 				int index = 0;
 				for(int i=0; i < tournNames.size(); i++){
 					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
-						//TODO: FIX ME JAIMEE
 						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
 					}
 				}
-				JFrame frame1 = new ListOfTeams(listOfTourns.get(index), listOfTourns);
-				frame1.setVisible(true);
-				dispose();
+				//JFrame frame1 = new ListOfTeams(listOfTourns.get(index), listOfTourns);
+				//frame1.setVisible(true);
 				System.out.println(organizNameField.getText());
 				for(int i=0; i < n; i++){
 					if(listOfPlayers[i].getPlayerName() != null && listOfPlayers[i].getPlayerAge() != null){

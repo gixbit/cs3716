@@ -162,13 +162,13 @@ public class TournamentPanel extends JPanel {
 				}
 			}
 			else if(event.getSource() == teamsButton){
-				JFrame frame1 = new ListOfTeams(thisTournament, tournaments);
-				frame1.setVisible(true);
+//				JFrame frame1 = new ListOfTeams(thisTournament, tournaments);
+//				frame1.setVisible(true);
 			}
 			else if(event.getSource() == deleteButton){
 				tournaments.remove(index);
-				JFrame frame1 = new ManageTournament(tournaments);
-				frame1.setVisible(true);
+//				JFrame frame1 = new ManageTournament(tournaments);
+//				frame1.setVisible(true);
 			}
 			else{	//event.getSource() == editButton
 				tournaments.remove(index);

@@ -121,9 +121,9 @@ public class TournamentType extends JPanel {
 			else  {numType = 3;}
 			tournament.setType(numType);
 			listOfTourns.set(tournIndex, tournament);
-			JFrame frame1 = new ManageTournament(listOfTourns);
-			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			frame1.setVisible(true);
+//			JFrame frame1 = new ManageTournament(listOfTourns);
+//			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//			frame1.setVisible(true);
 //			dispose();
 		}
 	}

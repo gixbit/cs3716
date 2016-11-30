@@ -144,8 +144,8 @@ public class CreateTournament extends JFrame{
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
 				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
-				JFrame frame1 = new ManageTournament(tournaments);
-				frame1.setVisible(true);
+				//JFrame frame1 = new ManageTournament(tournaments);
+				//frame1.setVisible(true);
 				dispose();
 			}
 		}

@@ -48,10 +48,11 @@ public class windowManager extends JFrame {
 		if(displayStack.size() > 1){remove((JPanel)displayStack.pop());}
 		add((JPanel)(displayStack.peek()));
 		reDraw();
+
 	}
 
 	public void reDraw(){
-		repaint(0,0, width,height);
+		repaint(0,0, width, height);
 	}
   
 	public void back(){
@@ -91,7 +92,7 @@ public class windowManager extends JFrame {
 
 			switch((displayStack.peek()).getNextMenu()){
 				case "managermenu":
-					//newMenu = new ManageTournament();
+					newMenu = new ManageTournament();
 					break;
 				case "registermenu":
 					//newMenu = new Register();

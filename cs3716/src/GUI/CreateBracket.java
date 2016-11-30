@@ -10,7 +10,7 @@ import javax.swing.border.*;
 
 import GUI.ListOfTeams.choiceListener;
 
-public class CreateBracket extends JFrame{
+public class CreateBracket extends JPanel {
 	private JPanel panel;
 	private JPanel finalPanel;
 	private JPanel areaPanel;
@@ -30,7 +30,6 @@ public class CreateBracket extends JFrame{
 		createButton();
 		createPanels();
 		setSize(451,676);
-		setTitle("");
 	}
 	
 	private void createButton(){

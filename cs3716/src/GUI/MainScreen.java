@@ -35,22 +35,25 @@ public class MainScreen extends JFrame {
 		class choiceListener implements ActionListener{
 			public void actionPerformed(ActionEvent event){
 				if(event.getSource() == organButton){
-					JFrame frame1 = new ManageTournament(listOfTourns);
-//					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame1.setVisible(true);
-					dispose();
+					JPanel panel = new ManageTournament(listOfTourns);
+					mn.panel.setVisible(false);
+					mn.add(panel);
+					panel.setVisible(true);
+					//frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//frame1.setVisible(true);
+					//dispose();
 				}
 				else if(event.getSource() == bracButton){
-					JFrame frame1 = new CreateBracket(8);
-//					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame1.setVisible(true);
-					dispose();
+					//JFrame frame1 = new CreateBracket(8);
+					//frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//frame1.setVisible(true);
+					//dispose();
 				}
 				else{//event.getSource() == CoachButton
-					Register reg = new Register(listOfTourns);
-					reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					reg.setVisible(true);
-					dispose();
+					//Register reg = new Register(listOfTourns);
+					//reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//reg.setVisible(true);
+					//dispose();
 					//The below solution works, but it gets rid of this panel too. Might be able to combine panels.
 					/*
 					mn.panel.setVisible(false);

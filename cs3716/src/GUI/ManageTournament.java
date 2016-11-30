@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
-public class ManageTournament extends JFrame{
+public class ManageTournament extends JPanel implements PanelAccess{
 	private JLabel greetingLabel;
 	private JButton newButton;
 	private JButton homeButton;
@@ -21,6 +21,7 @@ public class ManageTournament extends JFrame{
 	private ArrayList<TournamentPanel> listOfTourns = new ArrayList<TournamentPanel>();
 	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	private int numOfTourns;
+	private boolean menu;
 	
 	public ManageTournament() {
 		numOfTourns = 10;
@@ -28,7 +29,6 @@ public class ManageTournament extends JFrame{
 		createButtons();
 		createPanels();
 		setSize(710,730);
-		setTitle("Manage Tournaments");
 	}
 
 	public ManageTournament(ArrayList<Tournament> tourns){
@@ -38,7 +38,6 @@ public class ManageTournament extends JFrame{
 		createButtons();
 		createPanels();
 		setSize(710,730);
-		setTitle("Manage Tournaments");
 	}
 
 	private void createItems(){
@@ -62,12 +61,10 @@ public class ManageTournament extends JFrame{
 			if(event.getSource() == homeButton){
 				JFrame frame1 = new MainScreen(tournaments);
 				frame1.setVisible(true);
-				dispose();
 			}
 			else{//event.getSource() == newButton
 				JFrame frame1 = new CreateTournament(tournaments);
 				frame1.setVisible(true);
-				dispose();
 			}
 		}
 	}
@@ -93,5 +90,20 @@ public class ManageTournament extends JFrame{
 		panel.add(scrollFrame, BorderLayout.CENTER);
 		
 		add(panel);
+	}
+
+	@Override
+	public boolean newMenu() {
+		return menu;
+	}
+
+	@Override
+	public String getNextMenu() {
+		return "";
+	}
+
+	@Override
+	public void setNewMenu() {
+		this.menu = true;
 	}
 }
