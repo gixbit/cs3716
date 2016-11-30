@@ -19,7 +19,7 @@ import SkeletonCode.Team;
  * @author Kristan James Hart
  * @author Karl Chiasson *
  */
-public class SingleElim extends JPanel{
+public class SingleElim extends JPanel {
 	private JPanel panel;
 	private JComboBox teamMenu;
 	private int numOfTeams;

@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 
 
-public class windowManager extends JFrame{
+public class windowManager extends JFrame {
 
 	private final int width = 800;
 	private final int height = 600;

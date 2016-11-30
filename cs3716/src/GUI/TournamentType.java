@@ -17,16 +17,16 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class TournamentType extends JFrame{
+public class TournamentType extends JPanel {
 	private JLabel headerLabel;
-	private JLabel label1;
-	private JLabel label2;
+	private JLabel bracketLabel;
+	private JLabel tournamentLabel;
 	private JComboBox bracketBox;
 	private JButton submitButton;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
+	private JPanel borderLayout;
+	private JPanel tournamentPanel;
+	private JPanel gridLayout;
+	private JPanel btnPanel;
 	private String tournamentName;
 	private String stringTeams;
 	private String tType;
@@ -51,7 +51,6 @@ public class TournamentType extends JFrame{
 		createButton();
 		createPanel();
 		setSize(500,500);
-		setTitle("Create Tournament");
 	}
 	
 	/**
@@ -71,7 +70,6 @@ public class TournamentType extends JFrame{
 		createButton();
 		createPanel();
 		setSize(500,500);
-		setTitle("Create Tournament");
 	}
 	/**
 	 * Does not return anything, modifies itself directly.
@@ -94,11 +92,11 @@ public class TournamentType extends JFrame{
 		headerLabel = new JLabel("Create Tournament", SwingConstants.CENTER);
 		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-		label1 = new JLabel("There are " + stringTeams + " teams registered in " + tournamentName + ".", SwingConstants.CENTER);
-		label1.setFont(new Font("Arial", Font.PLAIN, 16));
+		bracketLabel = new JLabel("There are " + stringTeams + " teams registered in " + tournamentName + ".", SwingConstants.CENTER);
+		bracketLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		
-		label2 = new JLabel("Select a tournament type:");
-		label2.setFont(new Font("Arial", Font.PLAIN, 16));	
+		tournamentLabel = new JLabel("Select a tournament type:");
+		tournamentLabel.setFont(new Font("Arial", Font.PLAIN, 16));	
 	}
 	/**
 	 * Creates a button for submission
@@ -133,23 +131,23 @@ public class TournamentType extends JFrame{
 	 * Creates JPanels for this class.
 	 */
 	private void createPanel(){
-		panel = new JPanel(new BorderLayout());
-		panel1 = new JPanel();
-		panel2 = new JPanel(new GridLayout(3,1));
-		panel3 = new JPanel();
+		borderLayout = new JPanel(new BorderLayout());
+		tournamentPanel = new JPanel();
+		gridLayout = new JPanel(new GridLayout(3,1));
+		btnPanel = new JPanel();
 
-		panel1.add(label2);
-		panel1.add(bracketBox);
+		tournamentPanel.add(tournamentLabel);
+		tournamentPanel.add(bracketBox);
 
-		panel2.add(headerLabel);
-		panel2.add(label1);
-		panel2.add(panel1);
+		gridLayout.add(headerLabel);
+		gridLayout.add(bracketLabel);
+		gridLayout.add(tournamentPanel);
 		
-		panel3.add(submitButton);
+		btnPanel.add(submitButton);
 
-		panel.add(panel2, BorderLayout.NORTH);
-		panel.add(panel3, BorderLayout.SOUTH);
+		borderLayout.add(gridLayout, BorderLayout.NORTH);
+		borderLayout.add(btnPanel, BorderLayout.SOUTH);
 		
-		add(panel);
+		add(borderLayout);
 	}
 }

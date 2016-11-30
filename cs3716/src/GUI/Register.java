@@ -21,8 +21,7 @@ public class Register extends JFrame{
 	private JPanel btns;
 	private JPanel playerPanel;
 	private JPanel completePanel;
-	//This variables accessibility was opened for testing a solution to our problems
-	public JPanel finalPanel;
+	private JPanel finalPanel;
 	private JLabel greetingLabel;
 	private JComboBox tournamentBox;
 	private JButton registerButton;

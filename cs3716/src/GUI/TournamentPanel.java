@@ -18,7 +18,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class TournamentPanel extends JPanel{
+public class TournamentPanel extends JPanel {
 	private JLabel tournLabel;
 	private JLabel venueLabel;
 	private JLabel startDateLabel;
@@ -29,9 +29,9 @@ public class TournamentPanel extends JPanel{
 	private JButton editButton;
 	private JButton deleteButton;
 	private JButton generateButton;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
+	private JPanel borderlayout;
+	private JPanel gridlayout;
+	private JPanel btnPanel;
 
 	private String tournName;
 	private String venueName;
@@ -151,14 +151,14 @@ public class TournamentPanel extends JPanel{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == generateButton){
 				if(tType.equals("unspecified")){
-					JFrame frame1 = new TournamentType(tournaments, index);
-					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					frame1.setVisible(true);
+					JPanel jpan1 = new TournamentType(tournaments, index);
+					//frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					//frame1.setVisible(true);
 				}
 				else{
-					JFrame frame1 = new TournamentType(tournaments, index, tType);
-					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					frame1.setVisible(true);
+					JPanel jpan1 = new TournamentType(tournaments, index, tType);
+					//frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					//frame1.setVisible(true);
 				}
 			}
 			else if(event.getSource() == teamsButton){
@@ -181,26 +181,26 @@ public class TournamentPanel extends JPanel{
 	 * Creates panels for this object.
 	 */
 	private void createPanels(){
-		panel = new JPanel(new BorderLayout());
-		panel1 = new JPanel(new GridLayout(4,2));
-		panel2 = new JPanel();
+		borderlayout = new JPanel(new BorderLayout());
+		gridlayout = new JPanel(new GridLayout(4,2));
+		btnPanel = new JPanel();
 
-		panel1.add(tournLabel);
-		panel1.add(structureLabel);
-		panel1.add(venueLabel);
-		panel1.add(regDateLabel);
-		panel1.add(numTeamsLabel);
-		panel1.add(startDateLabel);
+		gridlayout.add(tournLabel);
+		gridlayout.add(structureLabel);
+		gridlayout.add(venueLabel);
+		gridlayout.add(regDateLabel);
+		gridlayout.add(numTeamsLabel);
+		gridlayout.add(startDateLabel);
 
-		panel2.add(editButton);
-		panel2.add(deleteButton);
-		panel2.add(generateButton);
-		panel2.add(teamsButton);
+		btnPanel.add(editButton);
+		btnPanel.add(deleteButton);
+		btnPanel.add(generateButton);
+		btnPanel.add(teamsButton);
 
-		panel.add(panel1, BorderLayout.CENTER);
-		panel.add(panel2, BorderLayout.SOUTH);
-		panel.setBorder(BorderFactory.createRaisedBevelBorder());
+		borderlayout.add(gridlayout, BorderLayout.CENTER);
+		borderlayout.add(btnPanel, BorderLayout.SOUTH);
+		borderlayout.setBorder(BorderFactory.createRaisedBevelBorder());
 
-		add(panel);
+		add(borderlayout);
 	}
 }
