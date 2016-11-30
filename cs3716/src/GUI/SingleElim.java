@@ -26,25 +26,15 @@ public class SingleElim extends JPanel{
 	private int numOfColns;
 	private int colnNum;
 	private int spacers;
-<<<<<<< HEAD
 	private int side = 5;
 	private int top = 1;
 	private int bottom = 1;
 	private String teamName;
 	private ArrayList<JComponent> panList = new ArrayList<JComponent>();
 	private ArrayList<Team> teamArray = new ArrayList<Team>();
-=======
-	private int side;
-	private int top;
-	private int bottom;
-	private String teamName;
-	private ArrayList<JTextArea> panList = new ArrayList<JTextArea>();
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
 //	numT needs to be replaced with an arrayList of teams and numOf divisions also need to be an input
-	public SingleElim(int numT, int coln, int numC){
-=======
+	
 	/**
 	 * Constructor for SingleElimination.
 	 * <br>
@@ -54,11 +44,10 @@ public class SingleElim extends JPanel{
 	 * @param i - Integer
 	 * @param c - Integer
 	 */
-	public SingleElim(int n, int i, int c){
->>>>>>> refs/remotes/origin/master
+	public SingleElim(int numT, int coln, int numC){
 		super();
 		this.setBackground(Color.WHITE);
-<<<<<<< HEAD
+//		this.setSize(450, 610);
 //		numOfTeams = numT.size();
 		colnNum = coln;
 		numOfColns = numC;
@@ -66,31 +55,15 @@ public class SingleElim extends JPanel{
 		spacers = (int) Math.pow(2, colnNum);
 		createBorders();
 		createComboBoxes();
-=======
-//		this.setSize(450, 610);
-		colnNum = i;
-		numOfColns = c;
-		numOfTeams = n;
-		spacers = (int) Math.pow(2, colnNum)-1;
->>>>>>> refs/remotes/origin/master
 		createPanel();
 	}
 	
-<<<<<<< HEAD
-	private void createBorders(){
-=======
 	/**
 	 * Creates panels for this SingleElimination object.
 	 */
-	private void createPanel(){
->>>>>>> refs/remotes/origin/master
+	private void createBorders(){
 		MatteBorder line;
 		Border empty = BorderFactory.createEmptyBorder();
-<<<<<<< HEAD
-=======
-		title = BorderFactory.createTitledBorder(empty, teamName);
-		title.setTitlePosition(TitledBorder.RIGHT);
->>>>>>> refs/remotes/origin/master
 
 		panel = new JPanel(new GridLayout(2*numOfTeams, 1,0,0));
 		//creates each column
@@ -153,19 +126,6 @@ public class SingleElim extends JPanel{
 		for(int j = 0; j<2*numOfTeams; j++){
 			panel.add(panList.get(j));
 		}
-<<<<<<< HEAD
-=======
-		for(int i = 0; i < (Math.pow(2,numOfColns-colnNum)-1); i++){
-			for(int j = 0; j < height; j++){
-				if(i%2 == 1){
-					line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
-					panList.get(spacers + i*height + j).setBorder(line);
-				}
-			}
-		}
-		line = BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black);
-		panList.get(2*numOfTeams-spacers-2).setBorder(line);
->>>>>>> refs/remotes/origin/master
 		add(panel);
 	}
 }
