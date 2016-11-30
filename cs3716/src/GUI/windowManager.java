@@ -1,7 +1,11 @@
 package GUI;
 
+import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.JPanel;
+
+import SkeletonCode.Tournament;
+
 import javax.swing.JFrame;
 import java.awt.Toolkit;
 import java.awt.Dimension;

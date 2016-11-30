@@ -28,7 +28,6 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		createItems();
 		createButtons();
 		createPanels();
-		setSize(710,730);
 	}
 
 	public ManageTournament(ArrayList<Tournament> tourns){
@@ -37,7 +36,7 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		createItems();
 		createButtons();
 		createPanels();
-		setSize(710,730);
+
 	}
 
 	private void createItems(){
@@ -70,7 +69,8 @@ public class ManageTournament extends JPanel implements PanelAccess{
 	}
 
 	private void createPanels(){
-		panel = new JPanel(new BorderLayout());
+		//panel = new JPanel(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		panel1 = new JPanel(new GridLayout(2,1));
 		panel2 = new JPanel(new GridLayout(numOfTourns,1));
 		panel3 = new JPanel();
@@ -86,10 +86,10 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		}
 		scrollFrame = new JScrollPane(panel2);
 
-		panel.add(panel1, BorderLayout.NORTH);
-		panel.add(scrollFrame, BorderLayout.CENTER);
+		this.add(panel1, BorderLayout.NORTH);
+		this.add(scrollFrame, BorderLayout.CENTER);
 		
-		add(panel);
+		//add(panel);
 	}
 
 	@Override
