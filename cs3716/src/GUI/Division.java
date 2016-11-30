@@ -11,7 +11,6 @@ import javax.swing.border.*;
 import GUI.ListOfTeams.choiceListener;
 
 public class Division extends JFrame{
-	private JPanel panel;
 	private JPanel buttonPanel;
 	private JPanel areaPanel;
 	private JPanel finalPanel;
@@ -24,6 +23,7 @@ public class Division extends JFrame{
 	private int teamsNum;
 	private int teamSpaces;
 	private int teamsPerDiv;
+	private ArrayList<JPanel> bracketPanel = new ArrayList<JPanel>();
 	
 	public Division(int teams, int divs){
 		teamsPerDiv = (int)(teams/divs + 1);
@@ -58,19 +58,26 @@ public class Division extends JFrame{
 			frame1.setVisible(true);
 		}
 	}
-
+	
+	private JPanel createBracPanel(){
+		JPanel panel = new JPanel(new GridLayout(1,numOfColns,0,0));
+		for(int i = 0; i < numOfColns+1; i++){
+			panel.add(new SingleElim(teamsNum, i, numOfColns));
+		}
+		MatteBorder line = BorderFactory.createMatteBorder(1,1,1,1, Color.black);
+		panel.setBorder(line);
+		
+		return panel;
+	}
+	
 	private void createPanels(){
-		panel = new JPanel(new GridLayout(1,numOfColns,0,0));
-		areaPanel = new JPanel(new GridLayout(numOfDivs,2));
+		areaPanel = new JPanel(new GridLayout(numOfDivs,1));
 		buttonPanel = new JPanel();
 		finalPanel = new JPanel(new BorderLayout());
 		
 		for(int j = 0; j < numOfDivs; j++){
-			for(int i = 0; i < numOfColns+1; i++){
-				panel.add(new SingleElim(teamsNum, i, numOfColns));
-			}		
-			areaPanel.add(new JLabel("Division"+j, SwingConstants.CENTER));
-			areaPanel.add(panel);
+			areaPanel.add(new JLabel("Division " + (j+1), SwingConstants.CENTER));
+			areaPanel.add(createBracPanel());
 		}
 		buttonPanel.add(submitButton);
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);

@@ -59,7 +59,7 @@ public class CreateBracket extends JFrame{
 
 		for(int i = 0; i < numOfColns+1; i++){
 			panel.add(new SingleElim(teamsNum, i, numOfColns));
-		}		
+		}
 		areaPanel.add(panel);
 		buttonPanel.add(submitButton);
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);

@@ -21,7 +21,6 @@ import javax.swing.text.JTextComponent;
  */
 public class SingleElim extends JPanel{
 	private JPanel panel;
-	private JComboBox teamMenu;
 	private int numOfTeams;
 	private int numOfColns;
 	private int colnNum;
@@ -80,16 +79,17 @@ public class SingleElim extends JPanel{
 				bottom = 0;
 				side = 5;
 			}
-			else if((j-spacers)%height == height-1){
+*/	//		else
+			if((j-spacers)%height == height-1){
 				top = 0;
 				bottom = 1;
 				side = 5;	
 			}
 			else{
-*/				top = 0;
+				top = 0;
 				bottom = 0;
 				side = 5;
-//			}
+			}
 			line = BorderFactory.createMatteBorder(top, 0, bottom, side, Color.black);
 			panList.get(j).setBorder(line);
 			//removes side bar from blocks in spacing area
@@ -118,16 +118,29 @@ public class SingleElim extends JPanel{
 //		}
 	}
 	
+	private JPanel createBoxes(){
+		JPanel menuPanel = new JPanel();
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("word");
+		array.add("word");
+		JComboBox teamMenu = new JComboBox(array.toArray());
+		JTextField scoreField = new JTextField(1);
+		scoreField.setText("" + 0);
+		
+		menuPanel.add(teamMenu);
+		menuPanel.add(scoreField);
+		menuPanel.setBackground(Color.WHITE);
+		return menuPanel;
+	}
 	private void createComboBoxes(){
-//		teamMenu = new JComboBox(teamArray);
 		for(int i = 0; i <= numOfTeams/Math.pow(2,colnNum)-1; i++){
 			int index = (int) (Math.pow(2, colnNum+1)*i + Math.pow(2, colnNum) - 1);
-			panList.set(index, new JComboBox());
+			panList.set(index, createBoxes());
 		}
 	}
 	
 	private void createPanel(){
-		for(int j = 0; j<2*numOfTeams; j++){
+		for(int j = 0; j < 2*numOfTeams; j++){
 			panel.add(panList.get(j));
 		}
 		add(panel);

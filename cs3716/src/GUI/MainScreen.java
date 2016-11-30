@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
+import skeletonCode.Tournament;
 
 public class MainScreen extends JFrame{
 	private JPanel panel;
@@ -14,8 +14,11 @@ public class MainScreen extends JFrame{
 	private JButton organButton;
 	private JButton coachButton;
 	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
+	private int numOfTeams;
+	private int numOfDivs = 3;
 	
 	public MainScreen(){
+		numOfTeams = 13;
 		createItems();
 		createPanel();
 		setSize(500,500);
@@ -31,36 +34,6 @@ public class MainScreen extends JFrame{
 	}
 
 	private void createItems(){
-		MainScreen mn = this;
-		class choiceListener implements ActionListener{
-			public void actionPerformed(ActionEvent event){
-				if(event.getSource() == organButton){
-					JFrame frame1 = new ManageTournament(listOfTourns);
-//					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame1.setVisible(true);
-					dispose();
-				}
-				else if(event.getSource() == bracButton){
-					JFrame frame1 = new CreateBracket(8);
-//					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame1.setVisible(true);
-					dispose();
-				}
-				else{//event.getSource() == CoachButton
-					Register reg = new Register(listOfTourns);
-					reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					reg.setVisible(true);
-					dispose();
-					//The below solution works, but it gets rid of this panel too. Might be able to combine panels.
-					/*
-					mn.panel.setVisible(false);
-					mn.panel = reg.finalPanel;
-					mn.add(mn.panel);
-					mn.panel.setVisible(true);
-					*/
-				}
-			}
-		}
 		ActionListener listener = new choiceListener();
 		organButton = new JButton("Organizers");
 		organButton.addActionListener(listener);
@@ -75,10 +48,32 @@ public class MainScreen extends JFrame{
 		bracButton.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
-	
+	class choiceListener implements ActionListener{
+		public void actionPerformed(ActionEvent event){
+			if(event.getSource() == organButton){
+				JFrame frame1 = new ManageTournament(listOfTourns);
+//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame1.setVisible(true);
+				dispose();
+			}
+			else if(event.getSource() == bracButton){
+				JFrame frame1 = new CreateBracket(numOfTeams);
+//				JFrame frame1 = new Division(numOfTeams, numOfDivs);
+				frame1.setVisible(true);
+				dispose();
+			}
+			else{//event.getSource() == CoachButton
+				JFrame frame1 = new Register(listOfTourns);
+				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame1.setVisible(true);
+				dispose();
+			}
+		}
+	}
 
 	private void createPanel(){
 		panel = new JPanel();
+		
 		panel.add(organButton);
 		panel.add(coachButton);
 		panel.add(bracButton);
