@@ -56,7 +56,11 @@ public class CreateBracket extends JFrame{
 		finalPanel = new JPanel();
 
 		for(int i = 0; i < numOfColns+1; i++){
+<<<<<<< HEAD
 			panel.add(new SingleElim(teamsNum, i, numOfColns));
+=======
+			panel.add(new SingleElim(numOfTeams, i, numOfColns));
+>>>>>>> refs/remotes/origin/master
 		}		
 		area = new JScrollPane(panel);
 		areaPanel.add(area);
