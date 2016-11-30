@@ -35,7 +35,7 @@ public class MainScreen extends JFrame {
 		class choiceListener implements ActionListener{
 			public void actionPerformed(ActionEvent event){
 				if(event.getSource() == organButton){
-					JPanel japan = new ManageTournament(listOfTourns);
+					JPanel japan = new ManageTournament();
 					mn.panel.setVisible(false);
 					mn.add(japan);
 					japan.setVisible(true);

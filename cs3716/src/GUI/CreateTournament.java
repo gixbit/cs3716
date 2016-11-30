@@ -9,7 +9,6 @@ import javax.swing.*;
 import SkeletonCode.Tournament;
 
 public class CreateTournament extends JPanel implements PanelAccess {
-	private JPanel borderPanel;
 	private JPanel tournGridPanel;
 	private JPanel dateGridPanel;
 	private JPanel tournPanel;
@@ -32,26 +31,12 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	private JButton createButton;
 	private JButton cancelButton;
 	private DatePanel[] dates = new DatePanel[2];
-	private Tournament tournament;
 	
 	private boolean newMenu;
 	private String nextMenuName = "";
 	
-	private CreateTournament(){
-		createLabels();
-		createFields();
-		createButton();
-		createPanel();
-	}
-
-	public CreateTournament(Tournament tourn){
-		this();
-		tournament = tourn;
-	}
-	
-	public CreateTournament(String tName, String tVenue, String oName, String oInfo, Tournament tourn){
+	public CreateTournament(String tName, String tVenue, String oName, String oInfo){
 		//get current date(month, day, year)
-		tournament = tourn;
 		createLabels();
 		createFields(tName, tVenue, oName, oInfo);
 		createButton();
@@ -61,7 +46,6 @@ public class CreateTournament extends JPanel implements PanelAccess {
 		//dayBox.setSelectedItem(d);
 		//yearBox.setSelectedItem(y);
 		createPanel();
-		setSize(500,600);
 	}
 	
 	private void createLabels(){
@@ -88,17 +72,7 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	}
 	
 	private void createFields(){
-		tournField = new JTextField(26);
-		tournField.setText("");
-
-		venueField = new JTextField(32);
-		venueField.setText("");
-
-		organizerNameField = new JTextField(27);
-		organizerNameField.setText("");
-
-		organizerInfoField = new JTextField(23);
-		organizerInfoField.setText("");
+		createFields("","","","");
 	}
 
 	private void createFields(String tName, String tVenue, String oName, String oInfo){
@@ -138,7 +112,7 @@ public class CreateTournament extends JPanel implements PanelAccess {
 				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-//				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
+				runner.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
 				//TODO: SET CURRENT INSTANCE VARIABLES INSTEAD
 				//JFrame frame1 = new ManageTournament(tournaments);
 				//frame1.setVisible(true);

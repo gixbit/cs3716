@@ -17,21 +17,13 @@ public class ManageTournament extends JPanel implements PanelAccess{
 	private JPanel centerPanel;
 	private JPanel btnPanel;
 	private JScrollPane scrollFrame;
-	private ArrayList<TournamentPanel> listOfTourns = new ArrayList<TournamentPanel>();
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+	private ArrayList<TournamentPanel> listOfTourns;
 	private int numOfTourns;
 	private boolean menu;
 	
-	public ManageTournament() {
-		numOfTourns = 10;
-		createItems();
-		createButtons();
-		createPanels();
-	}
-
-	public ManageTournament(ArrayList<Tournament> tourns){
-		numOfTourns = tourns.size();
-		tournaments = tourns;
+	public ManageTournament(){
+		listOfTourns = new ArrayList<TournamentPanel>();
+		numOfTourns = runner.Tournaments.size();
 		createItems();
 		createButtons();
 		createPanels();
@@ -78,8 +70,8 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		btnPanel.add(newTournBtn);
 		northPanel.add(btnPanel);
 		
-		for(int i=0; i < tournaments.size(); i++){
-			listOfTourns.add(new TournamentPanel(tournaments.get(i)));
+		for(int i=0; i < runner.Tournaments.size(); i++){
+			listOfTourns.add(new TournamentPanel(runner.Tournaments.get(i)));
 			centerPanel.add(listOfTourns.get(i));
 		}
 		scrollFrame = new JScrollPane(centerPanel);

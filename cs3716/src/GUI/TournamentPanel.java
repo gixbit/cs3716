@@ -42,7 +42,7 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	private int numOfTeams;
 	private int index;
 	private String tType;
-	private Tournament thisTournament;
+	private Tournament tournament;
 
 	private boolean newMenu = false;
 	private String nextMenuName = "";
@@ -69,7 +69,7 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	 * @param i - Integer
 	 */
 	public TournamentPanel(Tournament tourn){
-		thisTournament = tourn;
+		this.tournament = tourn;
 		getInfo();
 		createItems();
 		createButtons();
@@ -79,12 +79,12 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	 * This sets information for this object. This is a housekeeping method.
 	 */
 	private void getInfo(){
-		numOfTeams = thisTournament.getTeamList().size();
- 		tournName = thisTournament.getName();
- 		venueName = thisTournament.getVenue();
- 		startDate = thisTournament.getStartDate();
- 		regDate = thisTournament.getEndDate();
- 		tType = String.valueOf(thisTournament.getType());
+		numOfTeams = tournament.getTeamList().size();
+ 		tournName = tournament.getName();
+ 		venueName = tournament.getVenue();
+ 		startDate = tournament.getStartDate();
+ 		regDate = tournament.getEndDate();
+ 		tType = String.valueOf(tournament.getType());
 	}
 
 	/**

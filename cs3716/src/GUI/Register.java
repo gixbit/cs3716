@@ -41,44 +41,29 @@ public class Register extends JPanel {
 	private JTextField coachField;
 	private JScrollPane scrollFrame;
 	private PlayerPanel[] listOfPlayers = new PlayerPanel[40];
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
 	private String time;
 	private String date;
 	private int n = 1;
 	private int dimA = 500;
 	private int dimB = 700;
-	private Tournament t;
-	private Tournament t1;
-	private Tournament t2;
-	
-	public Register(ArrayList<Tournament> list){
-		listOfTourns = list;
-		createLabels();
-		createFields();
-		createButton();
-		createPanel();
-		setSize(dimA,dimB);
-	}
 
-	public Register(ArrayList<Team> lt, ArrayList<Tournament> listT, Tournament t){
-		listOfTourns = listT;
+	public Register(){
 		createLabels();
 		createFields();
 		createButton();
 		createPanel();
-		setSize(dimA,dimB);
 	}
 
 	private ArrayList<String> getNames(){
 		ArrayList<String> tournNames = new ArrayList<String>();
 
-		for(int i = 0; i < listOfTourns.size(); i++){
-			tournNames.add(listOfTourns.get(i).getName());
+		for(int i = 0; i < runner.Tournaments.size(); i++){
+			tournNames.add(runner.Tournaments.get(i).getName());
 		}
 		time = "1:00AM";
 		date = "January 1, 2016";
-		if (listOfTourns.size() != 0){
-			date = listOfTourns.get(0).getEndDate();
+		if (runner.Tournaments.size() != 0){
+			date = runner.Tournaments.get(0).getEndDate();
 //			time = listOfTourns.get(0).getStartDate();
 		}
 		return tournNames;
@@ -152,9 +137,9 @@ public class Register extends JPanel {
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == tournamentBox){
 				String selected = tournamentBox.getSelectedItem().toString();
-				for(int i = 0; i < listOfTourns.size(); i++){
-					if(selected.equals(listOfTourns.get(i).getName())){
-						dateLabel.setText("Registration closes on " + listOfTourns.get(i).getEndDate());
+				for(int i = 0; i < runner.Tournaments.size(); i++){
+					if(selected.equals(runner.Tournaments.get(i).getName())){
+						dateLabel.setText("Registration closes on " + runner.Tournaments.get(i).getEndDate());
 						revalidate();
 						break;
 					}
@@ -174,7 +159,7 @@ public class Register extends JPanel {
 				}
 			}
 			else if(event.getSource() == cancelButton){
-				JFrame frame1 = new MainScreen(listOfTourns);
+				JFrame frame1 = new MainScreen(runner.Tournaments);
 				frame1.setVisible(true);
 			}
 			else if(event.getSource() == clearButton){
@@ -183,9 +168,9 @@ public class Register extends JPanel {
 			}
 			else{	//event.getSource() == RegisterButton
 				int index = 0;
-				for(int i=0; i < listOfTourns.size(); i++){
-					if(listOfTourns.get(i).getName() == (String)tournamentBox.getSelectedItem()){
-						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
+				for(int i=0; i < runner.Tournaments.size(); i++){
+					if(runner.Tournaments.get(i).getName() == (String)tournamentBox.getSelectedItem()){
+						runner.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
 					}
