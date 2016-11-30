@@ -23,7 +23,7 @@ public class ManageTournament extends JPanel implements PanelAccess{
 	
 	public ManageTournament(){
 		listOfTourns = new ArrayList<TournamentPanel>();
-		numOfTourns = runner.Tournaments.size();
+		numOfTourns = windowManager.Tournaments.size();
 		createItems();
 		createButtons();
 		createPanels();
@@ -70,8 +70,8 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		btnPanel.add(newTournBtn);
 		northPanel.add(btnPanel);
 		
-		for(int i=0; i < runner.Tournaments.size(); i++){
-			listOfTourns.add(new TournamentPanel(runner.Tournaments.get(i)));
+		for(int i=0; i < windowManager.Tournaments.size(); i++){
+			listOfTourns.add(new TournamentPanel(windowManager.Tournaments.get(i)));
 			centerPanel.add(listOfTourns.get(i));
 		}
 		scrollFrame = new JScrollPane(centerPanel);

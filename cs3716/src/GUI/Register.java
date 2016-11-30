@@ -57,13 +57,13 @@ public class Register extends JPanel {
 	private ArrayList<String> getNames(){
 		ArrayList<String> tournNames = new ArrayList<String>();
 
-		for(int i = 0; i < runner.Tournaments.size(); i++){
-			tournNames.add(runner.Tournaments.get(i).getName());
+		for(int i = 0; i < windowManager.Tournaments.size(); i++){
+			tournNames.add(windowManager.Tournaments.get(i).getName());
 		}
 		time = "1:00AM";
 		date = "January 1, 2016";
-		if (runner.Tournaments.size() != 0){
-			date = runner.Tournaments.get(0).getEndDate();
+		if (windowManager.Tournaments.size() != 0){
+			date = windowManager.Tournaments.get(0).getEndDate();
 //			time = listOfTourns.get(0).getStartDate();
 		}
 		return tournNames;
@@ -137,9 +137,9 @@ public class Register extends JPanel {
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == tournamentBox){
 				String selected = tournamentBox.getSelectedItem().toString();
-				for(int i = 0; i < runner.Tournaments.size(); i++){
-					if(selected.equals(runner.Tournaments.get(i).getName())){
-						dateLabel.setText("Registration closes on " + runner.Tournaments.get(i).getEndDate());
+				for(int i = 0; i < windowManager.Tournaments.size(); i++){
+					if(selected.equals(windowManager.Tournaments.get(i).getName())){
+						dateLabel.setText("Registration closes on " + windowManager.Tournaments.get(i).getEndDate());
 						revalidate();
 						break;
 					}
@@ -159,7 +159,7 @@ public class Register extends JPanel {
 				}
 			}
 			else if(event.getSource() == cancelButton){
-				JFrame frame1 = new MainScreen(runner.Tournaments);
+				JFrame frame1 = new MainScreen(windowManager.Tournaments);
 				frame1.setVisible(true);
 			}
 			else if(event.getSource() == clearButton){
@@ -168,9 +168,9 @@ public class Register extends JPanel {
 			}
 			else{	//event.getSource() == RegisterButton
 				int index = 0;
-				for(int i=0; i < runner.Tournaments.size(); i++){
-					if(runner.Tournaments.get(i).getName() == (String)tournamentBox.getSelectedItem()){
-						runner.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
+				for(int i=0; i < windowManager.Tournaments.size(); i++){
+					if(windowManager.Tournaments.get(i).getName() == (String)tournamentBox.getSelectedItem()){
+						windowManager.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
 					}

@@ -112,7 +112,7 @@ public class CreateTournament extends JPanel implements PanelAccess {
 				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				runner.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
+				windowManager.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
 				//TODO: SET CURRENT INSTANCE VARIABLES INSTEAD
 				//JFrame frame1 = new ManageTournament(tournaments);
 				//frame1.setVisible(true);
