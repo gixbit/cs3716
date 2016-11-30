@@ -8,7 +8,7 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
-public class CreateTournament extends JFrame{
+public class CreateTournament extends JPanel implements PanelAccess {
 	private JPanel borderPanel;
 	private JPanel tournGridPanel;
 	private JPanel dateGridPanel;
@@ -33,14 +33,15 @@ public class CreateTournament extends JFrame{
 	private JButton cancelButton;
 	private DatePanel[] dates = new DatePanel[2];
 	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
-			
+	
+	private boolean newMenu;
+	private String nextMenuName = "";
+	
 	public CreateTournament(){
 		createLabels();
 		createFields();
 		createButton();
 		createPanel();
-		setSize(500,600);
-		setTitle("Create Tournament");
 	}
 
 	public CreateTournament(ArrayList<Tournament> tourn){
@@ -49,8 +50,6 @@ public class CreateTournament extends JFrame{
 		createFields();
 		createButton();
 		createPanel();
-		setSize(500,600);
-		setTitle("Create Tournament");
 	}
 	
 	public CreateTournament(String a, String b, String c, String d, ArrayList<Tournament> tourn){
@@ -66,7 +65,6 @@ public class CreateTournament extends JFrame{
 		//yearBox.setSelectedItem(y);
 		createPanel();
 		setSize(500,600);
-		setTitle("Create Tournament");
 	}
 	
 	private void createLabels(){
@@ -136,7 +134,7 @@ public class CreateTournament extends JFrame{
 			if(event.getSource() == cancelButton){
 				JFrame frame1 = new MainScreen(tournaments);
 				frame1.setVisible(true);
-				dispose();
+				//dispose();
 			}
 			else{	//event.getSource() == createButton
 				String startDate = (String)dates[0].getMonth() + " " + (String)dates[0].getDay() + ", " + (String)dates[0].getYear();
@@ -146,7 +144,7 @@ public class CreateTournament extends JFrame{
 				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
 				//JFrame frame1 = new ManageTournament(tournaments);
 				//frame1.setVisible(true);
-				dispose();
+				//dispose();
 			}
 		}
 	}
@@ -195,8 +193,24 @@ public class CreateTournament extends JFrame{
 		this.add(btnPanel, BorderLayout.SOUTH);
 		//add(borderPanel);
 	}
-
+	
 	public ArrayList<Tournament> getTournaments(){
 		return tournaments;
 	}
+	
+	@Override
+	public boolean newMenu() {
+		return newMenu;
+	}
+	
+	@Override
+	public String getNextMenu() {
+		return "";
+	}
+	
+	@Override
+	public void setNewMenu() {
+		this.newMenu = true;
+	}
+	
 }
