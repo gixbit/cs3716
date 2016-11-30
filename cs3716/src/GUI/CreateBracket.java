@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import GUI.ListOfTeams.choiceListener;
+import SkeletonCode.Tournament;
 
 public class CreateBracket extends JPanel {
 	private JPanel panel;
@@ -16,12 +16,14 @@ public class CreateBracket extends JPanel {
 	private JLabel greetingLabel;
 	private JButton submitButton;
 	private JScrollPane area;
-	private int numOfColns;
-	private int teamsNum;
-	private int teamSpaces;
+	private int numOfColns; //Do not fix
+	private int teamsNum; //Do not fix
+	private int teamSpaces; //Do not fix
+	private Tournament tournament;
 	
-	public CreateBracket(int teams){
-		for(int i = 0; teams > Math.pow(2,i); i++){
+	public CreateBracket(Tournament t){
+		this.tournament = t;
+		for(int i = 0; t.getTeamList().size() > Math.pow(2,i); i++){
 			teamSpaces = i+1;
 		}
 		teamsNum = (int) Math.pow(2,teamSpaces);
@@ -54,7 +56,7 @@ public class CreateBracket extends JPanel {
 		//finalPanel = new JPanel();
 
 		for(int i = 0; i < numOfColns+1; i++){
-			panel.add(new SingleElim(teamsNum, i, numOfColns));
+			panel.add(new SingleElim(this.tournament,teamsNum, i, numOfColns));
 		}		
 		area = new JScrollPane(panel);
 		areaPanel.add(area);

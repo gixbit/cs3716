@@ -44,10 +44,7 @@ public class MainScreen extends JFrame {
 					//dispose();
 				}
 				else if(event.getSource() == bracButton){
-					JPanel japan = new CreateBracket(3);
-					mn.panel.setVisible(false);
-					mn.add(japan);
-					japan.setVisible(true);
+//					 japan.setVisible(true);
 					//frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					//frame1.setVisible(true);
 					//dispose();

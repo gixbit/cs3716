@@ -8,6 +8,7 @@ import javax.swing.border.*;
 import javax.swing.text.JTextComponent;
 
 import SkeletonCode.Team;
+import SkeletonCode.Tournament;
 
 /**
  * SingleElimination represented as a JPanel.
@@ -30,8 +31,8 @@ public class SingleElim extends JPanel {
 	private int top = 1;
 	private int bottom = 1;
 	private String teamName;
-	private ArrayList<JComponent> panList = new ArrayList<JComponent>();
-	private ArrayList<Team> teamArray = new ArrayList<Team>();
+	private ArrayList<JComponent> panList = new ArrayList<JComponent>(); //FIX ME
+	private Tournament tournament; //FIX ME
 
 //	numT needs to be replaced with an arrayList of teams and numOf divisions also need to be an input
 	
@@ -44,14 +45,14 @@ public class SingleElim extends JPanel {
 	 * @param i - Integer
 	 * @param c - Integer
 	 */
-	public SingleElim(int numT, int coln, int numC){
+	public SingleElim(Tournament t, int teams, int column, int columns){
 		super();
 		this.setBackground(Color.WHITE);
 //		this.setSize(450, 610);
 //		numOfTeams = numT.size();
-		colnNum = coln;
-		numOfColns = numC;
-		numOfTeams = numT;
+		colnNum = column;
+		numOfColns = columns;
+		numOfTeams = teams;
 		spacers = (int) Math.pow(2, colnNum);
 		createBorders();
 		createComboBoxes();

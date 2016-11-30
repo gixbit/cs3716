@@ -79,7 +79,7 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		northPanel.add(btnPanel);
 		
 		for(int i=0; i < tournaments.size(); i++){
-			listOfTourns.add(new TournamentPanel(tournaments.get(i), tournaments, i));
+			listOfTourns.add(new TournamentPanel(tournaments.get(i)));
 			centerPanel.add(listOfTourns.get(i));
 		}
 		scrollFrame = new JScrollPane(centerPanel);

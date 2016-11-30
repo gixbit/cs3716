@@ -43,7 +43,6 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	private int index;
 	private String tType;
 	private Tournament thisTournament;
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 
 	private boolean newMenu = false;
 	private String nextMenuName = "";
@@ -69,10 +68,8 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	 * @param tourns - ArrayList&ltTournament&gt
 	 * @param i - Integer
 	 */
-	public TournamentPanel(Tournament tourn, ArrayList<Tournament> tourns, int i){
-		tournaments = tourns;
+	public TournamentPanel(Tournament tourn){
 		thisTournament = tourn;
-		index = i;
 		getInfo();
 		createItems();
 		createButtons();
@@ -120,22 +117,22 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	 * This creates buttons for this object. This is a housekeeping method.
 	 */
 	private void createButtons(){
-		ActionListener listener = new choiceListener();
-		editButton = new JButton("Edit");
-		editButton.addActionListener(listener);
-		editButton.setFont(new Font("Arial", Font.PLAIN, 16));	
-
-		generateButton = new JButton("Generate");
-		generateButton.addActionListener(listener);
-		generateButton.setFont(new Font("Arial", Font.PLAIN, 16));	
-
-		teamsButton = new JButton("Teams List");
-		teamsButton.addActionListener(listener);
-		teamsButton.setFont(new Font("Arial", Font.PLAIN, 16));	
-
-		deleteButton = new JButton("Delete");
-		deleteButton.addActionListener(listener);
-		deleteButton.setFont(new Font("Arial", Font.PLAIN, 16));	
+//		ActionListener listener = new choiceListener();
+//		editButton = new JButton("Edit");
+//		editButton.addActionListener(listener);
+//		editButton.setFont(new Font("Arial", Font.PLAIN, 16));	
+//
+//		generateButton = new JButton("Generate");
+//		generateButton.addActionListener(listener);
+//		generateButton.setFont(new Font("Arial", Font.PLAIN, 16));	
+//
+//		teamsButton = new JButton("Teams List");
+//		teamsButton.addActionListener(listener);
+//		teamsButton.setFont(new Font("Arial", Font.PLAIN, 16));	
+//
+//		deleteButton = new JButton("Delete");
+//		deleteButton.addActionListener(listener);
+//		deleteButton.setFont(new Font("Arial", Font.PLAIN, 16));	
 	}
 	/**
 	 * Inner-Class implementing an ActionListener.
@@ -149,39 +146,39 @@ public class TournamentPanel extends JPanel implements PanelAccess{
 	 * <br>
 	 * Else Opens a CreateTournament Frame, also removes the index of this object from the tournaments list
 	 */
-	class choiceListener implements ActionListener{
-		public void actionPerformed(ActionEvent event){
-			if(event.getSource() == generateButton){
-				if(tType.equals("unspecified")){
-					JPanel frame1 = new TournamentType(tournaments, index);
-					frame1.setVisible(true);
-				}
-				else{
-					JPanel frame1 = new TournamentType(tournaments, index, tType);
-					frame1.setVisible(true);
-				}
-			}
-			
-			else if(event.getSource() == teamsButton){
-				JPanel frame1 = new ListOfTeams(thisTournament, tournaments);
-				frame1.setVisible(true);
-			}
-			else if(event.getSource() == deleteButton){
-				tournaments.remove(index);
-				JPanel frame1 = new ManageTournament(tournaments);
-				frame1.setVisible(true);
-			}
-			
-			//Changed the frame to a panel
-			else{	//event.getSource() == editButton
-				tournaments.remove(index);
-				CreateTournament frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo, tournaments);
-				frame1.setVisible(true);
-			
-			}
-			
-		}
-	}
+//	class choiceListener implements ActionListener{
+//		public void actionPerformed(ActionEvent event){
+//			if(event.getSource() == generateButton){
+//				if(tType.equals("unspecified")){
+//					JPanel frame1 = new TournamentType(tournaments, index);
+//					frame1.setVisible(true);
+//				}
+//				else{
+//					JPanel frame1 = new TournamentType(tournaments, index, tType);
+//					frame1.setVisible(true);
+//				}
+//			}
+//			
+//			else if(event.getSource() == teamsButton){
+//				JPanel frame1 = new ListOfTeams(thisTournament, tournaments);
+//				frame1.setVisible(true);
+//			}
+//			else if(event.getSource() == deleteButton){
+//				tournaments.remove(index);
+//				JPanel frame1 = new ManageTournament(tournaments);
+//				frame1.setVisible(true);
+//			}
+//			
+//			//Changed the frame to a panel
+//			else{	//event.getSource() == editButton
+//				tournaments.remove(index);
+//				CreateTournament frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo, tournaments);
+//				frame1.setVisible(true);
+//			
+//			}
+//			
+//		}
+//	} FIX THIS FOR THE FRAME
 	
 	/**
 	 * Creates panels for this object.

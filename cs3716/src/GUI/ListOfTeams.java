@@ -23,8 +23,6 @@ public class ListOfTeams extends JPanel {
 	private JButton regButton;
 	private Tournament tour;
 	private String tName;
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
-	private int n = 0;
 
 	public ListOfTeams() {
 		createItems();
@@ -33,11 +31,9 @@ public class ListOfTeams extends JPanel {
 		setSize(500,500);
 	}
 
-	public ListOfTeams(Tournament t, ArrayList<Tournament> listT) {
+	public ListOfTeams(Tournament t) {
 		tour = t;
 		tName = t.getName();
-		n++;
-		listOfTourns = listT;
 		createItems();
 		createButton();
 		createText();
@@ -61,13 +57,13 @@ public class ListOfTeams extends JPanel {
 	}
 
 	private void createButton() {
-		ActionListener listener = new choiceListener();
+		//ActionListener listener = new choiceListener();
 		contButton = new JButton("Home");
-		contButton.addActionListener(listener);
+//		contButton.addActionListener(listener);
 		contButton.setFont(new Font("Arial", Font.PLAIN, 16));
 		
 		regButton = new JButton("Register Another Team");
-		regButton.addActionListener(listener);
+//		regButton.addActionListener(listener);
 		regButton.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
@@ -77,20 +73,20 @@ public class ListOfTeams extends JPanel {
 		}
 	}
 	
-	class choiceListener implements ActionListener{
-		public void actionPerformed(ActionEvent event){
-			if(event.getSource() == regButton) {
-//				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
-//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	class choiceListener implements ActionListener{
+//		public void actionPerformed(ActionEvent event){
+//			if(event.getSource() == regButton) {
+////				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
+////				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+////				frame1.setVisible(true);
+//			}
+//			else {	//event.getSource() == contButton
+//				JFrame frame1 = new MainScreen(listOfTourns);
+////				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //				frame1.setVisible(true);
-			}
-			else {	//event.getSource() == contButton
-				JFrame frame1 = new MainScreen(listOfTourns);
-//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame1.setVisible(true);
-			}
-		}
-	}
+//			}
+//		}
+//	}
 	
 	private void createPanel() {
 		this.setLayout(new BorderLayout());

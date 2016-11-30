@@ -31,10 +31,8 @@ public class TournamentType extends JPanel {
 	private String stringTeams;
 	private String tType;
 	private int intTeams;
-	private int tournIndex;
 	private int numType;
 	private Tournament tournament;
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
 	
 	/**
 	 * Constructor for a TournamentType. Takes an ArrayList of Tournaments, also an integer that
@@ -42,10 +40,8 @@ public class TournamentType extends JPanel {
 	 * @param t - ArrayList&ltTournament&gt
 	 * @param i - Integer
 	 */
-	public TournamentType(ArrayList<Tournament> t, int i){
-		listOfTourns = t;
-		tournament = t.get(i);
-		tournIndex = i;
+	public TournamentType(Tournament t){
+		tournament = t;
 		getInfo();
 		createItems();
 		createButton();
@@ -54,22 +50,13 @@ public class TournamentType extends JPanel {
 	}
 	
 	/**
-	 * Constructor for a TournamentType. Takes an ArrayList of Tournaments, an integer that
-	 * represents the index of the tournament, and also takes the type as a string.
-	 * @param t - ArrayList&ltTournament&gt
-	 * @param i - Integer
+	 * Constructor for a TournamentType. Takes an ArrayList of Tournaments and also takes the type as a string.
+	 * @param t - Tournament
 	 * @param type - String
 	 */
-	public TournamentType(ArrayList<Tournament> t, int i, String type){
-		listOfTourns = t;
-		tournament = t.get(i);
-		tournIndex = i;
+	public TournamentType(Tournament t, String type){
+		this(t);
 		tType = type;
-		getInfo();
-		createItems();
-		createButton();
-		createPanel();
-		setSize(500,500);
 	}
 	/**
 	 * Does not return anything, modifies itself directly.
@@ -120,7 +107,7 @@ public class TournamentType extends JPanel {
 			else if(bracketBox.getSelectedItem().equals("Double Elimination")){numType = 2;}
 			else  {numType = 3;}
 			tournament.setType(numType);
-			listOfTourns.set(tournIndex, tournament);
+//			listOfTourns.set(tournIndex, tournament);
 //			JFrame frame1 = new ManageTournament(listOfTourns);
 //			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //			frame1.setVisible(true);

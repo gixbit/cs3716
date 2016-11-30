@@ -1,9 +1,10 @@
 //Jaimee
 package GUI;
 
+
 import java.awt.*;
 import javax.swing.*;
-
+@Deprecated
 public class popUp extends JFrame {
 	private JLabel alert;
 	private JPanel panel;

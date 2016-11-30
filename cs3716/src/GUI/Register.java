@@ -41,9 +41,7 @@ public class Register extends JPanel {
 	private JTextField coachField;
 	private JScrollPane scrollFrame;
 	private PlayerPanel[] listOfPlayers = new PlayerPanel[40];
-	private ArrayList<String> tournNames = new ArrayList<String>();
 	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
-	private int numOfTourns;
 	private String time;
 	private String date;
 	private int n = 1;
@@ -55,7 +53,6 @@ public class Register extends JPanel {
 	
 	public Register(ArrayList<Tournament> list){
 		listOfTourns = list;
-		getInfo();
 		createLabels();
 		createFields();
 		createButton();
@@ -65,7 +62,6 @@ public class Register extends JPanel {
 
 	public Register(ArrayList<Team> lt, ArrayList<Tournament> listT, Tournament t){
 		listOfTourns = listT;
-		getInfo();
 		createLabels();
 		createFields();
 		createButton();
@@ -73,9 +69,10 @@ public class Register extends JPanel {
 		setSize(dimA,dimB);
 	}
 
-	private void getInfo(){
-		numOfTourns = listOfTourns.size();
-		for(int i = 0; i < numOfTourns; i++){
+	private ArrayList<String> getNames(){
+		ArrayList<String> tournNames = new ArrayList<String>();
+
+		for(int i = 0; i < listOfTourns.size(); i++){
 			tournNames.add(listOfTourns.get(i).getName());
 		}
 		time = "1:00AM";
@@ -84,6 +81,7 @@ public class Register extends JPanel {
 			date = listOfTourns.get(0).getEndDate();
 //			time = listOfTourns.get(0).getStartDate();
 		}
+		return tournNames;
 	}
 
 	private void createLabels(){
@@ -94,7 +92,7 @@ public class Register extends JPanel {
 		tournLabel.setFont(new Font("Arial", Font.PLAIN, 16));		
 
 		ActionListener listener = new choiceListener();
-		tournamentBox = new JComboBox(tournNames.toArray());
+		tournamentBox = new JComboBox(getNames().toArray());
 		tournamentBox.addActionListener(listener);
 		tournamentBox.setFont(new Font("Arial", Font.PLAIN, 16));
 
@@ -154,7 +152,7 @@ public class Register extends JPanel {
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == tournamentBox){
 				String selected = tournamentBox.getSelectedItem().toString();
-				for(int i = 0; i < numOfTourns; i++){
+				for(int i = 0; i < listOfTourns.size(); i++){
 					if(selected.equals(listOfTourns.get(i).getName())){
 						dateLabel.setText("Registration closes on " + listOfTourns.get(i).getEndDate());
 						revalidate();
@@ -185,8 +183,8 @@ public class Register extends JPanel {
 			}
 			else{	//event.getSource() == RegisterButton
 				int index = 0;
-				for(int i=0; i < tournNames.size(); i++){
-					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
+				for(int i=0; i < listOfTourns.size(); i++){
+					if(listOfTourns.get(i).getName() == (String)tournamentBox.getSelectedItem()){
 						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
