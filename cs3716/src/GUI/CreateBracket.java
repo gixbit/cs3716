@@ -12,8 +12,9 @@ import GUI.ListOfTeams.choiceListener;
 
 public class CreateBracket extends JFrame{
 	private JPanel panel;
-	private JPanel finalPanel;
+	private JPanel buttonPanel;
 	private JPanel areaPanel;
+	private JPanel finalPanel;
 	private JLabel greetingLabel;
 	private JButton submitButton;
 	private JScrollPane area;
@@ -34,7 +35,7 @@ public class CreateBracket extends JFrame{
 	}
 	
 	private void createButton(){
-		greetingLabel = new JLabel("Bracket");
+		greetingLabel = new JLabel("Bracket", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 		
 		ActionListener listener = new choiceListener();
@@ -53,16 +54,18 @@ public class CreateBracket extends JFrame{
 	private void createPanels(){
 		panel = new JPanel(new GridLayout(1,numOfColns,0,0));
 		areaPanel = new JPanel();
-		finalPanel = new JPanel();
+		buttonPanel = new JPanel();
+		finalPanel = new JPanel(new BorderLayout());
 
 		for(int i = 0; i < numOfColns+1; i++){
 			panel.add(new SingleElim(teamsNum, i, numOfColns));
 		}		
-		area = new JScrollPane(panel);
-		areaPanel.add(area);
-		finalPanel.add(greetingLabel);
-		finalPanel.add(areaPanel);
-		finalPanel.add(submitButton);
-		add(finalPanel);
+		areaPanel.add(panel);
+		buttonPanel.add(submitButton);
+		finalPanel.add(greetingLabel, BorderLayout.NORTH);
+		finalPanel.add(areaPanel, BorderLayout.CENTER);
+		finalPanel.add(buttonPanel, BorderLayout.SOUTH);
+		area = new JScrollPane(finalPanel);
+		add(area);
 	}
 }
