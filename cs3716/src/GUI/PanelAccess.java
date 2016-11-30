@@ -7,5 +7,7 @@ interface PanelAccess{
 	public String getNextMenu();
 
 	public void setNewMenu();
+
+	public void clearNextMenu();
 	
 }

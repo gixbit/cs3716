@@ -1,15 +1,15 @@
 package GUI;
 
+import SkeletonCode.Team;
+import SkeletonCode.Tournament;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import SkeletonCode.Team;
-import SkeletonCode.Tournament;
-
-public class Register extends JPanel {
+public class Register extends JPanel implements PanelAccess{
 	private JPanel grid;
 	private JPanel name;
 	private JPanel teamName;
@@ -40,33 +40,36 @@ public class Register extends JPanel {
 	private JTextField playerAgeField;
 	private JTextField coachField;
 	private JScrollPane scrollFrame;
+	//private ArrayList<PlayerPanel> listOfPlayers = new ArrayList<PlayerPanel>();
 	private PlayerPanel[] listOfPlayers = new PlayerPanel[40];
+	private ArrayList<String> tournNames = new ArrayList<String>();
+	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
+	private int numOfTourns;
 	private String time;
 	private String date;
 	private int n = 1;
-	private int dimA = 500;
-	private int dimB = 700;
-
+	private boolean newMenu = false;
+	private String nextMenuName = "";
+	
 	public Register(){
+		getInfo();
 		createLabels();
 		createFields();
 		createButton();
 		createPanel();
 	}
-
-	private ArrayList<String> getNames(){
-		ArrayList<String> tournNames = new ArrayList<String>();
-
-		for(int i = 0; i < windowManager.Tournaments.size(); i++){
-			tournNames.add(windowManager.Tournaments.get(i).getName());
+	
+	private void getInfo(){
+		numOfTourns = listOfTourns.size();
+		for(int i = 0; i < numOfTourns; i++){
+			tournNames.add(listOfTourns.get(i).getName());
 		}
 		time = "1:00AM";
 		date = "January 1, 2016";
-		if (windowManager.Tournaments.size() != 0){
-			date = windowManager.Tournaments.get(0).getEndDate();
+		if (listOfTourns.size() != 0){
+			date = listOfTourns.get(0).getEndDate();
 //			time = listOfTourns.get(0).getStartDate();
 		}
-		return tournNames;
 	}
 
 	private void createLabels(){
@@ -76,10 +79,22 @@ public class Register extends JPanel {
 		tournLabel = new JLabel("Select a Tournament: ");
 		tournLabel.setFont(new Font("Arial", Font.PLAIN, 16));		
 
-		ActionListener listener = new choiceListener();
-		tournamentBox = new JComboBox(getNames().toArray());
-		tournamentBox.addActionListener(listener);
+		tournamentBox = new JComboBox(tournNames.toArray());
 		tournamentBox.setFont(new Font("Arial", Font.PLAIN, 16));
+		tournamentBox.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e){
+				String selected = tournamentBox.getSelectedItem().toString();
+				for(int i = 0; i < numOfTourns; i++){
+					if(selected.equals(listOfTourns.get(i).getName())){
+						dateLabel.setText("Registration closes on " + listOfTourns.get(i).getEndDate());
+						revalidate();
+						break;
+					}
+                }
+			}
+		});
+		
 
 		dateLabel = new JLabel("Registration closes on " + date + " at " + time + ".", SwingConstants.CENTER);
 		dateLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -115,40 +130,69 @@ public class Register extends JPanel {
 	}
 	
 	private void createButton(){
-		ActionListener listener = new choiceListener();
+
 		registerButton = new JButton("Register");
-		registerButton.addActionListener(listener);
 		registerButton.setFont(new Font("Arial", Font.PLAIN, 14));
+		registerButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			  	
+			}
+		});
 		
 		addButton = new JButton("Add Player");
-		addButton.addActionListener(listener);
 		addButton.setFont(new Font("Arial", Font.PLAIN, 14));
+		addButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+		  		n++;
+				listOfPlayers[n-1] = new PlayerPanel();
+				playerPanel.add(listOfPlayers[n-1]);
+				players.add(playerPanel);
+				revalidate();
+			}
+		});
 		
 		cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(listener);
 		cancelButton.setFont(new Font("Arial", Font.PLAIN, 14));
+		cancelButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			  	setNextMenu(true,"back");
+			}
+		});
 		
 		clearButton = new JButton("Clear");
-		clearButton.addActionListener(listener);
-		clearButton.setFont(new Font("Arial", Font.PLAIN, 14));
+		clearButton.setFont(new Font("Arial", Font.PLAIN, 14));		
+		clearButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				removeAll();
+				resetVar();
+				createLabels();
+				createFields();
+				createButton();
+				createPanel();
+				revalidate();
+				repaint();
+			}
+		});
 	}
+    /* Hold for reference
 
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == tournamentBox){
 				String selected = tournamentBox.getSelectedItem().toString();
-				for(int i = 0; i < windowManager.Tournaments.size(); i++){
-					if(selected.equals(windowManager.Tournaments.get(i).getName())){
-						dateLabel.setText("Registration closes on " + windowManager.Tournaments.get(i).getEndDate());
+				for(int i = 0; i < numOfTourns; i++){
+					if(selected.equals(listOfTourns.get(i).getName())){
+						dateLabel.setText("Registration closes on " + listOfTourns.get(i).getEndDate());
 						revalidate();
 						break;
 					}
                 }
-			}
+			} 
 			else if(event.getSource() == addButton){
 				if(n >= 40){
-					JFrame frame1 = new popUp("You Have Reached the Max Number of Players.");
-					frame1.setVisible(true);
+					//JFrame frame1 = new popUp("You Have Reached the Max Number of Players.");
+					//frame1.setVisible(true);
+					//dispose();
 				}
 				else{
 					n++;
@@ -156,27 +200,32 @@ public class Register extends JPanel {
 					playerPanel.add(listOfPlayers[n-1]);
 					players.add(playerPanel);
 					revalidate();
+					repaint();
 				}
 			}
 			else if(event.getSource() == cancelButton){
-				JFrame frame1 = new MainScreen(windowManager.Tournaments);
-				frame1.setVisible(true);
+				//JFrame frame1 = new MainScreen(listOfTourns);
+				//frame1.setVisible(true);
+				//dispose();
 			}
 			else if(event.getSource() == clearButton){
 				//JFrame frame1 = new Register(listOfTourns);
 				//frame1.setVisible(true);
+				//dispose();
 			}
 			else{	//event.getSource() == RegisterButton
 				int index = 0;
-				for(int i=0; i < windowManager.Tournaments.size(); i++){
-					if(windowManager.Tournaments.get(i).getName() == (String)tournamentBox.getSelectedItem()){
-						windowManager.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
+				for(int i=0; i < tournNames.size(); i++){
+					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
+						//TODO: FIX ME JAIMEE
+						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
 					}
 				}
 				//JFrame frame1 = new ListOfTeams(listOfTourns.get(index), listOfTourns);
 				//frame1.setVisible(true);
+				//dispose();
 				System.out.println(organizNameField.getText());
 				for(int i=0; i < n; i++){
 					if(listOfPlayers[i].getPlayerName() != null && listOfPlayers[i].getPlayerAge() != null){
@@ -187,9 +236,10 @@ public class Register extends JPanel {
 			
 			}
 		}
-	}
+	}*/
 	
 	private void createPanel(){
+
 		grid = new JPanel(new GridLayout(6,1));
 		name = new JPanel();
 		teamName = new JPanel();
@@ -200,7 +250,7 @@ public class Register extends JPanel {
 		players = new JPanel();
 		btns = new JPanel(new BorderLayout());
 		completePanel = new JPanel(new BorderLayout());
-		finalPanel = new JPanel(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		
 		name.add(tournLabel);
 		name.add(tournamentBox);
@@ -236,9 +286,95 @@ public class Register extends JPanel {
 
 		scrollFrame = new JScrollPane(completePanel);
 
-		finalPanel.add(greetingLabel, BorderLayout.NORTH);
-		finalPanel.add(scrollFrame, BorderLayout.CENTER);
-		finalPanel.add(btns, BorderLayout.SOUTH);
-		add(finalPanel);
+		this.add(greetingLabel, BorderLayout.NORTH);
+		this.add(scrollFrame, BorderLayout.CENTER);
+		this.add(btns, BorderLayout.SOUTH);
+	}
+
+	private void resetVar(){
+		grid = null;
+		name = null;
+		teamName= null;
+		organizer= null;
+		coach= null;
+		addBtn= null;
+		cancelBtn= null;
+		players= null;
+		btns= null;
+		playerPanel= null;
+		completePanel= null;
+		finalPanel= null;
+		greetingLabel= null;
+		tournamentBox= null;
+		registerButton= null;
+		addButton= null;
+		cancelButton= null;
+		clearButton= null;
+		teamNameLabel= null;
+		tournLabel= null;
+		organizNameLabel= null;
+		playerLabel= null;
+		coachLabel= null;
+		dateLabel= null;
+		teamNameField= null;
+		organizNameField= null;
+		playerNameField= null;
+		playerAgeField= null;
+		coachField= null;
+		scrollFrame= null;
+		//listOfPlayers = new ArrayList<PlayerPanel>();
+		listOfPlayers = new PlayerPanel[40];
+		tournNames = new ArrayList<String>();
+		listOfTourns = new ArrayList<Tournament>();
+		numOfTourns= 0;
+		time= null;
+		date= null;
+		n = 1;
+		newMenu = false;
+		nextMenuName = "";
+	}
+
+	private void setNextMenu(boolean state, String next){
+		newMenu = state;
+		nextMenuName = next;
+	}
+
+	public boolean newMenu(){
+		return newMenu;
+	}
+
+	public String getNextMenu(){
+		return nextMenuName;
+	}
+
+	public void setNewMenu(){
+		newMenu = false;
+	}
+
+	public void clearNextMenu(){
+		nextMenuName = "";
+	}
+
+	public class PlayerPanel extends JPanel{
+		private JTextField playerName;
+		private JTextField playerAge;
+		
+		public PlayerPanel(){
+			playerName = new JTextField(25);
+			playerName.setText("");
+
+			playerAge = new JTextField(5);
+			playerAge.setText("");
+			
+			add(playerName);
+			add(playerAge);
+		}
+		
+		public String getPlayerName(){
+			return playerName.getText();
+		}
+		public String getPlayerAge(){
+			return playerAge.getText();
+		}	
 	}
 }

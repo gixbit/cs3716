@@ -1,14 +1,17 @@
 package GUI;
 
+import SkeletonCode.Tournament;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
+
 
 public class CreateTournament extends JPanel implements PanelAccess {
+	private JPanel borderPanel;
 	private JPanel tournGridPanel;
 	private JPanel dateGridPanel;
 	private JPanel tournPanel;
@@ -31,14 +34,31 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	private JButton createButton;
 	private JButton cancelButton;
 	private DatePanel[] dates = new DatePanel[2];
+	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	
-	private boolean newMenu;
+	private boolean newMenu = false;
 	private String nextMenuName = "";
 	
-	public CreateTournament(String tName, String tVenue, String oName, String oInfo){
-		//get current date(month, day, year)
+	public CreateTournament(){
 		createLabels();
-		createFields(tName, tVenue, oName, oInfo);
+		createFields();
+		createButton();
+		createPanel();
+	}
+
+	public CreateTournament(ArrayList<Tournament> tourn){
+		tournaments = tourn;
+		createLabels();
+		createFields();
+		createButton();
+		createPanel();
+	}
+	
+	public CreateTournament(String a, String b, String c, String d, ArrayList<Tournament> tourn){
+		//get current date(month, day, year)
+		tournaments = tourn;
+		createLabels();
+		createFields(a,b,c,d);
 		createButton();
 		//createPanel(month, day, year)
 		//input into datePanel
@@ -72,15 +92,25 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	}
 	
 	private void createFields(){
-		createFields("","","","");
-	}
-
-	private void createFields(String tName, String tVenue, String oName, String oInfo){
 		tournField = new JTextField(26);
-		tournField.setText(tName);
+		tournField.setText("");
 
 		venueField = new JTextField(32);
-		venueField.setText(tVenue);
+		venueField.setText("");
+
+		organizerNameField = new JTextField(27);
+		organizerNameField.setText("");
+
+		organizerInfoField = new JTextField(23);
+		organizerInfoField.setText("");
+	}
+
+	private void createFields(String t, String ven, String oName, String oInfo){
+		tournField = new JTextField(26);
+		tournField.setText(t);
+
+		venueField = new JTextField(32);
+		venueField.setText(ven);
 
 		organizerNameField = new JTextField(27);
 		organizerNameField.setText(oName);
@@ -90,7 +120,7 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	}
 	
 	private void createButton(){
-		ActionListener listener = new choiceListener();
+		//ActionListener listener = new choiceListener();
 		createButton = new JButton("Create");
 		createButton.addActionListener(listener);
 		createButton.setFont(new Font("Arial", Font.PLAIN, 16));	
@@ -103,17 +133,14 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == cancelButton){
-				//JFrame frame1 = new MainScreen(tournaments);
-//				frame1.setVisible(true);
-				//dispose();
+				setNextMenu(true, "back");
 			}
 			else{	//event.getSource() == createButton
 				String startDate = (String)dates[0].getMonth() + " " + (String)dates[0].getDay() + ", " + (String)dates[0].getYear();
 				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				windowManager.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
-				//TODO: SET CURRENT INSTANCE VARIABLES INSTEAD
+				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
 				//JFrame frame1 = new ManageTournament(tournaments);
 				//frame1.setVisible(true);
 				//dispose();
@@ -165,7 +192,16 @@ public class CreateTournament extends JPanel implements PanelAccess {
 		this.add(btnPanel, BorderLayout.SOUTH);
 		//add(borderPanel);
 	}
-
+	
+	public ArrayList<Tournament> getTournaments(){
+		return tournaments;
+	}
+	
+	private void setNextMenu(boolean state, String next){
+		newMenu = state;
+		nextMenuName = next;
+	}
+	
 	@Override
 	public boolean newMenu() {
 		return newMenu;
@@ -173,12 +209,17 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	
 	@Override
 	public String getNextMenu() {
-		return "";
+		return nextMenuName;
 	}
 	
 	@Override
 	public void setNewMenu() {
 		this.newMenu = true;
+	}
+
+	@Override
+	public void clearNextMenu(){
+		this.nextMenuName = "";
 	}
 	
 }

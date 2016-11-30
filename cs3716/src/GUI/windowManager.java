@@ -1,29 +1,19 @@
 package GUI;
 
-import java.util.ArrayList;
-import java.util.Stack;
-import javax.swing.JPanel;
-
 import SkeletonCode.Tournament;
 
+import java.util.Stack;
+import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.awt.Dimension;
 import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 
 
 
-public class windowManager extends JFrame {
-	public static ArrayList<Tournament> Tournaments = new ArrayList<Tournament>();
+public class windowManager extends JFrame{
+
 	private final int width = 800;
 	private final int height = 600;
 	private final String windowTitle = "vTournament";
@@ -32,62 +22,18 @@ public class windowManager extends JFrame {
 	private Stack<PanelAccess> displayStack = new Stack<PanelAccess>();
 	
 	public windowManager(){
-		this.addWindowListener(new WindowAdapter()
-        {
-            @Override
-            public void windowClosing(WindowEvent e)
-            {
-        		try {
-        			FileOutputStream fos = new FileOutputStream("Tournaments.txt");
-        			ObjectOutputStream oos = new ObjectOutputStream(fos);
-        			try {
-        				oos.writeObject(Tournaments);
-        	
-        			} catch(IOException err) {
-        				//could not write object
-        			} finally {
-        				oos.flush();
-        				oos.close();
-        				fos.flush();
-        				fos.close();	
-        			}
 
-        		} catch (IOException err) {
-        			//Could not find file or open file.
-        		}
-        		e.getWindow().dispose();
-            }
-            @Override
-            public void windowOpened(WindowEvent e) {
-        		FileInputStream fis;
-        		try {
-        			fis = new FileInputStream("Tournaments.txt");
-        			ObjectInputStream ois = new ObjectInputStream(fis);
-        			try {
-        				Tournaments = (ArrayList<Tournament>)ois.readObject();			
-        			} catch(IOException | ClassNotFoundException err) {
-        				//Could not read or class not found
-        			} finally {
-        				ois.close();
-        				fis.close();	
-        			}
-        		} catch (FileNotFoundException err) {
-        			err.printStackTrace();
-        		} catch (IOException err) {
-        			//Could not close
-        		}
-            }
-        });
 		initUi();
 		initMenu();
+		
 
-		//Testing loop
+		//Logic loop
 		while(true){
 			
-			test();
+			windowLogic();
 			
 			try{
-				TimeUnit.MILLISECONDS.sleep(200);
+				TimeUnit.MILLISECONDS.sleep(250);
 			}
 			catch(InterruptedException e){
 				//msg to console for now
@@ -106,11 +52,11 @@ public class windowManager extends JFrame {
 		if(displayStack.size() > 1){remove((JPanel)displayStack.pop());}
 		add((JPanel)(displayStack.peek()));
 		reDraw();
-
 	}
 
 	public void reDraw(){
-		repaint(0,0, width, height);
+		revalidate();
+		repaint();
 	}
   
 	public void back(){
@@ -118,7 +64,6 @@ public class windowManager extends JFrame {
 	}
 
 	private void initMenu(){
-		setLayout(null);
 		mainMenu = new Menu();
 		((JPanel)mainMenu).setBounds(0,0,width,height);
  		push(mainMenu);
@@ -140,11 +85,9 @@ public class windowManager extends JFrame {
 		setLayout(null);
 	}
 
-	private void test(){
+	private void windowLogic(){
 
 		if((displayStack.peek()).newMenu()){
-
-			(displayStack.peek()).setNewMenu();
 
 			PanelAccess newMenu = null;
 
@@ -153,17 +96,25 @@ public class windowManager extends JFrame {
 					newMenu = new ManageTournament();
 					break;
 				case "registermenu":
-					//newMenu = new Register();
+					newMenu = new Register();
 					break;
 				case "createtournament":
-					//newMenu = new CreateTournament();
+					newMenu = new CreateTournament();
+					break;
+				case "teamlist":
+					newMenu = new ListOfTeams();
 					break;
 				case "back":
 					pop();
 					break;
 			}
-
-			push(newMenu);
+			
+			if(!(newMenu == null)){
+				displayStack.peek().setNewMenu();
+				displayStack.peek().clearNextMenu();
+				((JPanel)newMenu).setBounds(0,0,width,height);
+				push(newMenu);
+			}
 		}
 	}
 }

@@ -1,14 +1,16 @@
 package GUI;
 
+import SkeletonCode.Tournament;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
 
-public class ListOfTeams extends JPanel {
+
+public class ListOfTeams extends JPanel implements PanelAccess{
 	private JTextArea listText;
 	private JScrollPane listArea;
 	private JLabel listLabel;
@@ -24,19 +26,14 @@ public class ListOfTeams extends JPanel {
 	private Tournament tour;
 	private String tName;
 
+	private boolean newMenu = false;
+	private String nextMenuName = "";
+
+
 	public ListOfTeams() {
 		createItems();
-		createText();
-		createPanel();
-		setSize(500,500);
-	}
-
-	public ListOfTeams(Tournament t) {
-		tour = t;
-		tName = t.getName();
-		createItems();
+		//createText();   Implement later
 		createButton();
-		createText();
 		createPanel();
 		setSize(500,500);
 	}
@@ -55,23 +52,39 @@ public class ListOfTeams extends JPanel {
 		listText.setFont(new Font("Arial", Font.PLAIN, 16));
 		listText.setEditable(false);
 	}
-
-	private void createButton() {
-		//ActionListener listener = new choiceListener();
-		contButton = new JButton("Home");
-//		contButton.addActionListener(listener);
-		contButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		
-		regButton = new JButton("Register Another Team");
-//		regButton.addActionListener(listener);
-		regButton.setFont(new Font("Arial", Font.PLAIN, 16));
-	}
-
+	
 	private void createText(){
 		for(int i = 0; i < tour.getTeamList().size(); i++){
 			listText.append(tour.getTeamList().get(i).getTeamName() + "\n");
 		}
 	}
+
+	private void createButton() {
+
+		contButton = new JButton("Home");
+		contButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		contButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+			  	setNextMenu(true,"back");
+
+			  }
+		});
+		
+		regButton = new JButton("Register Another Team");
+		regButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		regButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+			  	//setNextMenu(true,"managermenu");
+
+			  }
+		});
+	}
+
+	
 	
 //	class choiceListener implements ActionListener{
 //		public void actionPerformed(ActionEvent event){
@@ -108,5 +121,26 @@ public class ListOfTeams extends JPanel {
 		this.add(northTeamPanel, BorderLayout.NORTH);
 		this.add(listArea, BorderLayout.CENTER);
 		this.add(btnPanel, BorderLayout.SOUTH);
+	}
+	
+	private void setNextMenu(boolean state, String next){
+		newMenu = state;
+		nextMenuName = next;
+	}
+
+	public boolean newMenu(){
+		return newMenu;
+	}
+
+	public String getNextMenu(){
+		return nextMenuName;
+	}
+
+	public void setNewMenu(){
+		newMenu = false;
+	}
+
+	public void clearNextMenu(){
+		nextMenuName = "";
 	}
 }
