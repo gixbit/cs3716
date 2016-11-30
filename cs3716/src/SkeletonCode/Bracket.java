@@ -32,16 +32,16 @@ public class Bracket {
 	 * @param list - ArrayList&ltTeam&gt
 	 */
 	public Bracket(ArrayList<Team> list){
-		teamList = list;
-		if ((teamList.size() % 2) > 0){ odd = true; } else{ odd = false; }
+		this.teamList = list;
+		if ((this.teamList.size() % 2) > 0){ odd = true; } else{ odd = false; }
 	}
 	/**
 	 * Make the games this bracket holds
 	 * Does not currently do seeding.
 	 */
 	public void makeGames(){
-		for (int i = 0; i < (teamList.size() / 2); i++){
-			makeGame(teamList.get(i * 2), teamList.get(i * 2 + 1));
+		for (int i = 0; i < (this.teamList.size() / 2); i++){
+			this.makeGame(this.teamList.get(i * 2), this.teamList.get(i * 2 + 1));
 		}
 	}
 	/**
@@ -52,14 +52,14 @@ public class Bracket {
 	 */
 	public void makeGame(Team one, Team two){
 		Game game = new Game(one, two);
-		gameList.add(game);
+		this.gameList.add(game);
 	}
 	/**
 	 * Return the games this bracket holds.
 	 * @return gameList - ArrayList&ltGame&gt
 	 */
 	public ArrayList<Game> getGames(){
-		return gameList;
+		return this.gameList;
 	}
 	/**
 	 * Check the completeness of all games. Returns true if all games are complete.
@@ -67,8 +67,8 @@ public class Bracket {
 	 */
 	public boolean checkComplete() {
 		boolean complete = true;
-		for (int i = 0; i < gameList.size(); i++){
-			if (!gameList.get(i).isComplete()){complete = false;}
+		for (int i = 0; i < this.gameList.size(); i++){
+			if (!this.gameList.get(i).isComplete()){complete = false;}
 		}
 		return complete;
 	}
@@ -81,10 +81,10 @@ public class Bracket {
 	 */
 	public ArrayList<Team> getWinners() {
 		ArrayList<Team> winners = new ArrayList<Team>();
-		for (int i = 0; i < gameList.size(); i++){
-			winners.add(gameList.get(i).getWinner());
+		for (int i = 0; i < this.gameList.size(); i++){
+			winners.add(this.gameList.get(i).getWinner());
 		}
-		if (odd) {winners.add(teamList.get(teamList.size() - 1));}		//Adds the bye to the winners
+		if (this.odd) {winners.add(this.teamList.get(this.teamList.size() - 1));}		//Adds the bye to the winners
 		return winners;
 	}
 	/**
@@ -95,8 +95,8 @@ public class Bracket {
 	 */
 	public ArrayList<Team> getLosers(){		//Only call if all games are complete, returns all losers, useful for double elim
 		ArrayList<Team> losers = new ArrayList<Team>();
-		for (int i = 0; i < gameList.size(); i++){
-			losers.add(gameList.get(i).getLoser());
+		for (int i = 0; i < this.gameList.size(); i++){
+			losers.add(this.gameList.get(i).getLoser());
 		}
 		return losers;
 	}

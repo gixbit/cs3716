@@ -43,7 +43,7 @@ public class Divisions implements Structure {
 	 * @param i - integer
 	 */
 	public Divisions(ArrayList<Team> teamList, int i){
-		bNumber = i;
+		this.bNumber = i;
 		int peoplePerBracket = teamList.size() / i;
 		int remainder = teamList.size() % i;
 		for (int j = 0; j < i; j++){
@@ -58,8 +58,8 @@ public class Divisions implements Structure {
 			}
 			createBrackets(tList);
 		}
-		for (int q = 0; q < bList.size(); q++){
-			bList.get(q).makeGames();
+		for (int q = 0; q < this.bList.size(); q++){
+			this.bList.get(q).makeGames();
 		}
 	}
 	@Override
@@ -68,51 +68,52 @@ public class Divisions implements Structure {
 
 	}
 	
+
 	@Override
 	public ArrayList<Bracket> getBrackets(){
-		if (!finalStart) {return bList;} else {return finals.getBrackets();}
+		if (!this.finalStart) {return this.bList;} else {return this.finals.getBrackets();}
 	}
 
 	@Override
 	public void advanceTournament() {
-		if (bList.size() > 0){
+		if (this.bList.size() > 0){
 			ArrayList<Bracket> remove = new ArrayList<Bracket>();
 			boolean complete = true;
-			for (int i = 0; i < bList.size(); i++) {
-				if (!bList.get(i).checkComplete())
+			for (int i = 0; i < this.bList.size(); i++) {
+				if (!this.bList.get(i).checkComplete())
 					complete = false;
 			}
 			if (complete) {
-				for (int i = 0; i < bList.size(); i++){
-					for (int j = 0; j < bList.get(i).getGames().size(); j++) {
-						bList.get(i).getGames().get(j).getWinner().win();
-						bList.get(i).getGames().get(j).getWinner().addPoints(bList.get(i).getGames().get(j).getWinnerScore());
-						bList.get(i).getGames().get(j).getLoser().addPoints(bList.get(i).getGames().get(j).getLoserScore());
+				for (int i = 0; i < this.bList.size(); i++){
+					for (int j = 0; j < this.bList.get(i).getGames().size(); j++) {
+						this.bList.get(i).getGames().get(j).getWinner().win();
+						this.bList.get(i).getGames().get(j).getWinner().addPoints(this.bList.get(i).getGames().get(j).getWinnerScore());
+						this.bList.get(i).getGames().get(j).getLoser().addPoints(this.bList.get(i).getGames().get(j).getLoserScore());
 					}
 					
 					//This is where I need to combine brackets if needed
-					if (bList.get(i).getWinners().size() == 1){
-						winners.add(bList.get(i).getWinners().get(0));
-						remove.add(bList.get(i));
+					if (this.bList.get(i).getWinners().size() == 1){
+						this.winners.add(this.bList.get(i).getWinners().get(0));
+						remove.add(this.bList.get(i));
 					} else {
-						bList.set(i, new Bracket(bList.get(i).getWinners() ));
-						bList.get(i).makeGames();
+						this.bList.set(i, new Bracket(this.bList.get(i).getWinners() ));
+						this.bList.get(i).makeGames();
 					}
 				}
 				for (int z = 0; z < remove.size(); z++){
 					//System.out.println(remove.get(z));
-					bList.remove(remove.get(z));
-					bList.trimToSize();
+					this.bList.remove(remove.get(z));
+					this.bList.trimToSize();
 					//System.out.println("Size after trim: " + bList.size());					
 				}
 			}
 		} else {
-			if (!finalStart){
-				finals = new SingleElimination(winners);
-				finalStart = true;
+			if (!this.finalStart){
+				this.finals = new SingleElimination(this.winners);
+				this.finalStart = true;
 				//bList = finals.getBrackets(); Don't think I need to do this
 			} else {
-				finals.advanceTournament();
+				this.finals.advanceTournament();
 			}
 		}
 		

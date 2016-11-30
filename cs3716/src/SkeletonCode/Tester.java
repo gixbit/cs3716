@@ -14,7 +14,7 @@ public class Tester {
 		String sDate = scan.nextLine();
 		String eDate = scan.nextLine();
 		int structure = scan.nextInt();
-		
+//mmm memes
 //		System.out.println(name + "; " + sDate + "; " + eDate + "; " + structure);
 	
 //		Tournament t = new Tournament(name, sDate, eDate, structure);
