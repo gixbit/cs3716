@@ -93,7 +93,7 @@ public class ListOfTeams extends JPanel {
 	}
 	
 	private void createPanel() {
-		borderLayout = new JPanel(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		btnPanel = new JPanel();
 		teamPanel = new JPanel(new GridLayout(1,2));		
 		northTeamPanel = new JPanel(new GridLayout(3,1));		
@@ -109,9 +109,8 @@ public class ListOfTeams extends JPanel {
 		northTeamPanel.add(teamName);
 		northTeamPanel.add(teamPanel);
 		
-		borderLayout.add(northTeamPanel, BorderLayout.NORTH);
-		borderLayout.add(listArea, BorderLayout.CENTER);
-		borderLayout.add(btnPanel, BorderLayout.SOUTH);
-		add(borderLayout);
+		this.add(northTeamPanel, BorderLayout.NORTH);
+		this.add(listArea, BorderLayout.CENTER);
+		this.add(btnPanel, BorderLayout.SOUTH);
 	}
 }

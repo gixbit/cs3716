@@ -90,8 +90,8 @@ public class DatePanel extends JPanel {
 		datePanelLower.add(ampmBox);
 
 		this.setLayout(new GridLayout(2,1));
-		add(datePanelUpper);
-		add(datePanelLower);
+		this.add(datePanelUpper);
+		this.add(datePanelLower);
 	}
 	
 	public String getMonth(){

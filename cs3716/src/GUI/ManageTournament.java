@@ -10,13 +10,12 @@ import javax.swing.*;
 import SkeletonCode.Tournament;
 
 public class ManageTournament extends JPanel implements PanelAccess{
-	private JLabel greetingLabel;
-	private JButton newButton;
+	private JLabel headerLabel;
+	private JButton newTournBtn;
 	private JButton homeButton;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
+	private JPanel northPanel;
+	private JPanel centerPanel;
+	private JPanel btnPanel;
 	private JScrollPane scrollFrame;
 	private ArrayList<TournamentPanel> listOfTourns = new ArrayList<TournamentPanel>();
 	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
@@ -40,56 +39,53 @@ public class ManageTournament extends JPanel implements PanelAccess{
 	}
 
 	private void createItems(){
-		greetingLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
-		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		headerLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
+		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 	}
 	
 	private void createButtons(){
-		ActionListener listener = new choiceListener();
-		newButton = new JButton("Create New Tournament");
-		newButton.addActionListener(listener);
-		newButton.setFont(new Font("Arial", Font.PLAIN, 16));	
+//		ActionListener listener = new choiceListener();
+		newTournBtn = new JButton("Create New Tournament");
+//		newTournBtn.addActionListener(listener);
+//		newTournBtn.setFont(new Font("Arial", Font.PLAIN, 16));	
 
 		homeButton = new JButton("Home");
-		homeButton.addActionListener(listener);
-		homeButton.setFont(new Font("Arial", Font.PLAIN, 16));	
+//		homeButton.addActionListener(listener);
+//		homeButton.setFont(new Font("Arial", Font.PLAIN, 16));	
 }
 
-	class choiceListener implements ActionListener{
-		public void actionPerformed(ActionEvent event){
-			if(event.getSource() == homeButton){
-				JFrame frame1 = new MainScreen(tournaments);
-				frame1.setVisible(true);
-			}
-			else{//event.getSource() == newButton
-				JFrame frame1 = new CreateTournament(tournaments);
-				frame1.setVisible(true);
-			}
-		}
-	}
+//	class choiceListener implements ActionListener{
+//		public void actionPerformed(ActionEvent event){
+//			if(event.getSource() == homeButton){
+//				JFrame frame1 = new MainScreen(tournaments);
+//				frame1.setVisible(true);
+//			}
+//			else{//event.getSource() == newButton
+//				JFrame frame1 = new CreateTournament(tournaments);
+//				frame1.setVisible(true);
+//			}
+//		}
+//	}
 
-	private void createPanels(){
-		//panel = new JPanel(new BorderLayout());
-		this.setLayout(new BorderLayout());
-		panel1 = new JPanel(new GridLayout(2,1));
-		panel2 = new JPanel(new GridLayout(numOfTourns,1));
-		panel3 = new JPanel();
+	private void createPanels() {
+		this.setLayout( new BorderLayout() );
+		northPanel = new JPanel( new GridLayout(2, 1) );
+		centerPanel = new JPanel( new GridLayout(numOfTourns, 1) );
+		btnPanel = new JPanel();
 
-		panel1.add(greetingLabel);
-		panel3.add(homeButton);
-		panel3.add(newButton);
-		panel1.add(panel3);
+		northPanel.add(headerLabel);
+		btnPanel.add(homeButton);
+		btnPanel.add(newTournBtn);
+		northPanel.add(btnPanel);
 		
 		for(int i=0; i < tournaments.size(); i++){
 			listOfTourns.add(new TournamentPanel(tournaments.get(i), tournaments, i));
-			panel2.add(listOfTourns.get(i));
+			centerPanel.add(listOfTourns.get(i));
 		}
-		scrollFrame = new JScrollPane(panel2);
+		scrollFrame = new JScrollPane(centerPanel);
 
-		this.add(panel1, BorderLayout.NORTH);
+		this.add(northPanel, BorderLayout.NORTH);
 		this.add(scrollFrame, BorderLayout.CENTER);
-		
-		//add(panel);
 	}
 
 	@Override

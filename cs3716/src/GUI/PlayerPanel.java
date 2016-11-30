@@ -13,8 +13,8 @@ public class PlayerPanel extends JPanel{
 		playerAge = new JTextField(5);
 		playerAge.setText("");
 		
-		add(playerName);
-		add(playerAge);
+		this.add(playerName);
+		this.add(playerAge);
 	}
 	
 	public String getPlayerName(){

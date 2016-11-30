@@ -152,7 +152,7 @@ public class CreateTournament extends JFrame{
 	}
 	
 	private void createPanel() {
-		borderPanel = new JPanel(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		tournGridPanel = new JPanel(new GridLayout(4,1));
 		dateGridPanel = new JPanel(new GridLayout(4,1));
 		tournPanel = new JPanel();
@@ -190,10 +190,10 @@ public class CreateTournament extends JFrame{
 		centerPanel.add(tournGridPanel);
 		centerPanel.add(dateGridPanel);
 		
-		borderPanel.add(greetingLabel, BorderLayout.NORTH);
-		borderPanel.add(centerPanel, BorderLayout.CENTER);
-		borderPanel.add(btnPanel, BorderLayout.SOUTH);
-		add(borderPanel);
+		this.add(greetingLabel, BorderLayout.NORTH);
+		this.add(centerPanel, BorderLayout.CENTER);
+		this.add(btnPanel, BorderLayout.SOUTH);
+		//add(borderPanel);
 	}
 
 	public ArrayList<Tournament> getTournaments(){

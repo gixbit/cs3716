@@ -12,7 +12,6 @@ import GUI.ListOfTeams.choiceListener;
 
 public class CreateBracket extends JPanel {
 	private JPanel panel;
-	private JPanel finalPanel;
 	private JPanel areaPanel;
 	private JLabel greetingLabel;
 	private JButton submitButton;
@@ -52,16 +51,16 @@ public class CreateBracket extends JPanel {
 	private void createPanels(){
 		panel = new JPanel(new GridLayout(1,numOfColns,0,0));
 		areaPanel = new JPanel();
-		finalPanel = new JPanel();
+		//finalPanel = new JPanel();
 
 		for(int i = 0; i < numOfColns+1; i++){
 			panel.add(new SingleElim(teamsNum, i, numOfColns));
 		}		
 		area = new JScrollPane(panel);
 		areaPanel.add(area);
-		finalPanel.add(greetingLabel);
-		finalPanel.add(areaPanel);
-		finalPanel.add(submitButton);
-		add(finalPanel);
+		this.add(greetingLabel);
+		this.add(areaPanel);
+		this.add(submitButton);
+		//add(finalPanel);
 	}
 }

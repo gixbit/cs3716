@@ -35,16 +35,19 @@ public class MainScreen extends JFrame {
 		class choiceListener implements ActionListener{
 			public void actionPerformed(ActionEvent event){
 				if(event.getSource() == organButton){
-					JPanel panel = new ManageTournament(listOfTourns);
+					JPanel japan = new ManageTournament(listOfTourns);
 					mn.panel.setVisible(false);
-					mn.add(panel);
-					panel.setVisible(true);
+					mn.add(japan);
+					japan.setVisible(true);
 					//frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					//frame1.setVisible(true);
 					//dispose();
 				}
 				else if(event.getSource() == bracButton){
-					//JFrame frame1 = new CreateBracket(8);
+					JPanel japan = new CreateBracket(3);
+					mn.panel.setVisible(false);
+					mn.add(japan);
+					japan.setVisible(true);
 					//frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					//frame1.setVisible(true);
 					//dispose();
