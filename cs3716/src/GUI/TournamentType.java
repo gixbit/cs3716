@@ -107,7 +107,7 @@ public class TournamentType extends JFrame{
 		ActionListener listener = new choiceListener();
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(listener);
-		submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		submitButton.setFont( new Font("Arial", Font.PLAIN, 16) );
 	}
 	/**
 	 * Inner-Class that implements ActionListener

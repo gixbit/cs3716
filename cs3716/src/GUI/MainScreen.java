@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import skeletonCode.Tournament;
+import SkeletonCode.Tournament;
 
 public class MainScreen extends JFrame{
 	private JPanel panel;
