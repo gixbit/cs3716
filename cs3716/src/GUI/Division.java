@@ -64,6 +64,7 @@ public class Division extends JFrame{
 	private JPanel createBracPanel(){
 		JPanel panel = new JPanel(new GridLayout(1,numOfColns,0,0));
 		for(int i = 0; i < numOfColns+1; i++){
+			//TODO: FIX THIS
 			panel.add(new SingleElim(teamsNum, i, numOfColns));
 		}
 		MatteBorder line = BorderFactory.createMatteBorder(1,1,1,1, Color.black);
