@@ -32,7 +32,6 @@ public class CreateTournament extends JFrame{
 	private JButton createButton;
 	private JButton cancelButton;
 	private DatePanel[] dates = new DatePanel[2];
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 			
 	public CreateTournament(){
 		createLabels();
@@ -42,20 +41,9 @@ public class CreateTournament extends JFrame{
 		setSize(550,725);
 		setTitle("Create Tournament");
 	}
-
-	public CreateTournament(ArrayList<Tournament> tourn){
-		tournaments = tourn;
-		createLabels();
-		createFields();
-		createButton();
-		createPanel();
-		setSize(550,725);
-		setTitle("Create Tournament");
-	}
 	
-	public CreateTournament(String a, String b, String c, String d, ArrayList<Tournament> tourn){
+	public CreateTournament(String a, String b, String c, String d){
 		//get current date(month, day, year)
-		tournaments = tourn;
 		createLabels();
 		createFields(a,b,c,d);
 		createButton();
@@ -134,7 +122,7 @@ public class CreateTournament extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == cancelButton){
-				JFrame frame1 = new MainScreen(tournaments);
+				JFrame frame1 = new MainScreen();
 				frame1.setVisible(true);
 				dispose();
 			}
@@ -143,8 +131,8 @@ public class CreateTournament extends JFrame{
 				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText()));
-				JFrame frame1 = new ManageTournament(tournaments);
+				Viewer.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText()));
+				JFrame frame1 = new ManageTournament();
 				frame1.setVisible(true);
 				dispose();
 			}
@@ -194,9 +182,5 @@ public class CreateTournament extends JFrame{
 		panel.add(panel7, BorderLayout.CENTER);
 		panel.add(panel8, BorderLayout.SOUTH);
 		add(panel);
-	}
-
-	public ArrayList<Tournament> getTournaments(){
-		return tournaments;
 	}
 }

@@ -42,28 +42,14 @@ public class Register extends JFrame{
 	private JScrollPane scrollFrame;
 	private PlayerPanel[] listOfPlayers = new PlayerPanel[40];
 	private ArrayList<String> tournNames = new ArrayList<String>();
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
 	private int numOfTourns;
 	private String time;
 	private String date;
 	private int n = 1;
-	private Tournament t;
-	private Tournament t1;
-	private Tournament t2;
 	
-	public Register(ArrayList<Tournament> list){
-		listOfTourns = list;
-		getInfo();
-		createLabels();
-		createFields();
-		createButton();
-		createPanel();
-		setSize(550,725);
-		setTitle("Register for Tournament");
-	}
 
-	public Register(ArrayList<Team> lt, ArrayList<Tournament> listT, Tournament t){
-		listOfTourns = listT;
+
+	public Register(){
 		getInfo();
 		createLabels();
 		createFields();
@@ -74,14 +60,14 @@ public class Register extends JFrame{
 	}
 
 	private void getInfo(){
-		numOfTourns = listOfTourns.size();
+		numOfTourns = Viewer.Tournaments.size();
 		for(int i = 0; i < numOfTourns; i++){
-			tournNames.add(listOfTourns.get(i).getName());
+			tournNames.add(Viewer.Tournaments.get(i).getName());
 		}
 		time = "1:00AM";
 		date = "January 1, 2016";
-		if (listOfTourns.size() != 0){
-			date = listOfTourns.get(0).getEndDate();
+		if (Viewer.Tournaments.size() != 0){
+			date = Viewer.Tournaments.get(0).getEndDate();
 //			time = listOfTourns.get(0).getStartDate();
 		}
 	}
@@ -155,8 +141,8 @@ public class Register extends JFrame{
 			if(event.getSource() == tournamentBox){
 				String selected = tournamentBox.getSelectedItem().toString();
 				for(int i = 0; i < numOfTourns; i++){
-					if(selected.equals(listOfTourns.get(i).getName())){
-						dateLabel.setText("Registration closes on " + listOfTourns.get(i).getEndDate());
+					if(selected.equals(Viewer.Tournaments.get(i).getName())){
+						dateLabel.setText("Registration closes on " + Viewer.Tournaments.get(i).getEndDate());
 						revalidate();
 						break;
 					}
@@ -177,12 +163,12 @@ public class Register extends JFrame{
 				}
 			}
 			else if(event.getSource() == cancelButton){
-				JFrame frame1 = new MainScreen(listOfTourns);
+				JFrame frame1 = new MainScreen();
 				frame1.setVisible(true);
 				dispose();
 			}
 			else if(event.getSource() == clearButton){
-				JFrame frame1 = new Register(listOfTourns);
+				JFrame frame1 = new Register();
 				frame1.setVisible(true);
 				dispose();
 			}
@@ -190,12 +176,12 @@ public class Register extends JFrame{
 				int index = 0;
 				for(int i=0; i < tournNames.size(); i++){
 					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
-						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
+						Viewer.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
 					}
 				}
-				JFrame frame1 = new ListOfTeams(listOfTourns.get(index), listOfTourns);
+				JFrame frame1 = new ListOfTeams(Viewer.Tournaments.get(index));
 				frame1.setVisible(true);
 				dispose();
 				System.out.println(organizNameField.getText());

@@ -19,21 +19,10 @@ public class ManageTournament extends JFrame{
 	private JPanel panel3;
 	private JScrollPane scrollFrame;
 	private ArrayList<TournamentPanel> listOfTourns = new ArrayList<TournamentPanel>();
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	private int numOfTourns;
 	
 	public ManageTournament(){
-		numOfTourns = 10;
-		createItems();
-		createButtons();
-		createPanels();
-		setSize(550,725);
-		setTitle("Manage Tournaments");
-	}
-
-	public ManageTournament(ArrayList<Tournament> tourns){
-		numOfTourns = tourns.size();
-		tournaments = tourns;
+		numOfTourns = Viewer.Tournaments.size();
 		createItems();
 		createButtons();
 		createPanels();
@@ -60,12 +49,12 @@ public class ManageTournament extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == homeButton){
-				JFrame frame1 = new MainScreen(tournaments);
+				JFrame frame1 = new MainScreen(Viewer.Tournaments);
 				frame1.setVisible(true);
 				dispose();
 			}
 			else{//event.getSource() == newButton
-				JFrame frame1 = new CreateTournament(tournaments);
+				JFrame frame1 = new CreateTournament();
 				frame1.setVisible(true);
 				dispose();
 			}
@@ -83,8 +72,8 @@ public class ManageTournament extends JFrame{
 		panel3.add(newButton);
 		panel1.add(panel3);
 		
-		for(int i=0; i < tournaments.size(); i++){
-			listOfTourns.add(new TournamentPanel(tournaments.get(i), tournaments, i));
+		for(int i=0; i < Viewer.Tournaments.size(); i++){
+			listOfTourns.add(new TournamentPanel(Viewer.Tournaments.get(i), i));
 			panel2.add(listOfTourns.get(i));
 		}
 		scrollFrame = new JScrollPane(panel2);

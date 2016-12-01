@@ -33,7 +33,6 @@ public class TournamentPanel extends JPanel{
 	private int index;
 	private String tType;
 	private Tournament thisTournament;
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	
 	public TournamentPanel(){
 		getInfo();
@@ -42,8 +41,7 @@ public class TournamentPanel extends JPanel{
 		createPanels();
 	}
 
-	public TournamentPanel(Tournament tourn, ArrayList<Tournament> tourns, int i){
-		tournaments = tourns;
+	public TournamentPanel(Tournament tourn, int i){
 		thisTournament = tourn;
 		index = i;
 		getInfo();
@@ -59,7 +57,7 @@ public class TournamentPanel extends JPanel{
  		startDate = thisTournament.getStartDate();
  		regDate = thisTournament.getEndDate();
  		//TODO: FIX THIS
-// 		tType = String.valueOf(thisTournament.getType());
+ 		tType = String.valueOf("0");
 	}
 
 	private void createItems(){
@@ -109,28 +107,28 @@ public class TournamentPanel extends JPanel{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == generateButton){
 				if(tType.equals("unspecified")){
-					JFrame frame1 = new TournamentType(tournaments, index);
+					JFrame frame1 = new TournamentType(index);
 					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame1.setVisible(true);
 				}
 				else{
-					JFrame frame1 = new TournamentType(tournaments, index, tType);
+					JFrame frame1 = new TournamentType(index, tType);
 					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame1.setVisible(true);
 				}
 			}
 			else if(event.getSource() == teamsButton){
-				JFrame frame1 = new ListOfTeams(thisTournament, tournaments);
+				JFrame frame1 = new ListOfTeams(thisTournament);
 				frame1.setVisible(true);
 			}
 			else if(event.getSource() == deleteButton){
-				tournaments.remove(index);
-				JFrame frame1 = new ManageTournament(tournaments);
+				Viewer.Tournaments.remove(index);
+				JFrame frame1 = new ManageTournament();
 				frame1.setVisible(true);
 			}
 			else{	//event.getSource() == editButton
-				tournaments.remove(index);
-				JFrame frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo, tournaments);
+				Viewer.Tournaments.remove(index);
+				JFrame frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo);
 				frame1.setVisible(true);
 			}
 		}

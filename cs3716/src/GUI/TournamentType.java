@@ -29,11 +29,9 @@ public class TournamentType extends JFrame{
 	private int numType;
 	private int numOfDivs;
 	private Tournament tournament;
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
 	
-	public TournamentType(ArrayList<Tournament> t, int i){
-		listOfTourns = t;
-		tournament = t.get(i);
+	public TournamentType(int i){
+		tournament = Viewer.Tournaments.get(i);
 		tournIndex = i;
 		getInfo();
 		createItems();
@@ -43,9 +41,8 @@ public class TournamentType extends JFrame{
 		setTitle("Create Tournament");
 	}
 
-	public TournamentType(ArrayList<Tournament> t, int i, String type){
-		listOfTourns = t;
-		tournament = t.get(i);
+	public TournamentType(int i, String type){
+		tournament = Viewer.Tournaments.get(i);
 		tournIndex = i;
 		tType = type;
 		getInfo();
@@ -100,9 +97,9 @@ public class TournamentType extends JFrame{
 			else  {numType = 2;}
 			//TODO: FIX THIS
 //			tournament.setType(numType);
-			listOfTourns.set(tournIndex, tournament);
+			Viewer.Tournaments.set(tournIndex, tournament);
 			numOfDivs = Integer.valueOf(divField.getText());
-			JFrame frame1 = new ManageTournament(listOfTourns);
+			JFrame frame1 = new ManageTournament();
 			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame1.setVisible(true);
 		}

@@ -13,7 +13,6 @@ public class MainScreen extends JFrame{
 	private JButton bracButton;
 	private JButton organButton;
 	private JButton coachButton;
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
 	private int numOfTeams;
 	private int numOfDivs = 3;
 	
@@ -26,7 +25,6 @@ public class MainScreen extends JFrame{
 	}
 
 	public MainScreen(ArrayList<Tournament> lTourns){
-		listOfTourns = lTourns;
 		createItems();
 		createPanel();
 		setSize(500,500);
@@ -51,7 +49,7 @@ public class MainScreen extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == organButton){
-				JFrame frame1 = new ManageTournament(listOfTourns);
+				JFrame frame1 = new ManageTournament();
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
 				dispose();
@@ -63,7 +61,7 @@ public class MainScreen extends JFrame{
 				dispose();
 			}
 			else{//event.getSource() == CoachButton
-				JFrame frame1 = new Register(listOfTourns);
+				JFrame frame1 = new Register();
 				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
 				dispose();

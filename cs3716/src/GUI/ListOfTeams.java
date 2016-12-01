@@ -34,11 +34,10 @@ public class ListOfTeams extends JFrame{
 		setTitle("");
 	}
 
-	public ListOfTeams(Tournament t, ArrayList<Tournament> listT){
+	public ListOfTeams(Tournament t){
 		tour = t;
 		tName = t.getName();
 		n++;
-		listOfTourns = listT;
 		createItems();
 		createButton();
 		createText();
@@ -82,7 +81,7 @@ public class ListOfTeams extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
-				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
+				JFrame frame1 = new Register();
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
 				dispose();
