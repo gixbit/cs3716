@@ -55,6 +55,8 @@ public class CreateBracket extends JFrame{
 	}
 
 	private void createPanels(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		panel = new JPanel(new GridLayout(1,numOfColns,0,0));
 		areaPanel = new JPanel();
 		buttonPanel = new JPanel();

@@ -73,6 +73,7 @@ public class Division extends JFrame{
 	}
 	
 	private void createPanels(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		areaPanel = new JPanel(new GridLayout(numOfDivs,1));
 		buttonPanel = new JPanel();
 		finalPanel = new JPanel(new BorderLayout());

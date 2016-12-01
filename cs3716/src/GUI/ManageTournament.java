@@ -62,6 +62,8 @@ public class ManageTournament extends JFrame{
 	}
 
 	private void createPanels(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		panel = new JPanel(new BorderLayout());
 		panel1 = new JPanel(new GridLayout(2,1));
 		panel2 = new JPanel(new GridLayout(numOfTourns,1));

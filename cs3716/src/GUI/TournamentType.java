@@ -113,6 +113,8 @@ public class TournamentType extends JFrame{
 	}
 
 	private void createPanel(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		panel = new JPanel(new BorderLayout());
 		panel1 = new JPanel();
 		panel2 = new JPanel(new GridLayout(3,1));

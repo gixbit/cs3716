@@ -74,6 +74,7 @@ public class MainScreen extends JFrame{
 	}
 
 	private void createPanel(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		
 		panel.add(organButton);

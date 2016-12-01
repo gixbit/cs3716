@@ -24,13 +24,12 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Viewer {	
+public class Viewer {
 
 	public static ArrayList<Tournament> Tournaments;
 
 	public static void main(String[] args){
 		JFrame frame = new MainScreen();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowOpened(WindowEvent e) {
@@ -55,33 +54,27 @@ public class Viewer {
         		}
             }
         });
-
-
-
-        /*  this.addWindowListener(new WindowAdapter() {
-        @Override
-        public void windowClosing(WindowEvent e) {
-            try {
-                FileOutputStream fos = new FileOutputStream("Tournaments.txt");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+		    public void run() {
                 try {
-                    oos.writeObject(Tournaments);
+                    FileOutputStream fos = new FileOutputStream("Tournaments.txt");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    try {
+                        oos.writeObject(Tournaments);
+
+                    } catch (IOException err) {
+
+                    } finally {
+                        oos.flush();
+                        oos.close();
+                        fos.flush();
+                        fos.close();
+                    }
 
                 } catch (IOException err) {
-
-                } finally {
-                    oos.flush();
-                    oos.close();
-                    fos.flush();
-                    fos.close();
+                    // Could not find file or open file.
                 }
-
-            } catch (IOException err) {
-                // Could not find file or open file.
-            }
-            e.getWindow().dispose();
-        }
-    });*/
-
+		    }
+		}));
 	}
 }

@@ -207,6 +207,8 @@ public class Register extends JFrame{
 	}
 	
 	private void createPanel(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		panel = new JPanel(new GridLayout(6,1));
 		panel1 = new JPanel();
 		panel2 = new JPanel();
