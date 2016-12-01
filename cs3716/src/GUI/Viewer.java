@@ -29,7 +29,6 @@ public class Viewer {
 	public static ArrayList<Tournament> Tournaments;
 
 	public static void main(String[] args){
-		System.out.println("test");
 		JFrame frame = new MainScreen();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
