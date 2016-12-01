@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.JTextComponent;
 
+import SkeletonCode.Tournament;
+
 //import SkeletonCode.Team;
 
 /**
@@ -30,6 +32,7 @@ public class SingleElim extends JPanel{
 	private int bottom = 1;
 	private String teamName;
 	private int teamSpaces;
+	private Tournament tournament;
 	private ArrayList<JComponent> panList = new ArrayList<JComponent>();
 //	private ArrayList<Team> teamArray = new ArrayList<Team>();
 
@@ -44,12 +47,13 @@ public class SingleElim extends JPanel{
 	 * @param i - Integer
 	 * @param c - Integer
 	 */
-	public SingleElim(int numT, int coln, int numC){
+	public SingleElim(Tournament tourn, int coln, int numC){
 		super();
 		this.setBackground(Color.WHITE);
 //		this.setSize(450, 610);
 //		numOfTeams = numT.size();
-		for(int i = 0; numT > Math.pow(2,i); i++){
+		tournament = tourn;
+		for(int i = 0; tournament.getTeamList().size() > Math.pow(2,i); i++){
 			teamSpaces = i+1;
 		}
 		colnNum = coln;

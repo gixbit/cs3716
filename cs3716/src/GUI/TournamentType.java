@@ -101,19 +101,12 @@ public class TournamentType extends JFrame{
 //			tournament.setType(numType);
 			Viewer.Tournaments.set(tournIndex, tournament);
 			if(tournament.getStructure().getStructureType() == 1){
-				frame1 = new Division(Viewer.Tournaments.size(), numOfDivs);
+				frame1 = new Division(tournament, numOfDivs);
 			}
 			else{
-				frame1 = new CreateBracket(Viewer.Tournaments.size());
+				frame1 = new CreateBracket(tournament);
 			}
-			Viewer.Tournaments.set(tournIndex, tournament);
-			Viewer.Tournaments.set(tournIndex, tournament);
-			if(tournament.getStructure().getStructureType() == 1){
-				frame1 = new Division(Viewer.Tournaments.size(), numOfDivs);
-			}
-			else{
-				frame1 = new CreateBracket(Viewer.Tournaments.size());
-			}
+			tournament.getStructure().getBrackets().get(0).makeGames();
 			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame1.setVisible(true);
 		}

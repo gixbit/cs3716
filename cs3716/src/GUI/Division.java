@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import GUI.ListOfTeams.choiceListener;
+import SkeletonCode.Tournament;
 
 public class Division extends JFrame{
 	private JPanel buttonPanel;
@@ -25,8 +26,9 @@ public class Division extends JFrame{
 	private int teamsPerDiv;
 	private ArrayList<JPanel> bracketPanel = new ArrayList<JPanel>();
 	
-	public Division(int teams, int divs){
-		teamsPerDiv = (int)(teams/divs + 1);
+	public Division(Tournament tourn, int divs){
+		ArrayList<Tournament> listOfTourns = Viewer.Tournaments;
+		teamsPerDiv = (int)(tourn.getTeamList().size()/divs + 1);
 		for(int i = 0; teamsPerDiv > Math.pow(2,i); i++){
 			teamSpaces = i+1;
 		}
