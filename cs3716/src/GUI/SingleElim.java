@@ -129,8 +129,10 @@ public class SingleElim extends JPanel{
 		ArrayList<String> array = new ArrayList<String>();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
 		if(i < numOfTeams/2){
-			array.add(b.getGames().get(i).getTeamOne().getTeamName());
-			array.add(b.getGames().get(i).getTeamTwo().getTeamName());
+			for(int j = 0; j < 2; j++){
+				array.add(b.getGames().get(i).getTeamOne().getTeamName());
+				array.add(b.getGames().get(i).getTeamTwo().getTeamName());
+			}
 		}
 		else{
 			array.add("");
