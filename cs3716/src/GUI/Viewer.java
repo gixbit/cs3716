@@ -53,6 +53,7 @@ public class Viewer {
 //		}
 //	});
 	public static void main(String[] args){
+		System.out.println("Test");
 		JFrame frame = new MainScreen();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
