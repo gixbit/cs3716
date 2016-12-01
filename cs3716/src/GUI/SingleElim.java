@@ -128,8 +128,13 @@ public class SingleElim extends JPanel{
 		JPanel menuPanel = new JPanel();
 		ArrayList<String> array = new ArrayList<String>();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
-		array.add(b.getGames().get(i).getTeamOne().getTeamName());
-		array.add(b.getGames().get(i).getTeamTwo().getTeamName());
+		if(i < numOfTeams/2){
+			array.add(b.getGames().get(i).getTeamOne().getTeamName());
+			array.add(b.getGames().get(i).getTeamTwo().getTeamName());
+		}
+		else{
+			array.add("");
+		}
 		JComboBox teamMenu = new JComboBox(array.toArray());
 		JTextField scoreField = new JTextField(1);
 		scoreField.setText("" + 0);
