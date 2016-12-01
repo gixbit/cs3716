@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
+import skeletonCode.Tournament;
 
 public class ManageTournament extends JFrame{
 	private JLabel greetingLabel;
@@ -27,7 +27,7 @@ public class ManageTournament extends JFrame{
 		createItems();
 		createButtons();
 		createPanels();
-		setSize(710,730);
+		setSize(550,725);
 		setTitle("Manage Tournaments");
 	}
 

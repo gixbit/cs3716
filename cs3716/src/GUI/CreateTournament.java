@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
+import skeletonCode.Tournament;
 
 public class CreateTournament extends JFrame{
 	private JPanel panel;
@@ -39,7 +39,7 @@ public class CreateTournament extends JFrame{
 		createFields();
 		createButton();
 		createPanel();
-		setSize(500,600);
+		setSize(550,725);
 		setTitle("Create Tournament");
 	}
 
@@ -49,7 +49,7 @@ public class CreateTournament extends JFrame{
 		createFields();
 		createButton();
 		createPanel();
-		setSize(500,600);
+		setSize(550,725);
 		setTitle("Create Tournament");
 	}
 	
@@ -143,7 +143,6 @@ public class CreateTournament extends JFrame{
 				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				//TODO: FIX ME JAIMEE
 				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
 				JFrame frame1 = new ManageTournament(tournaments);
 				frame1.setVisible(true);

@@ -6,23 +6,22 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import SkeletonCode.Team;
-import SkeletonCode.Tournament;
+import skeletonCode.Team;
+import skeletonCode.Tournament;
 
 public class Register extends JFrame{
-	private JPanel grid;
-	private JPanel name;
-	private JPanel teamName;
-	private JPanel organizer;
-	private JPanel coach;
-	private JPanel addBtn;
-	private JPanel cancelBtn;
-	private JPanel players;
-	private JPanel btns;
+	private JPanel panel;
+	private JPanel panel1;
+	private JPanel panel2;
+	private JPanel panel3;
+	private JPanel panel4;
+	private JPanel panel5;
+	private JPanel panel6;
+	private JPanel panel7;
+	private JPanel panel8;
 	private JPanel playerPanel;
 	private JPanel completePanel;
-	//This variables accessibility was opened for testing a solution to our problems
-	public JPanel finalPanel;
+	private JPanel finalPanel;
 	private JLabel greetingLabel;
 	private JComboBox tournamentBox;
 	private JButton registerButton;
@@ -48,8 +47,6 @@ public class Register extends JFrame{
 	private String time;
 	private String date;
 	private int n = 1;
-	private int dimA = 500;
-	private int dimB = 700;
 	private Tournament t;
 	private Tournament t1;
 	private Tournament t2;
@@ -61,7 +58,7 @@ public class Register extends JFrame{
 		createFields();
 		createButton();
 		createPanel();
-		setSize(dimA,dimB);
+		setSize(550,725);
 		setTitle("Register for Tournament");
 	}
 
@@ -72,7 +69,7 @@ public class Register extends JFrame{
 		createFields();
 		createButton();
 		createPanel();
-		setSize(dimA,dimB);
+		setSize(550,725);
 		setTitle("Register for Tournament");
 	}
 
@@ -175,7 +172,7 @@ public class Register extends JFrame{
 					n++;
 					listOfPlayers[n-1] = new PlayerPanel();
 					playerPanel.add(listOfPlayers[n-1]);
-					players.add(playerPanel);
+					panel7.add(playerPanel);
 					revalidate();
 				}
 			}
@@ -193,7 +190,6 @@ public class Register extends JFrame{
 				int index = 0;
 				for(int i=0; i < tournNames.size(); i++){
 					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
-						//TODO: FIX ME JAIMEE
 						listOfTourns.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
 						index = i;
 						break;
@@ -215,55 +211,55 @@ public class Register extends JFrame{
 	}
 	
 	private void createPanel(){
-		grid = new JPanel(new GridLayout(6,1));
-		name = new JPanel();
-		teamName = new JPanel();
-		organizer = new JPanel();
-		coach = new JPanel();
-		addBtn = new JPanel();
-		cancelBtn = new JPanel();
-		players = new JPanel();
-		btns = new JPanel(new BorderLayout());
+		panel = new JPanel(new GridLayout(6,1));
+		panel1 = new JPanel();
+		panel2 = new JPanel();
+		panel3 = new JPanel();
+		panel4 = new JPanel();
+		panel5 = new JPanel();
+		panel6 = new JPanel();
+		panel7 = new JPanel();
+		panel8 = new JPanel(new BorderLayout());
 		completePanel = new JPanel(new BorderLayout());
 		finalPanel = new JPanel(new BorderLayout());
 		
-		name.add(tournLabel);
-		name.add(tournamentBox);
-		teamName.add(teamNameLabel);
-		teamName.add(teamNameField);
-		organizer.add(organizNameLabel);
-		organizer.add(organizNameField);
-		coach.add(coachLabel);
-		coach.add(coachField);
+		panel1.add(tournLabel);
+		panel1.add(tournamentBox);
+		panel2.add(teamNameLabel);
+		panel2.add(teamNameField);
+		panel3.add(organizNameLabel);
+		panel3.add(organizNameField);
+		panel4.add(coachLabel);
+		panel4.add(coachField);
 
-		addBtn.add(addButton);
-		cancelBtn.add(cancelButton);
-		cancelBtn.add(clearButton);
-		cancelBtn.add(registerButton);
+		panel5.add(addButton);
+		panel6.add(cancelButton);
+		panel6.add(clearButton);
+		panel6.add(registerButton);
 
 		listOfPlayers[0] = new PlayerPanel();
 		playerPanel = new JPanel(new GridLayout(n-1,1));
 		playerPanel.add(listOfPlayers[0]);
-		players.add(playerPanel);
+		panel7.add(playerPanel);
 
-		grid.add(name);
-		grid.add(dateLabel);
-		grid.add(teamName);
-		grid.add(organizer);
-		grid.add(coach);
-		grid.add(playerLabel);
+		panel.add(panel1);
+		panel.add(dateLabel);
+		panel.add(panel2);
+		panel.add(panel3);
+		panel.add(panel4);
+		panel.add(playerLabel);
 
-		btns.add(addBtn, BorderLayout.NORTH);
-		btns.add(cancelBtn, BorderLayout.CENTER);
+		panel8.add(panel5, BorderLayout.NORTH);
+		panel8.add(panel6, BorderLayout.CENTER);
 		
-		completePanel.add(grid, BorderLayout.NORTH);
-		completePanel.add(players, BorderLayout.CENTER);
+		completePanel.add(panel, BorderLayout.NORTH);
+		completePanel.add(panel7, BorderLayout.CENTER);
 
 		scrollFrame = new JScrollPane(completePanel);
 
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);
 		finalPanel.add(scrollFrame, BorderLayout.CENTER);
-		finalPanel.add(btns, BorderLayout.SOUTH);
+		finalPanel.add(panel8, BorderLayout.SOUTH);
 		add(finalPanel);
 	}
 }

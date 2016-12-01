@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
+import skeletonCode.Tournament;
 
 public class MainScreen extends JFrame{
 	private JPanel panel;
@@ -21,7 +21,7 @@ public class MainScreen extends JFrame{
 		numOfTeams = 13;
 		createItems();
 		createPanel();
-		setSize(500,500);
+		setSize(550,725);
 		setTitle("");
 	}
 

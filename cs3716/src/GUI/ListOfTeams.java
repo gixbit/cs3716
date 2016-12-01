@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import SkeletonCode.Tournament;
+import skeletonCode.Tournament;
 
 public class ListOfTeams extends JFrame{
 	private JTextArea textArea1;
@@ -30,7 +30,7 @@ public class ListOfTeams extends JFrame{
 		createItems();
 		createText();
 		createPanel();
-		setSize(500,500);
+		setSize(550,725);
 		setTitle("");
 	}
 
@@ -82,9 +82,9 @@ public class ListOfTeams extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
-//				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
+				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//				frame1.setVisible(true);
+				frame1.setVisible(true);
 				dispose();
 			}
 			else{	//event.getSource() == contButton

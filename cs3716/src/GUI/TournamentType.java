@@ -39,7 +39,7 @@ public class TournamentType extends JFrame{
 		createItems();
 		createButton();
 		createPanel();
-		setSize(500,500);
+		setSize(550,725);
 		setTitle("Create Tournament");
 	}
 

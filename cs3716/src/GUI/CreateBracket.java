@@ -30,7 +30,7 @@ public class CreateBracket extends JFrame{
 		numOfColns = (int)(Math.log(teamsNum)/Math.log(2));
 		createButton();
 		createPanels();
-		setSize(451,676);
+		setSize(550,725);
 		setTitle("");
 	}
 	
