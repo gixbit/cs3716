@@ -126,15 +126,23 @@ public class CreateTournament extends JFrame{
 				frame1.setVisible(true);
 				dispose();
 			}
-			else{	//event.getSource() == createButton
-				String startDate = (String)dates[0].getMonth() + " " + (String)dates[0].getDay() + ", " + (String)dates[0].getYear();
-				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
-				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
-				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				Viewer.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText()));
-				JFrame frame1 = new ManageTournament();
-				frame1.setVisible(true);
-				dispose();
+			else {
+				//Checks for empty fields 
+				if (venueField.getText().isEmpty() || tournField.getText().isEmpty()) {
+					String message = "Please fill all fields";
+					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+							JOptionPane.ERROR_MESSAGE); 
+				}	//event.getSource() == createButton
+				else{
+					String startDate = (String)dates[0].getMonth() + " " + (String)dates[0].getDay() + ", " + (String)dates[0].getYear();
+					String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
+					String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
+					String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
+					Viewer.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText()));
+					JFrame frame1 = new ManageTournament();
+					frame1.setVisible(true);
+					dispose();
+				}
 			}
 		}
 	}

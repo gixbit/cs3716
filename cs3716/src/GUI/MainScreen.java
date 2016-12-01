@@ -58,12 +58,27 @@ public class MainScreen extends JFrame{
 				frame1.setVisible(true);
 				dispose();
 			}
+			
 			else if(event.getSource() == bracButton){
+				//Checks if a tournament exists and checks if there is a structure
+				if (t1 == null){
+					String message = "Please select a tournament";
+					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+							JOptionPane.ERROR_MESSAGE); 
+				}
+				else if (t1.getStructure()==null){
+					String message = "No tournament structure selected";
+					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+							JOptionPane.ERROR_MESSAGE); 
+				}
+				else{
 				JFrame frame1 = new CreateBracket(t1);
 //				JFrame frame1 = new Division(t1, numOfDivs);
 				frame1.setVisible(true);
 				dispose();
+				}
 			}
+			
 			else{//event.getSource() == CoachButton
 				JFrame frame1 = new Register();
 				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -182,26 +182,33 @@ public class Register extends JFrame{
 				frame1.setVisible(true);
 				dispose();
 			}
-			else{	//event.getSource() == RegisterButton
-				int index = 0;
-				for(int i=0; i < tournNames.size(); i++){
-					if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
-						Viewer.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
-						index = i;
-						break;
+			else{
+				//Checks for empty fields
+				if (teamNameField.getText().isEmpty() || coachField.getText().isEmpty()) {
+					String message = "Please fill all fields";
+					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+							JOptionPane.ERROR_MESSAGE); 
+				}
+				else{
+					int index = 0;
+					for(int i=0; i < tournNames.size(); i++){
+						if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
+							Viewer.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
+							index = i;
+							break;
+						}
+					}
+					JFrame frame1 = new ListOfTeams(Viewer.Tournaments.get(index));
+					frame1.setVisible(true);
+					dispose();
+					System.out.println(organizNameField.getText());
+					for(int i=0; i < n; i++){
+						if(listOfPlayers[i].getPlayerName() != null && listOfPlayers[i].getPlayerAge() != null){
+							System.out.println(listOfPlayers[i].getPlayerName());
+							System.out.println(listOfPlayers[i].getPlayerAge());
+						}
 					}
 				}
-				JFrame frame1 = new ListOfTeams(Viewer.Tournaments.get(index));
-				frame1.setVisible(true);
-				dispose();
-				System.out.println(organizNameField.getText());
-				for(int i=0; i < n; i++){
-					if(listOfPlayers[i].getPlayerName() != null && listOfPlayers[i].getPlayerAge() != null){
-						System.out.println(listOfPlayers[i].getPlayerName());
-						System.out.println(listOfPlayers[i].getPlayerAge());
-					}
-				}
-			
 			}
 		}
 	}
