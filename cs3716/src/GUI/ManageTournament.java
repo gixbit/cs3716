@@ -9,31 +9,22 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 
-public class ManageTournament extends JPanel implements PanelAccess{
+public class ManageTournament extends JPanel implements PanelAccess {
 	private JLabel greetingLabel;
 	private JButton newButton;
 	private JButton homeButton;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
+	private JPanel northPanel;
+	private JPanel tournamentsPanel;
+	private JPanel btnPanel;
 	private JScrollPane scrollFrame;
 	private ArrayList<TournamentPanel> listOfTourns = new ArrayList<TournamentPanel>();
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 	private int numOfTourns;
 	private boolean newMenu = false;
 	private String nextMenuName = "";
-	
-	public ManageTournament() {
-		numOfTourns = 10;
-		createItems();
-		createButtons();
-		createPanels();
-	}
 
-	public ManageTournament(ArrayList<Tournament> tourns){
-		numOfTourns = tourns.size();
-		tournaments = tourns;
+
+	public ManageTournament(){
+		numOfTourns = windowManager.Tournaments.size();
 		createItems();
 		createButtons();
 		createPanels();
@@ -65,7 +56,6 @@ public class ManageTournament extends JPanel implements PanelAccess{
 			  public void actionPerformed(ActionEvent e)
 			  {
 			  	setNextMenu(true, "createtournament");
-
 			  }
 		});
 	}
@@ -73,29 +63,24 @@ public class ManageTournament extends JPanel implements PanelAccess{
 	private void createPanels(){
 		//panel = new JPanel(new BorderLayout());
 		this.setLayout(new BorderLayout());
-		panel1 = new JPanel(new GridLayout(2,1));
-		panel2 = new JPanel(new GridLayout(numOfTourns,1));
-		panel3 = new JPanel();
+		northPanel = new JPanel(new GridLayout(2,1));
+		tournamentsPanel = new JPanel(new GridLayout(numOfTourns,1));
+		btnPanel = new JPanel();
 
-		panel1.add(greetingLabel);
-		panel3.add(homeButton);
-		panel3.add(newButton);
-		panel1.add(panel3);
+		northPanel.add(greetingLabel);
+		btnPanel.add(homeButton);
+		btnPanel.add(newButton);
+		northPanel.add(btnPanel);
+		
+		for(int i=0; i < windowManager.Tournaments.size(); i++){
+			listOfTourns.add(new TournamentPanel(windowManager.Tournaments.get(i)));
+			tournamentsPanel.add(listOfTourns.get(i));
+		}
 		
 
-		listOfTourns.add(new TournamentPanel());
-		panel2.add(listOfTourns.get(0));
+		scrollFrame = new JScrollPane(tournamentsPanel);
 
-		/*
-		for(int i=0; i < tournaments.size(); i++){
-			listOfTourns.add(new TournamentPanel(tournaments.get(i), tournaments, i));
-			panel2.add(listOfTourns.get(i));
-		}
-		*/
-
-		scrollFrame = new JScrollPane(panel2);
-
-		this.add(panel1, BorderLayout.NORTH);
+		this.add(northPanel, BorderLayout.NORTH);
 		this.add(scrollFrame, BorderLayout.CENTER);
 	}
 
@@ -153,19 +138,9 @@ public class ManageTournament extends JPanel implements PanelAccess{
 	private int numOfTeams;
 	private int index;
 	private String tType;
-	private Tournament thisTournament;
-	private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+	private Tournament tournament;
 	
-		/**
-		 * Constructor for a TournamentPanel, uses {@link #getInfo()},{@link #createItems()}, {@link #createButtons()}
-		 * and {@link #createPanels()}, to create a TournamentPanel
-		 */
-		public TournamentPanel(){
-			getInfo();
-			createItems();
-			createButtons();
-			createPanels();
-		}
+
 
 		/**
 		 * Constructor for a TournamentPanel, uses {@link #getInfo()}, {@link #createItems()}, {@link #createButtons()}
@@ -178,10 +153,8 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		 * @param tourns - ArrayList&ltTournament&gt
 		 * @param i - Integer
 		 */
-		public TournamentPanel(Tournament tourn, ArrayList<Tournament> tourns, int i){
-			tournaments = tourns;
-			thisTournament = tourn;
-			index = i;
+		public TournamentPanel(Tournament tourn){
+			tournament = tourn;
 			getInfo();
 			createItems();
 			createButtons();
@@ -191,12 +164,12 @@ public class ManageTournament extends JPanel implements PanelAccess{
 		 * This sets information for this object. This is a housekeeping method.
 		 */
 		private void getInfo(){
-			numOfTeams = 0;//thisTournament.getTeamList().size();
-	 		tournName = "Test";//thisTournament.getName();
-	 		venueName = "TestVenue";//thisTournament.getVenue();
-	 		startDate = "Date";//thisTournament.getStartDate();
-	 		regDate = "Date";//thisTournament.getEndDate();
-	 		tType = "Banana";//String.valueOf(thisTournament.getType());
+			numOfTeams = tournament.getTeamList().size();
+	 		tournName = tournament.getName();
+	 		venueName = tournament.getVenue();
+	 		startDate = tournament.getStartDate();
+	 		regDate = tournament.getEndDate();
+	 		tType = String.valueOf(tournament.getType());
 		}
 
 		/**
@@ -269,7 +242,12 @@ public class ManageTournament extends JPanel implements PanelAccess{
 				  public void actionPerformed(ActionEvent e)
 				  {
 				  	//setNextMenu(true,"managermenu");
-
+				  	TournamentPanel p = (TournamentPanel)(((((JButton)e.getSource()).getParent()).getParent()).getParent());
+				  	
+				  	windowManager.Tournaments.remove(p.tournament);
+				  	listOfTourns.remove(p);
+				  	revalidate();
+				  	repaint();
 				  }
 			});	
 		}
