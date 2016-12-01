@@ -57,6 +57,7 @@ public class TournamentType extends JFrame{
 	}
 	
 	public void getInfo(){
+		//Test
 		tournamentName = "TOURNAMENT NAME";
 		tournamentName = tournament.getName();
 //		intTeams = teams.size();	
