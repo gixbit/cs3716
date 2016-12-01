@@ -32,7 +32,7 @@ public class TournamentPanel extends JPanel{
 	private int numOfTeams;
 	private int index;
 	private String tType;
-	private Tournament thisTournament;
+	private Tournament tournament;
 	
 	public TournamentPanel(){
 		getInfo();
@@ -42,7 +42,7 @@ public class TournamentPanel extends JPanel{
 	}
 
 	public TournamentPanel(Tournament tourn, int i){
-		thisTournament = tourn;
+		tournament = tourn;
 		index = i;
 		getInfo();
 		createItems();
@@ -51,11 +51,11 @@ public class TournamentPanel extends JPanel{
 	}
 
 	private void getInfo(){
-		numOfTeams = thisTournament.getTeamList().size();
- 		tournName = thisTournament.getName();
- 		venueName = thisTournament.getVenue();
- 		startDate = thisTournament.getStartDate();
- 		regDate = thisTournament.getEndDate();
+		numOfTeams = tournament.getTeamList().size();
+ 		tournName = tournament.getName();
+ 		venueName = tournament.getVenue();
+ 		startDate = tournament.getStartDate();
+ 		regDate = tournament.getEndDate();
  		//TODO: FIX THIS
  		tType = String.valueOf("0");
 	}
@@ -118,7 +118,7 @@ public class TournamentPanel extends JPanel{
 				}
 			}
 			else if(event.getSource() == teamsButton){
-				JFrame frame1 = new ListOfTeams(thisTournament);
+				JFrame frame1 = new ListOfTeams(tournament);
 				frame1.setVisible(true);
 			}
 			else if(event.getSource() == deleteButton){

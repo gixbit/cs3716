@@ -267,7 +267,7 @@ public class Register extends JFrame{
 					FileOutputStream fos = new FileOutputStream("Tournaments.txt");
 					ObjectOutputStream oos = new ObjectOutputStream(fos);
 					try {
-						oos.writeObject(Tournaments);
+						oos.writeObject(Viewer.Tournaments);
 
 					} catch (IOException err) {
 
