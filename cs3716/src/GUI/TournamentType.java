@@ -106,7 +106,7 @@ public class TournamentType extends JPanel {
 			if(bracketBox.getSelectedItem().equals("Single Elimination")){numType = 1;}
 			else if(bracketBox.getSelectedItem().equals("Double Elimination")){numType = 2;}
 			else  {numType = 3;}
-			tournament.setType(numType);
+//			tournament.setType(numType);
 //			listOfTourns.set(tournIndex, tournament);
 //			JFrame frame1 = new ManageTournament(listOfTourns);
 //			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

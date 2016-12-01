@@ -167,7 +167,7 @@ public class ManageTournament extends JPanel implements PanelAccess {
 			venueName = tournament.getVenue();
 			startDate = tournament.getStartDate();
 			regDate = tournament.getEndDate();
-			tType = String.valueOf(tournament.getType());
+//			tType = String.valueOf(tournament.getType());
 		}
 
 		/**

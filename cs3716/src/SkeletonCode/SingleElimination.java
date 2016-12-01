@@ -26,6 +26,11 @@ public class SingleElimination implements Structure{
 	}
 	
 	@Override
+	public int getStructureType(){
+		return 0;
+	}
+	
+	@Override
 	public void createBrackets(ArrayList<Team> teamList) {
 		this.bList.add(new Bracket(teamList));
 	}

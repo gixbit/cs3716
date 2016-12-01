@@ -62,6 +62,12 @@ public class Divisions implements Structure {
 			this.bList.get(q).makeGames();
 		}
 	}
+	
+	@Override
+	public int getStructureType(){
+		return 1;
+	}
+	
 	@Override
 	public void createBrackets(ArrayList<Team> teamList) {
 		bList.add(new Bracket(teamList));

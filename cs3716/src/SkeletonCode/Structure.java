@@ -33,5 +33,5 @@ public interface Structure {
 	 */
 	public ArrayList<Bracket> getBrackets();
 	
-	
+	public int getStructureType();
 }
