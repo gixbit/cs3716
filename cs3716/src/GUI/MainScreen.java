@@ -15,9 +15,13 @@ public class MainScreen extends JFrame{
 	private JButton coachButton;
 	private int numOfTeams;
 	private int numOfDivs = 3;
+	private Tournament t1;
 	
 	public MainScreen(){
 		numOfTeams = 13;
+//		t1 = new Tournament("name", "one", "two", "three");
+//		t1.createSingleElim();
+		
 		createItems();
 		createPanel();
 		setSize(550,725);
@@ -55,8 +59,8 @@ public class MainScreen extends JFrame{
 				dispose();
 			}
 			else if(event.getSource() == bracButton){
-				JFrame frame1 = new CreateBracket(numOfTeams);
-//				JFrame frame1 = new Division(numOfTeams, numOfDivs);
+				JFrame frame1 = new CreateBracket(t1);
+//				JFrame frame1 = new Division(t1, numOfDivs);
 				frame1.setVisible(true);
 				dispose();
 			}

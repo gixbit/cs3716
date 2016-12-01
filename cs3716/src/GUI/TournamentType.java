@@ -56,8 +56,8 @@ public class TournamentType extends JFrame{
 	public void getInfo(){
 		tournamentName = "TOURNAMENT NAME";
 		tournamentName = tournament.getName();
-//		intTeams = teams.size();	
-		intTeams = 0;
+		intTeams = tournament.getTeamList().size();	
+//		intTeams = 0;
 	}
 	
 	private void createItems(){
@@ -80,6 +80,7 @@ public class TournamentType extends JFrame{
 		
 		divField = new JTextField(2);
 		divField.setFont(new Font("Arial", Font.PLAIN, 16));
+		divField.setText("0");
 
 	}
 	
@@ -106,7 +107,6 @@ public class TournamentType extends JFrame{
 			else{
 				frame1 = new CreateBracket(tournament);
 			}
-			tournament.getStructure().getBrackets().get(0).makeGames();
 			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame1.setVisible(true);
 		}

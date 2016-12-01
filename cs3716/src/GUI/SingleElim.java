@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.JTextComponent;
 
+import SkeletonCode.Bracket;
+import SkeletonCode.Team;
 import SkeletonCode.Tournament;
 
 //import SkeletonCode.Team;
@@ -122,11 +124,12 @@ public class SingleElim extends JPanel{
 //		}
 	}
 	
-	private JPanel createBoxes(){
+	private JPanel createBoxes(int i){
 		JPanel menuPanel = new JPanel();
 		ArrayList<String> array = new ArrayList<String>();
-		array.add("word");
-		array.add("word");
+		Bracket b = tournament.getStructure().getBrackets().get(0);
+		array.add(b.getGames().get(i).getTeamOne().getTeamName());
+		array.add(b.getGames().get(i).getTeamTwo().getTeamName());
 		JComboBox teamMenu = new JComboBox(array.toArray());
 		JTextField scoreField = new JTextField(1);
 		scoreField.setText("" + 0);
@@ -139,7 +142,7 @@ public class SingleElim extends JPanel{
 	private void createComboBoxes(){
 		for(int i = 0; i <= numOfTeams/Math.pow(2,colnNum)-1; i++){
 			int index = (int) (Math.pow(2, colnNum+1)*i + Math.pow(2, colnNum) - 1);
-			panList.set(index, createBoxes());
+			panList.set(index, createBoxes(i));
 		}
 	}
 	
