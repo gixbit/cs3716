@@ -62,8 +62,12 @@ public class windowManager extends JFrame{
         			FileInputStream fis = new FileInputStream("Tournaments.txt");
         			ObjectInputStream ois = new ObjectInputStream(fis);
         			try {
-        				Tournaments = (ArrayList<Tournament>)ois.readObject();
-        				System.out.println("Test");
+        				Object o = ois.readObject();
+        				if(o == null) {
+        					Tournaments = new ArrayList<Tournament>();
+        				} else {
+        					Tournaments = (ArrayList<Tournament>)o;
+        				}
         			} catch(IOException | ClassNotFoundException err) {
         				Tournaments = new ArrayList<Tournament>();
         			} finally {

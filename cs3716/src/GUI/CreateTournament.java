@@ -37,6 +37,7 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	
 	private boolean newMenu = false;
 	private String nextMenuName = "";
+	private Tournament tournament;
 	
 	public CreateTournament(){
 		createLabels();
@@ -45,10 +46,12 @@ public class CreateTournament extends JPanel implements PanelAccess {
 		createPanel();
 	}
 	
-	public CreateTournament(String tName, String tVenue, String oName, String oInfo){
+	public CreateTournament(Tournament t){
 		//get current date(month, day, year)
+		this.tournament = t;
 		createLabels();
-		createFields(tName,tVenue,oName,oInfo);
+		//TODO: ORGANIZER NAME AND INFO IS MISSING
+		createFields(t.getName(),t.getVenue(),"","");
 		createButton();
 		//createPanel(month, day, year)
 		//input into datePanel
@@ -101,7 +104,11 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	
 	private void createButton(){
 		//ActionListener listener = new choiceListener();
-		createButton = new JButton("Create");
+		String edit = "Create";
+		if(tournament != null) {
+			edit = "Edit";
+		}
+		createButton = new JButton(edit);
 		createButton.setFont(new Font("Arial", Font.PLAIN, 16));	
 		createButton.addActionListener(
 			new ActionListener(){
@@ -110,7 +117,14 @@ public class CreateTournament extends JPanel implements PanelAccess {
 					String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
 					String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
 					String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-					windowManager.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
+					if(tournament == null) {
+						windowManager.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
+					} else {
+						tournament.setName((String)tournField.getText());
+						tournament.setStartDate(startDate);
+						tournament.setEndDate(endDate);
+						tournament.setVenue((String)venueField.getText());
+					}
 					setNextMenu(true,"back");
 					}
 				}
