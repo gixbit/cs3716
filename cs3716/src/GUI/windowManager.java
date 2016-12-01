@@ -71,7 +71,7 @@ public class windowManager extends JFrame{
         				fis.close();	
         			}
         		} catch (FileNotFoundException err) {
-        			err.printStackTrace();
+    				Tournaments = new ArrayList<Tournament>();
         		} catch (IOException err) {
         			//Could not close
         		}
