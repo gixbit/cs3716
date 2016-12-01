@@ -100,12 +100,6 @@ public class TournamentType extends JFrame{
 			//TODO: FIX THIS
 //			tournament.setType(numType);
 			Viewer.Tournaments.set(tournIndex, tournament);
-<<<<<<< Upstream, based on branch 'master' of https://github.com/gixbit/cs3716.git
-			numOfDivs = Integer.valueOf(divField.getText());
-			JFrame frame1 = new ManageTournament();
-			listOfTourns.set(tournIndex, tournament);
-=======
->>>>>>> a93ed84 jaimee
 			if(tournament.getStructure().getStructureType() == 1){
 				frame1 = new Division(Viewer.Tournaments.size(), numOfDivs);
 			}
