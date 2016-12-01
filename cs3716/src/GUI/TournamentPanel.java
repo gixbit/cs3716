@@ -8,6 +8,15 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class TournamentPanel extends JPanel{
 	private JLabel tournLabel;
 	private JLabel venueLabel;
@@ -39,6 +48,7 @@ public class TournamentPanel extends JPanel{
 		createItems();
 		createButtons();
 		createPanels();
+		addSaveCloser();
 	}
 
 	public TournamentPanel(Tournament tourn, int i){
@@ -48,6 +58,7 @@ public class TournamentPanel extends JPanel{
 		createItems();
 		createButtons();
 		createPanels();
+		addSaveCloser();
 	}
 
 	private void getInfo(){
@@ -156,5 +167,31 @@ public class TournamentPanel extends JPanel{
 		panel.setBorder(BorderFactory.createRaisedBevelBorder());
 
 		add(panel);
+	}
+	public void addSaveCloser(){
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					FileOutputStream fos = new FileOutputStream("Tournaments.txt");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+					try {
+						oos.writeObject(Viewer.Tournaments);
+
+					} catch (IOException err) {
+
+					} finally {
+						oos.flush();
+						oos.close();
+						fos.flush();
+						fos.close();
+					}
+
+				} catch (IOException err) {
+					// Could not find file or open file.
+				}
+				e.getWindow().dispose();
+			}
+		});
 	}
 }
