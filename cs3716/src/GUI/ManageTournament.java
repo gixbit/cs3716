@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class ManageTournament extends JPanel implements PanelAccess {
-	private JLabel greetingLabel;
+	private JLabel headerLabel;
 	private JButton newButton;
 	private JButton homeButton;
 	private JPanel northPanel;
@@ -17,12 +17,10 @@ public class ManageTournament extends JPanel implements PanelAccess {
 	private JPanel btnPanel;
 	private JScrollPane scrollFrame;
 	private ArrayList<TournamentPanel> listOfTourns = new ArrayList<TournamentPanel>();
-	private int numOfTourns;
 	private boolean newMenu = false;
 	private String nextMenuName = "";
 
 	public ManageTournament() {
-		numOfTourns = windowManager.Tournaments.size();
 		createItems();
 		createButtons();
 		createPanels();
@@ -30,8 +28,8 @@ public class ManageTournament extends JPanel implements PanelAccess {
 	}
 
 	private void createItems() {
-		greetingLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
-		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		headerLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
+		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 	}
 
 	private void createButtons() {
@@ -58,10 +56,10 @@ public class ManageTournament extends JPanel implements PanelAccess {
 		// panel = new JPanel(new BorderLayout());
 		this.setLayout(new BorderLayout());
 		northPanel = new JPanel(new GridLayout(2, 1));
-		tournamentsPanel = new JPanel(new GridLayout(numOfTourns, 1));
+		tournamentsPanel = new JPanel(new GridLayout(windowManager.Tournaments.size()+4, 1));
 		btnPanel = new JPanel();
 
-		northPanel.add(greetingLabel);
+		northPanel.add(headerLabel);
 		btnPanel.add(homeButton);
 		btnPanel.add(newButton);
 		northPanel.add(btnPanel);
@@ -117,7 +115,7 @@ public class ManageTournament extends JPanel implements PanelAccess {
 		private JButton teamsButton;
 		private JButton editButton;
 		private JButton deleteButton;
-		private JButton generateButton;
+		private JButton tTypeButton;
 		private JPanel borderlayout;
 		private JPanel gridlayout;
 		private JPanel btnPanel;
@@ -212,17 +210,18 @@ public class ManageTournament extends JPanel implements PanelAccess {
 			editButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// setNextMenu(true,"managermenu");
+					// TODO: KARL IS THINKING
 					TournamentPanel p = (TournamentPanel) (((((JButton) e.getSource()).getParent()).getParent()).getParent());
-					//TODO: KARL IS THINKING
 				}
 			});
 
-			generateButton = new JButton("Generate");
-			generateButton.setFont(new Font("Arial", Font.PLAIN, 16));
-			generateButton.addActionListener(new ActionListener() {
+			tTypeButton = new JButton("Generate");
+			tTypeButton.setFont(new Font("Arial", Font.PLAIN, 16));
+			tTypeButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// setNextMenu(true,"managermenu");
-
+					// setNextMenu(true,"tTypeMenu");
+					// TODO: KARL IS STILL THINKING
+					TournamentPanel p = (TournamentPanel) (((((JButton) e.getSource()).getParent()).getParent()).getParent());
 				}
 			});
 
@@ -231,6 +230,8 @@ public class ManageTournament extends JPanel implements PanelAccess {
 			teamsButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setNextMenu(true, "teamlist");
+					//TODO: KARL IS BRAINDEAD
+					TournamentPanel p = (TournamentPanel) (((((JButton) e.getSource()).getParent()).getParent()).getParent());
 				}
 			});
 
@@ -249,37 +250,6 @@ public class ManageTournament extends JPanel implements PanelAccess {
 		}
 
 		/**
-		 * Inner-Class implementing an ActionListener.
-		 * 
-		 * <br>
-		 * If source is generateButton, creates a frame for tournament. <br>
-		 * If source is teamsButton, creates a teams frame for this tournament
-		 * <br>
-		 * If source is deleteButton, deletes the index of this object from the
-		 * tournaments list <br>
-		 * Else Opens a CreateTournament Frame, also removes the index of this
-		 * object from the tournaments list
-		 */
-		/*
-		 * class choiceListener implements ActionListener{ public void
-		 * actionPerformed(ActionEvent event){ if(event.getSource() ==
-		 * generateButton){ if(tType.equals("unspecified")){ //JPanel jpan1 =
-		 * new TournamentType(tournaments, index);
-		 * //frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		 * //frame1.setVisible(true); } else{ //JPanel jpan1 = new
-		 * TournamentType(tournaments, index, tType);
-		 * //frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		 * //frame1.setVisible(true); } } else if(event.getSource() ==
-		 * teamsButton){ // JFrame frame1 = new ListOfTeams(thisTournament,
-		 * tournaments); // frame1.setVisible(true); } else if(event.getSource()
-		 * == deleteButton){ System.out.println(newMenu);
-		 * //tournaments.remove(index); // JFrame frame1 = new
-		 * ManageTournament(tournaments); // frame1.setVisible(true); } else{
-		 * //event.getSource() == editButton //tournaments.remove(index);
-		 * //JFrame frame1 = new CreateTournament(tournName, venueName, orgName,
-		 * orgInfo, tournaments); //frame1.setVisible(true); } } }
-		 */
-		/**
 		 * Creates panels for this object.
 		 */
 		private void createPanels() {
@@ -296,7 +266,7 @@ public class ManageTournament extends JPanel implements PanelAccess {
 
 			btnPanel.add(editButton);
 			btnPanel.add(deleteButton);
-			btnPanel.add(generateButton);
+			btnPanel.add(tTypeButton);
 			btnPanel.add(teamsButton);
 
 			borderlayout.add(gridlayout, BorderLayout.CENTER);

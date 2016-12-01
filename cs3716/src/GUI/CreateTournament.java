@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-
-
 public class CreateTournament extends JPanel implements PanelAccess {
 	private JPanel borderPanel;
 	private JPanel tournGridPanel;
@@ -34,43 +32,37 @@ public class CreateTournament extends JPanel implements PanelAccess {
 	private JButton createButton;
 	private JButton cancelButton;
 	private DatePanel[] dates = new DatePanel[2];
-	
+
 	private boolean newMenu = false;
 	private String nextMenuName = "";
 	private Tournament tournament;
-	
-	public CreateTournament(){
+
+	public CreateTournament() {
 		createLabels();
 		createFields();
 		createButton();
 		createPanel();
 	}
-	
-	public CreateTournament(Tournament t){
-		//get current date(month, day, year)
+
+	public CreateTournament(Tournament t) {
 		this.tournament = t;
 		createLabels();
-		//TODO: ORGANIZER NAME AND INFO IS MISSING
-		createFields(t.getName(),t.getVenue(),"","");
+		// TODO: ORGANIZER NAME AND INFO IS MISSING
+		createFields(t.getName(), t.getVenue(), "", "");
 		createButton();
-		//createPanel(month, day, year)
-		//input into datePanel
-		//monthBox.setSelectedItem(m);
-		//dayBox.setSelectedItem(d);
-		//yearBox.setSelectedItem(y);
 		createPanel();
 	}
-	
-	private void createLabels(){
+
+	private void createLabels() {
 		greetingLabel = new JLabel("Create Your Tournament", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
-		
+
 		tournLabel = new JLabel("Tournament Name: ");
 		tournLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		
+
 		venueLabel = new JLabel("Location: ");
 		venueLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		
+
 		organizerNameLabel = new JLabel("Organizer Name: ");
 		organizerNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
@@ -79,16 +71,16 @@ public class CreateTournament extends JPanel implements PanelAccess {
 
 		dateLabel = new JLabel("Tournament Start Date", SwingConstants.CENTER);
 		dateLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		
+
 		regDateLabel = new JLabel("Registration Closing Date", SwingConstants.CENTER);
 		regDateLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 	}
-	
-	private void createFields(){
-		createFields("","","","");
+
+	private void createFields() {
+		createFields("", "", "", "");
 	}
 
-	private void createFields(String t, String ven, String oName, String oInfo){
+	private void createFields(String t, String ven, String oName, String oInfo) {
 		tournField = new JTextField(26);
 		tournField.setText(t);
 
@@ -101,76 +93,53 @@ public class CreateTournament extends JPanel implements PanelAccess {
 		organizerInfoField = new JTextField(23);
 		organizerInfoField.setText(oInfo);
 	}
-	
-	private void createButton(){
-		//ActionListener listener = new choiceListener();
+
+	private void createButton() {
 		String edit = "Create";
-		if(tournament != null) {
+		if (tournament != null) {
 			edit = "Edit";
 		}
 		createButton = new JButton(edit);
-		createButton.setFont(new Font("Arial", Font.PLAIN, 16));	
-		createButton.addActionListener(
-			new ActionListener(){
-				public void actionPerformed(ActionEvent e)  {
-					String startDate = (String)dates[0].getMonth() + " " + (String)dates[0].getDay() + ", " + (String)dates[0].getYear();
-					String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
-					String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
-					String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-					if(tournament == null) {
-						windowManager.Tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
-					} else {
-						tournament.setName((String)tournField.getText());
-						tournament.setStartDate(startDate);
-						tournament.setEndDate(endDate);
-						tournament.setVenue((String)venueField.getText());
-					}
-					setNextMenu(true,"back");
-					}
+		createButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		createButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String startDate = (String) dates[0].getMonth() + " " + (String) dates[0].getDay() + ", " + (String) dates[0].getYear();
+				String startTime = (String) dates[0].getHour() + ":" + (String) dates[0].getMin() + " " + (String) dates[0].getAmPm();
+				String endDate = (String) dates[1].getMonth() + " " + (String) dates[1].getDay() + ", " + (String) dates[1].getYear();
+				String endTime = (String) dates[1].getHour() + ":" + (String) dates[1].getMin() + " " + (String) dates[1].getAmPm();
+				if (tournament == null) {
+					windowManager.Tournaments.add(new Tournament((String) tournField.getText(), startDate, endDate, (String) venueField.getText(), 0));
+				} else {
+					tournament.setName((String) tournField.getText());
+					tournament.setStartDate(startDate);
+					tournament.setEndDate(endDate);
+					tournament.setVenue((String) venueField.getText());
 				}
-			);
+				setNextMenu(true, "back");
+			}
+		});
 
 		cancelButton = new JButton("Cancel");
 		cancelButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		cancelButton.addActionListener(
-			new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					setNextMenu(true,"back");
-				}
-			
-			});
-	}
-	
-	/*
-	class choiceListener implements ActionListener{
-		public void actionPerformed(ActionEvent event){
-			if(event.getSource() == cancelButton){
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				setNextMenu(true, "back");
 			}
-			else{	//event.getSource() == createButton
-				String startDate = (String)dates[0].getMonth() + " " + (String)dates[0].getDay() + ", " + (String)dates[0].getYear();
-				String startTime = (String)dates[0].getHour() + ":" + (String)dates[0].getMin() + " " + (String)dates[0].getAmPm();
-				String endDate = (String)dates[1].getMonth() + " " + (String)dates[1].getDay() + ", " + (String)dates[1].getYear();
-				String endTime = (String)dates[1].getHour() + ":" + (String)dates[1].getMin() + " " + (String)dates[1].getAmPm();
-				tournaments.add(new Tournament((String)tournField.getText(), startDate, endDate, (String)venueField.getText(), 0));
-				//JFrame frame1 = new ManageTournament(tournaments);
-				//frame1.setVisible(true);
-				//dispose();
-			}
-		}
-	}*/
-	
+
+		});
+	}
+
 	private void createPanel() {
 		this.setLayout(new BorderLayout());
-		tournGridPanel = new JPanel(new GridLayout(4,1));
-		dateGridPanel = new JPanel(new GridLayout(4,1));
+		tournGridPanel = new JPanel(new GridLayout(4, 1));
+		dateGridPanel = new JPanel(new GridLayout(4, 1));
 		tournPanel = new JPanel();
 		venuePanel = new JPanel();
 		orgNamePanel = new JPanel();
 		orgInfoPanel = new JPanel();
 		centerPanel = new JPanel();
 		btnPanel = new JPanel();
-		
+
 		tournPanel.add(tournLabel);
 		tournPanel.add(tournField);
 		venuePanel.add(venueLabel);
@@ -182,7 +151,7 @@ public class CreateTournament extends JPanel implements PanelAccess {
 
 		dates[0] = new DatePanel();
 		dates[1] = new DatePanel();
-		
+
 		btnPanel.add(cancelButton);
 		btnPanel.add(createButton);
 
@@ -198,37 +167,36 @@ public class CreateTournament extends JPanel implements PanelAccess {
 
 		centerPanel.add(tournGridPanel);
 		centerPanel.add(dateGridPanel);
-		
-		
+
 		this.add(greetingLabel, BorderLayout.NORTH);
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(btnPanel, BorderLayout.SOUTH);
-		//add(borderPanel);
+		// add(borderPanel);
 	}
-	
-	private void setNextMenu(boolean state, String next){
+
+	private void setNextMenu(boolean state, String next) {
 		newMenu = state;
 		nextMenuName = next;
 	}
-	
+
 	@Override
 	public boolean newMenu() {
 		return newMenu;
 	}
-	
+
 	@Override
 	public String getNextMenu() {
 		return nextMenuName;
 	}
-	
+
 	@Override
 	public void setNewMenu() {
 		this.newMenu = true;
 	}
 
 	@Override
-	public void clearNextMenu(){
+	public void clearNextMenu() {
 		this.nextMenuName = "";
 	}
-	
+
 }

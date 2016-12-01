@@ -35,10 +35,12 @@ public class Tournament implements Serializable {
 	/**
 	 * The tournament type as an integer
 	 */
-	private int tType;
+//	private int tType;
 	/**
 	 * The tournament name as a string
 	 */
+	private Structure structure;
+	
 	private String tournamentName;
 	/**
 	 * The list of teams of this tournament
@@ -51,11 +53,11 @@ public class Tournament implements Serializable {
 	 * @param eDate - String
 	 * @param structure - Integer
 	 */
-	public Tournament(String name, String sDate, String eDate, String venue, int structure){
+	public Tournament(String name, String sDate, String eDate, String venue){
 		this.startDate = sDate;
 		this.endDate = eDate;
 		this.tournamentName = name;
-		this.tType = structure;
+//		this.tType = structure;
 		this.setVenue(venue);
 	}
 	/**
@@ -118,16 +120,16 @@ public class Tournament implements Serializable {
 	 * Returns the type of this tournament
 	 * @return tType - Integer
 	 */
-	public int getType(){
-		return this.tType;
-	}
+	//public int getType(){
+	//	return this.tType;
+	//}
 	/**
 	 * Set the Tournament type
 	 * @param t - Integer
 	 */
-	public void setType(int t){
-		this.tType = t;
-	}
+	//public void setType(int t){
+	//	this.tType = t;
+	//}
 	/**
 	 * Returns the venue of this tournament
 	 * @return venue - String
@@ -143,4 +145,15 @@ public class Tournament implements Serializable {
 		this.venue = venue;
 	}
 	
+	public void createSingleElim(){
+		structure = new SingleElimination(teamList);
+	}
+	
+	public void createDivisions(int i){
+		structure = new Divisions(teamList, i);
+	}
+	
+	public Structure getStructure(){
+		return structure;
+	}
 }

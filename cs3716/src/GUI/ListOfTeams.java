@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-
-
-public class ListOfTeams extends JPanel implements PanelAccess{
+public class ListOfTeams extends JPanel implements PanelAccess {
 	private JTextArea listText;
 	private JScrollPane listArea;
 	private JLabel listLabel;
@@ -29,15 +27,14 @@ public class ListOfTeams extends JPanel implements PanelAccess{
 	private boolean newMenu = false;
 	private String nextMenuName = "";
 
-
 	public ListOfTeams() {
 		createItems();
-		//createText();   Implement later
+		// createText(); Implement later
 		createButton();
 		createPanel();
-		setSize(500,500);
+		setSize(500, 500);
 	}
-	
+
 	private void createItems() {
 		listLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
 		listLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -47,14 +44,14 @@ public class ListOfTeams extends JPanel implements PanelAccess{
 
 		teamLabel = new JLabel("Team Name");
 		teamLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		
-		listText = new JTextArea(19,35);
+
+		listText = new JTextArea(19, 35);
 		listText.setFont(new Font("Arial", Font.PLAIN, 16));
 		listText.setEditable(false);
 	}
-	
-	private void createText(){
-		for(int i = 0; i < tour.getTeamList().size(); i++){
+
+	private void createText() {
+		for (int i = 0; i < tour.getTeamList().size(); i++) {
 			listText.append(tour.getTeamList().get(i).getTeamName() + "\n");
 		}
 	}
@@ -63,84 +60,63 @@ public class ListOfTeams extends JPanel implements PanelAccess{
 
 		contButton = new JButton("Home");
 		contButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		contButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-			  	setNextMenu(true,"back");
+		contButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setNextMenu(true, "back");
 
-			  }
+			}
 		});
-		
+
 		regButton = new JButton("Register Another Team");
 		regButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		regButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-			  	//setNextMenu(true,"managermenu");
+		regButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// setNextMenu(true,"managermenu");
 
-			  }
+			}
 		});
 	}
 
-	
-	
-//	class choiceListener implements ActionListener{
-//		public void actionPerformed(ActionEvent event){
-//			if(event.getSource() == regButton) {
-////				JFrame frame1 = new Register(tour.getTeamList(), listOfTourns, tour);
-////				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-////				frame1.setVisible(true);
-//			}
-//			else {	//event.getSource() == contButton
-//				JFrame frame1 = new MainScreen(listOfTourns);
-////				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//				frame1.setVisible(true);
-//			}
-//		}
-//	}
-	
 	private void createPanel() {
 		this.setLayout(new BorderLayout());
 		btnPanel = new JPanel();
-		teamPanel = new JPanel(new GridLayout(1,2));		
-		northTeamPanel = new JPanel(new GridLayout(3,1));		
+		teamPanel = new JPanel(new GridLayout(1, 2));
+		northTeamPanel = new JPanel(new GridLayout(3, 1));
 		textPanel = new JPanel();
-		
+
 		textPanel.add(listText);
 		listArea = new JScrollPane(textPanel);
-		
+
 		btnPanel.add(regButton);
 		btnPanel.add(contButton);
 		teamPanel.add(teamLabel);
 		northTeamPanel.add(listLabel);
 		northTeamPanel.add(teamName);
 		northTeamPanel.add(teamPanel);
-		
+
 		this.add(northTeamPanel, BorderLayout.NORTH);
 		this.add(listArea, BorderLayout.CENTER);
 		this.add(btnPanel, BorderLayout.SOUTH);
 	}
-	
-	private void setNextMenu(boolean state, String next){
+
+	private void setNextMenu(boolean state, String next) {
 		newMenu = state;
 		nextMenuName = next;
 	}
 
-	public boolean newMenu(){
+	public boolean newMenu() {
 		return newMenu;
 	}
 
-	public String getNextMenu(){
+	public String getNextMenu() {
 		return nextMenuName;
 	}
 
-	public void setNewMenu(){
+	public void setNewMenu() {
 		newMenu = false;
 	}
 
-	public void clearNextMenu(){
+	public void clearNextMenu() {
 		nextMenuName = "";
 	}
 }

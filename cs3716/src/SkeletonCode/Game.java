@@ -158,4 +158,16 @@ public class Game {		//coming back later to add time and venue if we want them
 	public int getLoserScore(){
 		if (this.teamOneScore < this.teamTwoScore){return this.teamOneScore;} else {return this.teamTwoScore;}
 	}
+	public Team getTeamOne(){
+		return teamOne;
+	}
+	public Team getTeamTwo(){
+		return teamTwo;
+	}
+	public void setTeamOne(Team t){
+		teamOne = t;
+	}
+	public void setTeamTwo(Team t){
+		teamTwo = t;
+	}
 }

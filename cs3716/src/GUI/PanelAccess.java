@@ -1,6 +1,6 @@
 package GUI;
 
-interface PanelAccess{
+interface PanelAccess {
 
 	public boolean newMenu();
 
@@ -9,5 +9,5 @@ interface PanelAccess{
 	public void setNewMenu();
 
 	public void clearNextMenu();
-	
+
 }

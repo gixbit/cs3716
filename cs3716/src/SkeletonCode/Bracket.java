@@ -100,4 +100,11 @@ public class Bracket {
 		}
 		return losers;
 	}
+	
+	public void swapTeams(Game g1, Team teamOne, Game g2, Team teamTwo){
+		if (teamOne == g1.getTeamOne()){g1.setTeamOne(teamTwo);}
+		else if (teamOne == g1.getTeamTwo()){g1.setTeamTwo(teamTwo);}
+		if (teamTwo == g2.getTeamOne()){g2.setTeamOne(teamOne);}
+		else if (teamTwo == g2.getTeamTwo()){g2.setTeamTwo(teamOne);}
+	}
 }
