@@ -93,13 +93,27 @@ public class TournamentType extends JFrame{
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			//set type of tournament
-			if(bracketBox.getSelectedItem().equals("Single Elimination")){numType = 1;}
-			else  {numType = 2;}
+			JFrame frame1;
+			int numOfDivs = Integer.valueOf(divField.getText());
+			if(bracketBox.getSelectedItem().equals("Single Elimination")){tournament.createSingleElim();}
+			else  {tournament.createDivisions(numOfDivs);}
 			//TODO: FIX THIS
 //			tournament.setType(numType);
 			Viewer.Tournaments.set(tournIndex, tournament);
-			numOfDivs = Integer.valueOf(divField.getText());
-			JFrame frame1 = new ManageTournament();
+			if(tournament.getStructure().getStructureType() == 1){
+				frame1 = new Division(Viewer.Tournaments.size(), numOfDivs);
+			}
+			else{
+				frame1 = new CreateBracket(Viewer.Tournaments.size());
+			}
+			Viewer.Tournaments.set(tournIndex, tournament);
+			listOfTourns.set(tournIndex, tournament);
+			if(tournament.getStructure().getStructureType() == 1){
+				frame1 = new Division(listOfTourns.size(), numOfDivs);
+			}
+			else{
+				frame1 = new CreateBracket(listOfTourns.size());
+			}
 			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame1.setVisible(true);
 		}
