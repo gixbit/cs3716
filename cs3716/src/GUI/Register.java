@@ -49,7 +49,7 @@ public class Register extends JFrame{
 	private JTextField playerAgeField;
 	private JTextField coachField;
 	private JScrollPane scrollFrame;
-	private PlayerPanel[] listOfPlayers = new PlayerPanel[40];
+	private ArrayList<PlayerPanel> listOfPlayers; 
 	private ArrayList<String> tournNames = new ArrayList<String>();
 	private int numOfTourns;
 	private String time;
@@ -59,6 +59,7 @@ public class Register extends JFrame{
 
 
 	public Register(){
+		listOfPlayers = new ArrayList<PlayerPanel>();
 		getInfo();
 		createLabels();
 		createFields();
@@ -165,9 +166,9 @@ public class Register extends JFrame{
 					dispose();
 				}
 				else{
-					n++;
-					listOfPlayers[n-1] = new PlayerPanel();
-					playerPanel.add(listOfPlayers[n-1]);
+					PlayerPanel p = new PlayerPanel();
+					listOfPlayers.add(p);
+					playerPanel.add(p);
 					panel7.add(playerPanel);
 					revalidate();
 				}
@@ -202,10 +203,10 @@ public class Register extends JFrame{
 					frame1.setVisible(true);
 					dispose();
 					System.out.println(organizNameField.getText());
-					for(int i=0; i < n; i++){
-						if(listOfPlayers[i].getPlayerName() != null && listOfPlayers[i].getPlayerAge() != null){
-							System.out.println(listOfPlayers[i].getPlayerName());
-							System.out.println(listOfPlayers[i].getPlayerAge());
+					for(int i=0; i < listOfPlayers.size(); i++){
+						if(listOfPlayers.get(i).getPlayerName() != null && listOfPlayers.get(i).getPlayerAge() != null){
+							System.out.println(listOfPlayers.get(i).getPlayerName());
+							System.out.println(listOfPlayers.get(i).getPlayerAge());
 						}
 					}
 				}
@@ -242,9 +243,10 @@ public class Register extends JFrame{
 		panel6.add(clearButton);
 		panel6.add(registerButton);
 
-		listOfPlayers[0] = new PlayerPanel();
+		PlayerPanel p = new PlayerPanel();
+		listOfPlayers.add(new PlayerPanel());
 		playerPanel = new JPanel(new GridLayout(n-1,1));
-		playerPanel.add(listOfPlayers[0]);
+		playerPanel.add(p);
 		panel7.add(playerPanel);
 
 		panel.add(panel1);
