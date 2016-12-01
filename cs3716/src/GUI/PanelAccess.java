@@ -1,13 +1,11 @@
 package GUI;
 
-interface PanelAccess {
+interface PanelAccess{
 
 	public boolean newMenu();
 
 	public String getNextMenu();
 
 	public void setNewMenu();
-
-	public void clearNextMenu();
-
+	
 }

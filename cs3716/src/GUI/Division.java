@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import GUI.ListOfTeams.choiceListener;
 
-public class Division extends JPanel {
+public class Division extends JFrame{
 	private JPanel buttonPanel;
 	private JPanel areaPanel;
+	private JPanel finalPanel;
 	private JLabel greetingLabel;
 	private JLabel divLabel;
 	private JButton submitButton;
@@ -33,7 +35,8 @@ public class Division extends JPanel {
 		numOfDivs = divs;
 		createButton();
 		createPanels();
-		setSize(451,676);
+		setSize(550,725);
+		setTitle("");
 	}
 	
 	private void createButton(){
@@ -59,7 +62,7 @@ public class Division extends JPanel {
 	private JPanel createBracPanel(){
 		JPanel panel = new JPanel(new GridLayout(1,numOfColns,0,0));
 		for(int i = 0; i < numOfColns+1; i++){
-			//panel.add(new SingleElim(teamsNum, i, numOfColns));
+			panel.add(new SingleElim(teamsNum, i, numOfColns));
 		}
 		MatteBorder line = BorderFactory.createMatteBorder(1,1,1,1, Color.black);
 		panel.setBorder(line);
@@ -70,17 +73,17 @@ public class Division extends JPanel {
 	private void createPanels(){
 		areaPanel = new JPanel(new GridLayout(numOfDivs,1));
 		buttonPanel = new JPanel();
-		this.setLayout(new BorderLayout());
+		finalPanel = new JPanel(new BorderLayout());
 		
 		for(int j = 0; j < numOfDivs; j++){
 			areaPanel.add(new JLabel("Division " + (j+1), SwingConstants.CENTER));
 			areaPanel.add(createBracPanel());
 		}
 		buttonPanel.add(submitButton);
-		this.add(greetingLabel, BorderLayout.NORTH);
-		this.add(areaPanel, BorderLayout.CENTER);
-		this.add(buttonPanel, BorderLayout.SOUTH);
-		area = new JScrollPane(this);
-		this.add(area);
+		finalPanel.add(greetingLabel, BorderLayout.NORTH);
+		finalPanel.add(areaPanel, BorderLayout.CENTER);
+		finalPanel.add(buttonPanel, BorderLayout.SOUTH);
+		area = new JScrollPane(finalPanel);
+		add(area);
 	}
 }

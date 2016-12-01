@@ -1,10 +1,13 @@
 package GUI;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 
 public class runner{
 
 	public static void main(String[] args){
-		JFrame frame = new windowManager();		
+
+		windowManager frame = new windowManager();
 	}
 }

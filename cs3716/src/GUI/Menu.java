@@ -21,8 +21,13 @@ public class Menu extends JPanel implements PanelAccess{
 		JPanel inner = new JPanel();
 		inner.setLayout(new GridLayout(4,1));
 
-		JButton manageBtn = new JButton("Manage Tournaments");
-		manageBtn.addActionListener(new ActionListener(){
+		JButton btn1 = new JButton("Manage Tournaments");
+		JButton btn2 = new JButton("Register Teams");
+		JButton btn3 = new JButton("Place Holder");
+		JButton btn4 = new JButton("Place Holder");
+
+		btn1.addActionListener(new ActionListener()
+			{
 			  public void actionPerformed(ActionEvent e)
 			  {
 			  	setNextMenu(true,"managermenu");
@@ -30,15 +35,14 @@ public class Menu extends JPanel implements PanelAccess{
 			  }
 		});
 
-		JButton regBtn = new JButton("Register Teams");
-		regBtn.addActionListener(new ActionListener(){
+		btn2.addActionListener(new ActionListener()
+			{
 			  public void actionPerformed(ActionEvent e)
 			  {
 			  	setNextMenu(true,"registermenu");
 			  }
 		});
 
-		JButton btn3 = new JButton("Place Holder");
 		/*
 		btn3.addActionListener(new ActionListener()
 			{
@@ -47,10 +51,7 @@ public class Menu extends JPanel implements PanelAccess{
 			   nextMenu = true;
 			  }
 		});
-		*/
-		
-		JButton btn4 = new JButton("Place Holder");
-		/*
+
 		btn4.addActionListener(new ActionListener()
 			{
 			  public void actionPerformed(ActionEvent e)
@@ -60,12 +61,13 @@ public class Menu extends JPanel implements PanelAccess{
 		});
 		*/
 
-		inner.add(manageBtn);
-		inner.add(regBtn);
+		inner.add(btn1);
+		inner.add(btn2);
 		inner.add(btn3);
 		inner.add(btn4);
-		
+
 		inner.setBounds(200,300,400,200);
+		
 		
 		add(inner);
 	}
@@ -85,9 +87,5 @@ public class Menu extends JPanel implements PanelAccess{
 
 	public void setNewMenu(){
 		newMenu = false;
-	}
-
-	public void clearNextMenu(){
-		this.nextMenuName = "";
 	}
 }
