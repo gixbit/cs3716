@@ -28,7 +28,30 @@ public class Viewer {
 
 	public static ArrayList<Tournament> Tournaments;
 
-
+//	this.addWindowListener(new WindowAdapter() {
+//		@Override
+//		public void windowClosing(WindowEvent e) {
+//			try {
+//				FileOutputStream fos = new FileOutputStream("Tournaments.txt");
+//				ObjectOutputStream oos = new ObjectOutputStream(fos);
+//				try {
+//					oos.writeObject(Tournaments);
+//
+//				} catch (IOException err) {
+//
+//				} finally {
+//					oos.flush();
+//					oos.close();
+//					fos.flush();
+//					fos.close();
+//				}
+//
+//			} catch (IOException err) {
+//				// Could not find file or open file.
+//			}
+//			e.getWindow().dispose();
+//		}
+//	});
 	public static void main(String[] args){
 		JFrame frame = new MainScreen();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
