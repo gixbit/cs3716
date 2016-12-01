@@ -99,11 +99,9 @@ public class TournamentType extends JFrame{
 			else  {tournament.createDivisions(numOfDivs);}
 			//TODO: FIX THIS
 //			tournament.setType(numType);
-<<<<<<< HEAD
 			Viewer.Tournaments.set(tournIndex, tournament);
 			numOfDivs = Integer.valueOf(divField.getText());
 			JFrame frame1 = new ManageTournament();
-=======
 			listOfTourns.set(tournIndex, tournament);
 			if(tournament.getStructure().getStructureType() == 1){
 				frame1 = new Division(listOfTourns.size(), numOfDivs);
@@ -111,7 +109,6 @@ public class TournamentType extends JFrame{
 			else{
 				frame1 = new CreateBracket(listOfTourns.size());
 			}
->>>>>>> branch 'master' of ssh://git@github.com/gixbit/cs3716.git
 			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame1.setVisible(true);
 		}
