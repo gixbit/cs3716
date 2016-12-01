@@ -8,6 +8,15 @@ import javax.swing.*;
 
 import SkeletonCode.*;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 
 public class Register extends JFrame{
 	private JPanel panel;
@@ -57,6 +66,7 @@ public class Register extends JFrame{
 		createPanel();
 		setSize(550,725);
 		setTitle("Register for Tournament");
+		addSaveCloser();
 	}
 
 	private void getInfo(){
@@ -247,5 +257,32 @@ public class Register extends JFrame{
 		finalPanel.add(scrollFrame, BorderLayout.CENTER);
 		finalPanel.add(panel8, BorderLayout.SOUTH);
 		add(finalPanel);
+	}
+
+	public void addSaveCloser(){
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					FileOutputStream fos = new FileOutputStream("Tournaments.txt");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+					try {
+						oos.writeObject(Tournaments);
+
+					} catch (IOException err) {
+
+					} finally {
+						oos.flush();
+						oos.close();
+						fos.flush();
+						fos.close();
+					}
+
+				} catch (IOException err) {
+					// Could not find file or open file.
+				}
+				e.getWindow().dispose();
+			}
+		});
 	}
 }
