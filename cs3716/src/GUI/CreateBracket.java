@@ -99,6 +99,7 @@ public class CreateBracket extends JFrame {
 		}
 		*/
 		centerPanel.add(bracketPanel);
+		southPanel.add(homeButton);
 		southPanel.add(submitBtn);
 
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);
