@@ -98,7 +98,14 @@ public class CreateBracket extends JTrnFrame {
 				frame1.setVisible(true);
 			}
 			else{	//event.getSource() == submitBtn
-				if(tournament.getStructure().getBrackets().get(0).getGames().size() >= 1){
+				//Checks for empty fields
+/*				if (teamNameField.getText().isEmpty() || coachNameField.getText().isEmpty()) {
+					String message = "Please fill all fields";
+					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+							JOptionPane.ERROR_MESSAGE); 
+				}
+				
+*/				if(tournament.getStructure().getBrackets().get(0).getGames().size() >= 1){
 					for(int i = 0; i < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); i++){
 						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(i).getText()));
 						i++;
@@ -115,7 +122,6 @@ public class CreateBracket extends JTrnFrame {
 				}
 				else{
 					tournament.getStructure().getBrackets().get(0).getGames().get(0).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(0).getText()));
-					//i++;
 					tournament.getStructure().getBrackets().get(0).getGames().get(0).setScoreTwo(Integer.valueOf(singEl.getScoreArray().get(1).getText()));
 					tournament.getStructure().getBrackets().get(0).getGames().get(0).completeGame();
 					bracketPanel.add(createColumn(columnNum));

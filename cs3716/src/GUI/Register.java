@@ -223,11 +223,9 @@ public class Register extends JTrnFrame{
 					JFrame frame1 = new ListOfTeams(Viewer.Tournaments.get(index));
 					frame1.setVisible(true);
 					dispose();
-					System.out.println(organizerNameField.getText());
 					for(int i=0; i < players.size(); i++){
 						if(players.get(i).getPlayerName() != null && players.get(i).getPlayerAge() != null){
 							System.out.println(players.get(i).getPlayerName());
-							System.out.println(players.get(i).getPlayerAge());
 						}
 					}
 				}
