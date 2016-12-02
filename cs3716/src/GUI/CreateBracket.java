@@ -28,7 +28,7 @@ public class CreateBracket extends JFrame {
 	private JPanel centerPanel;
 	private JPanel finalPanel;
 	private JButton submitBtn;
-	private JLabel headerLabel;
+	private JLabel greetingLabel;
 	private JButton homeButton;
 	private JScrollPane area;
 	private int nColumns;
@@ -59,14 +59,14 @@ public class CreateBracket extends JFrame {
 	}
 
 	private void createButton() {
-		headerLabel = new JLabel("Bracket", SwingConstants.CENTER);
-		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
+
+		greetingLabel = new JLabel("Bracket", SwingConstants.CENTER);
+		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
 		ActionListener listener = new choiceListener();
 		submitBtn = new JButton("Submit");
 		submitBtn.addActionListener(listener);
 		submitBtn.setFont(new Font("Arial", Font.PLAIN, 16));
-		
 
 		homeButton = new JButton("Home");
 		homeButton.addActionListener(listener);
@@ -100,7 +100,8 @@ public class CreateBracket extends JFrame {
 		*/
 		centerPanel.add(bracketPanel);
 		southPanel.add(submitBtn);
-		finalPanel.add(headerLabel, BorderLayout.NORTH);
+
+		finalPanel.add(greetingLabel, BorderLayout.NORTH);
 		finalPanel.add(centerPanel, BorderLayout.CENTER);
 		finalPanel.add(southPanel, BorderLayout.SOUTH);
 
