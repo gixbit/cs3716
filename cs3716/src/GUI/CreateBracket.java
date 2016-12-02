@@ -94,12 +94,9 @@ public class CreateBracket extends JTrnFrame {
 			}
 			else{	//event.getSource() == submitBtn
 				//Checks for empty fields
-/*				if (teamNameField.getText().isEmpty() || coachNameField.getText().isEmpty()) {
-					String message = "Please fill all fields";
-					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
-							JOptionPane.ERROR_MESSAGE); 
-				}
-				
+/*				String message = "Please input valid scores";
+				JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+				JOptionPane.ERROR_MESSAGE); 			
 */				if(tournament.getStructure().getBrackets().get(0).getGames().size() >= 1){
 					for(int i = 0; i < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); i++){
 						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(i).getText()));
