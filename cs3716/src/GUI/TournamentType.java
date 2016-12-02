@@ -96,7 +96,6 @@ public class TournamentType extends JFrame {
 		divField = new JTextField(2);
 		divField.setFont(new Font("Arial", Font.PLAIN, 16));
 		divField.setText("0");
-
 	}
 
 	private void createButton() {
