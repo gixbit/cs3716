@@ -48,8 +48,8 @@ public class CreateBracket extends JFrame {
 		setSize(550, 725);
 		setTitle("");
 	}
-
-	private JPanel createColumn(int col) {
+	
+	private JPanel createColumn(int col){
 		JPanel cPanel = new JPanel();
 		columnNum = col;
 		cPanel.add(new SingleElim(tournament, columnNum, nColumns));
@@ -83,21 +83,18 @@ public class CreateBracket extends JFrame {
 		finalPanel = new JPanel(new BorderLayout());
 
 		bracketPanel = createColumn(columnNum);
-/*		for(int i = 0; i < nColumns+1; i++){
+		/*		
+		for(int i = 0; i < numOfColns+1; i++){
 			panel.add(new SingleElim(tournament, i, numOfColns));
-			//
 		}
+		*/
 		centerPanel.add(bracketPanel);
 		southPanel.add(submitBtn);
 		finalPanel.add(northPanel, BorderLayout.NORTH);
 		finalPanel.add(centerPanel, BorderLayout.CENTER);
 		finalPanel.add(southPanel, BorderLayout.SOUTH);
-*/				
-		centerPanel.add(bracketPanel);
-		southPanel.add(submitBtn);
-		finalPanel.add(northPanel, BorderLayout.NORTH);
-		finalPanel.add(centerPanel, BorderLayout.CENTER);
-		finalPanel.add(southPanel, BorderLayout.SOUTH);
+
+		area = new JScrollPane(finalPanel);
 		add(area);
 	}
 }
