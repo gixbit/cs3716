@@ -25,7 +25,7 @@ import SkeletonCode.Tournament;
  */
 public class SingleElim extends JPanel{
 	private JPanel treePanel;
-	private int nTeams;
+	private int nSpaces;
 	private int columns;
 	private int colNum;
 	private int spacers;
@@ -37,10 +37,6 @@ public class SingleElim extends JPanel{
 	private Tournament tournament;
 	private ArrayList<JComponent> panList = new ArrayList<JComponent>();
 	ArrayList<JTextField> scoreArray = new ArrayList<JTextField>();
-//	private ArrayList<Team> teamArray = new ArrayList<Team>();
-
-//	numT needs to be replaced with an arrayList of teams and numOf divisions also need to be an input
-	
 
 	/**
 	 * Constructor for a SingleElim
@@ -52,15 +48,13 @@ public class SingleElim extends JPanel{
 	public SingleElim(Tournament t, int coln, int nColumns){
 		super();
 		this.setBackground(Color.WHITE);
-//		this.setSize(450, 610);
-//		numOfTeams = numT.size();
 		tournament = t;
 		for(int i = 0; tournament.getTeamList().size() > Math.pow(2,i); i++){
 			teamSpaces = i+1;
 		}
 		colNum = coln;
 		columns = nColumns;
-		nTeams = (int) Math.pow(2,teamSpaces);
+		nSpaces = (int) Math.pow(2,teamSpaces);
 		spacers = (int) Math.pow(2, colNum);
 		createBorders();
 		createTextBoxes();
@@ -74,10 +68,10 @@ public class SingleElim extends JPanel{
 		MatteBorder line;
 		Border empty = BorderFactory.createEmptyBorder();
 
-		treePanel = new JPanel(new GridLayout(2*nTeams, 1,0,0));
+		treePanel = new JPanel(new GridLayout(2*nSpaces, 1,0,0));
 		//creates each column
 		int height = (int)Math.pow(2, colNum+1);
-		for(int j = 0; j<2*nTeams; j++){
+		for(int j = 0; j<2*nSpaces; j++){
 			panList.add(new JTextArea(2,8));
 			//Removes line in between a match 
 			if((j-spacers)%height == 0){
@@ -98,7 +92,7 @@ public class SingleElim extends JPanel{
 			line = BorderFactory.createMatteBorder(top, 0, bottom, side, Color.black);
 			panList.get(j).setBorder(line);
 			//removes side bar from blocks in spacing area
-			if(j < spacers || j > 2*nTeams-spacers){
+			if(j < spacers || j > 2*nSpaces-spacers){
 				line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
 				panList.get(j).setBorder(line);
 			}
@@ -119,7 +113,7 @@ public class SingleElim extends JPanel{
 		}
 		else{
 */			line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
-			panList.get(2*nTeams-spacers).setBorder(line);
+			panList.get(2*nSpaces-spacers).setBorder(line);
 //		}
 	}
 	
@@ -129,6 +123,12 @@ public class SingleElim extends JPanel{
 	 * @param i - Integer
 	 * @return menuPanel - JPanel
 	 */
+	
+	private JLabel createByeLabel(){
+		JLabel label = new JLabel("bye");
+		return label;
+	}
+	
 	private JPanel createBoxes(int i){
 		JPanel menuPanel = new JPanel();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
@@ -136,7 +136,12 @@ public class SingleElim extends JPanel{
 		if(colNum != columns){
 			for(int j = 0; j < tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
 				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
-				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+				if(!tournament.getStructure().getBrackets().get(0).getGames().get(j).bye()){
+					labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+				}
+				else{
+					labelArray.add(createByeLabel());
+				}
 			}
 			for(int j = 0; j < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
 				scoreArray.add(new JTextField(3));
@@ -158,7 +163,7 @@ public class SingleElim extends JPanel{
 	 * Creates textfields for the boxes created.
 	 */
 	private void createTextBoxes(){
-		for(int i = 0; i <= nTeams/Math.pow(2,colNum)-1; i++){
+		for(int i = 0; i <= nSpaces/Math.pow(2,colNum)-1; i++){
 			int index = (int) (Math.pow(2, colNum+1)*i + Math.pow(2, colNum) - 1);
 			panList.set(index, createBoxes(i));
 		}
@@ -190,7 +195,7 @@ public class SingleElim extends JPanel{
 	 * Creates panels for this Register
 	 */
 	private void createPanel(){
-		for(int j = 0; j < 2*nTeams; j++){
+		for(int j = 0; j < 2*nSpaces; j++){
 			treePanel.add(panList.get(j));
 		}
 		add(treePanel);

@@ -135,11 +135,7 @@ public class CreateBracket extends JTrnFrame {
 		finalPanel = new JPanel(new BorderLayout());
 
 		bracketPanel = createColumn(columnNum);
-		/*		
-		for(int i = 0; i < numOfColns+1; i++){
-			panel.add(new SingleElim(tournament, i, numOfColns));
-		}
-		*/
+
 		centerPanel.add(bracketPanel);
 		southPanel.add(homeButton);
 		southPanel.add(submitBtn);

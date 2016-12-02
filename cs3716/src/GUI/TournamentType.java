@@ -183,6 +183,7 @@ public class TournamentType extends JTrnFrame {
 		northPanel.add(teamLabel);
 		northPanel.add(teamLabelPanel);
 
+		southPanel.add(backBtn);
 		southPanel.add(submitButton);
 
 		finalPanel.add(northPanel, BorderLayout.NORTH);
