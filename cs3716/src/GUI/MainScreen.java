@@ -8,17 +8,27 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
+/**
+ * This class describes the Main GUI menu that appears when the program is started
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class MainScreen extends JFrame{
-	private JPanel panel;
-	private JButton bracButton;
-	private JButton organButton;
-	private JButton coachButton;
-	private int numOfTeams;
-	private int numOfDivs = 3;
-	private Tournament t1;
+	private JPanel finalPannel;
+	private JButton bracketsBtn;
+	private JButton manageBtn;
+	private JButton coachBtn;
+	private int nTeams;
+	private int nDivs = 3;
+	private Tournament t;
 	
 	public MainScreen(){
-		numOfTeams = 13;
+		nTeams = 13;
 //		t1 = new Tournament("name", "one", "two", "three");
 //		t1.createSingleElim();
 		
@@ -37,52 +47,52 @@ public class MainScreen extends JFrame{
 
 	private void createItems(){
 		ActionListener listener = new choiceListener();
-		organButton = new JButton("Organizers");
-		organButton.addActionListener(listener);
-		organButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		manageBtn = new JButton("Organizers");
+		manageBtn.addActionListener(listener);
+		manageBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		
-		coachButton = new JButton("Coaches");
-		coachButton.addActionListener(listener);
-		coachButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		coachBtn = new JButton("Coaches");
+		coachBtn.addActionListener(listener);
+		coachBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		bracButton = new JButton("Brackets");
-		bracButton.addActionListener(listener);
-		bracButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		bracketsBtn = new JButton("Brackets");
+		bracketsBtn.addActionListener(listener);
+		bracketsBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			if(event.getSource() == organButton){
-				JFrame frame1 = new ManageTournament();
+			if(event.getSource() == manageBtn){
+				JFrame manage = new ManageTournament();
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame1.setVisible(true);
+				manage.setVisible(true);
 				dispose();
 			}
 			
-			else if(event.getSource() == bracButton){
+			else if(event.getSource() == bracketsBtn){
 				//Checks if a tournament exists and checks if there is a structure
-				if (t1 == null){
+				if (t == null){
 					String message = "Please select a tournament";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
 							JOptionPane.ERROR_MESSAGE); 
 				}
-				else if (t1.getStructure()==null){
+				else if (t.getStructure()==null){
 					String message = "No tournament structure selected";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
 							JOptionPane.ERROR_MESSAGE); 
 				}
 				else{
-				JFrame frame1 = new CreateBracket(t1);
+				JFrame createBracket = new CreateBracket(t);
 //				JFrame frame1 = new Division(t1, numOfDivs);
-				frame1.setVisible(true);
+				createBracket.setVisible(true);
 				dispose();
 				}
 			}
 			
 			else{//event.getSource() == CoachButton
-				JFrame frame1 = new Register();
-				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame1.setVisible(true);
+				JFrame register = new Register();
+				register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				register.setVisible(true);
 				dispose();
 			}
 		}
@@ -90,12 +100,12 @@ public class MainScreen extends JFrame{
 
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel = new JPanel();
+		finalPannel = new JPanel();
 		
-		panel.add(organButton);
-		panel.add(coachButton);
-		panel.add(bracButton);
-		add(panel);
+		finalPannel.add(manageBtn);
+		finalPannel.add(coachBtn);
+		finalPannel.add(bracketsBtn);
+		add(finalPannel);
 	}
 
 }

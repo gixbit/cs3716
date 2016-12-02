@@ -8,22 +8,31 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
+/**
+ * This class is for making the List of teams that appear in the GUI
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class ListOfTeams extends JFrame{
-	private JTextArea textArea1;
-	private JScrollPane listArea;
-	private JLabel listLabel;
-	private JLabel teamLabel;
-	private JLabel listLabel1;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
-	private JPanel textPanel;
+	private JTextArea listTeamsLabel;
+	private JScrollPane centerPanel;
+	private JLabel headerLabel;
+	private JLabel teamNameLabel;
+	private JLabel trnNameLabel;
+	private JPanel finalPanel;
+	private JPanel southPanel;
+	private JPanel teamPanel;
+	private JPanel northPanel;
+	private JPanel listTeamsPanel;
 	private JButton contButton;
 	private JButton regButton;
-	private Tournament tour;
-	private String tName;
-	private ArrayList<Tournament> listOfTourns = new ArrayList<Tournament>();
+	private Tournament tournament;
+	private String trnName;
 	private int n = 0;
 
 	public ListOfTeams(){
@@ -35,8 +44,8 @@ public class ListOfTeams extends JFrame{
 	}
 
 	public ListOfTeams(Tournament t){
-		tour = t;
-		tName = t.getName();
+		tournament = t;
+		trnName = t.getName();
 		n++;
 		createItems();
 		createButton();
@@ -47,18 +56,18 @@ public class ListOfTeams extends JFrame{
 	}
 	
 	private void createItems(){
-		listLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
-		listLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		headerLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
+		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-		listLabel1 = new JLabel(tName, SwingConstants.CENTER);
-		listLabel1.setFont(new Font("Arial", Font.BOLD, 24));
+		trnNameLabel = new JLabel(trnName, SwingConstants.CENTER);
+		trnNameLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-		teamLabel = new JLabel("Team Name");
-		teamLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		teamNameLabel = new JLabel("Team Name");
+		teamNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		
-		textArea1 = new JTextArea(19,35);
-		textArea1.setFont(new Font("Arial", Font.PLAIN, 16));
-		textArea1.setEditable(false);
+		listTeamsLabel = new JTextArea(19,35);
+		listTeamsLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		listTeamsLabel.setEditable(false);
 	}
 
 	private void createButton(){
@@ -73,23 +82,23 @@ public class ListOfTeams extends JFrame{
 	}
 
 	private void createText(){
-		for(int i = 0; i < tour.getTeamList().size(); i++){
-			textArea1.append(tour.getTeamList().get(i).getTeamName() + "\n");
+		for(int i = 0; i < tournament.getTeamList().size(); i++){
+			listTeamsLabel.append(tournament.getTeamList().get(i).getTeamName() + "\n");
 		}
 	}
 	
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
-				JFrame frame1 = new Register();
+				JFrame register = new Register();
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame1.setVisible(true);
+				register.setVisible(true);
 				dispose();
 			}
 			else{	//event.getSource() == contButton
-				JFrame frame1 = new MainScreen(listOfTourns);
+				JFrame mainScrn = new MainScreen(Viewer.Tournaments);
 //				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame1.setVisible(true);
+				mainScrn.setVisible(true);
 				dispose();
 			}
 		}
@@ -97,25 +106,25 @@ public class ListOfTeams extends JFrame{
 	
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel = new JPanel(new BorderLayout());
-		panel1 = new JPanel();
-		panel2 = new JPanel(new GridLayout(1,2));		
-		panel3 = new JPanel(new GridLayout(3,1));		
-		textPanel = new JPanel();
+		finalPanel = new JPanel(new BorderLayout());
+		southPanel = new JPanel();
+		teamPanel = new JPanel(new GridLayout(1,2));		
+		northPanel = new JPanel(new GridLayout(3,1));		
+		listTeamsPanel = new JPanel();
 		
-		textPanel.add(textArea1);
-		listArea = new JScrollPane(textPanel);
+		listTeamsPanel.add(listTeamsLabel);
+		centerPanel = new JScrollPane(listTeamsPanel);
 		
-		panel1.add(regButton);
-		panel1.add(contButton);
-		panel2.add(teamLabel);
-		panel3.add(listLabel);
-		panel3.add(listLabel1);
-		panel3.add(panel2);
+		southPanel.add(regButton);
+		southPanel.add(contButton);
+		teamPanel.add(teamNameLabel);
+		northPanel.add(headerLabel);
+		northPanel.add(trnNameLabel);
+		northPanel.add(teamPanel);
 		
-		panel.add(panel3, BorderLayout.NORTH);
-		panel.add(listArea, BorderLayout.CENTER);
-		panel.add(panel1, BorderLayout.SOUTH);
-		add(panel);
+		finalPanel.add(northPanel, BorderLayout.NORTH);
+		finalPanel.add(centerPanel, BorderLayout.CENTER);
+		finalPanel.add(southPanel, BorderLayout.SOUTH);
+		add(finalPanel);
 	}
 }

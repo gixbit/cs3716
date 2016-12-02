@@ -1,12 +1,21 @@
-//Jaimee
 package GUI;
 
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This is a popup that happens throughout the usage of the GUI
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class popUp extends JFrame{
 	private JLabel alert;
-	private JPanel panel;
+	private JPanel popUpPanel;
 	
 	public popUp(){
 		alert = new JLabel("You pushed a Button! Yayy!!");
@@ -27,9 +36,9 @@ public class popUp extends JFrame{
 	}
 	
 	public void createPanel(){
-		panel = new JPanel();
-		panel.add(alert);
-		add(panel);
+		popUpPanel = new JPanel();
+		popUpPanel.add(alert);
+		add(popUpPanel);
 	}
 	
 }

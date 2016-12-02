@@ -24,10 +24,10 @@ import SkeletonCode.Tournament;
  * @author Karl Chiasson
  */
 public class SingleElim extends JPanel{
-	private JPanel panel;
-	private int numOfTeams;
-	private int numOfColns;
-	private int colnNum;
+	private JPanel treePanel;
+	private int nTeams;
+	private int columns;
+	private int colNum;
 	private int spacers;
 	private int side = 5;
 	private int top = 1;
@@ -49,21 +49,21 @@ public class SingleElim extends JPanel{
 	 * @param i - Integer
 	 * @param c - Integer
 	 */
-	public SingleElim(Tournament tourn, int coln, int numC){
+	public SingleElim(Tournament t, int coln, int nColumns){
 		super();
 		this.setBackground(Color.WHITE);
 //		this.setSize(450, 610);
 //		numOfTeams = numT.size();
-		tournament = tourn;
+		tournament = t;
 		for(int i = 0; tournament.getTeamList().size() > Math.pow(2,i); i++){
 			teamSpaces = i+1;
 		}
-		colnNum = coln;
-		numOfColns = numC;
-		numOfTeams = (int) Math.pow(2,teamSpaces);
-		spacers = (int) Math.pow(2, colnNum);
+		colNum = coln;
+		columns = nColumns;
+		nTeams = (int) Math.pow(2,teamSpaces);
+		spacers = (int) Math.pow(2, colNum);
 		createBorders();
-		createComboBoxes();
+		createTextBoxes();
 		createPanel();
 	}
 	
@@ -74,10 +74,10 @@ public class SingleElim extends JPanel{
 		MatteBorder line;
 		Border empty = BorderFactory.createEmptyBorder();
 
-		panel = new JPanel(new GridLayout(2*numOfTeams, 1,0,0));
+		treePanel = new JPanel(new GridLayout(2*nTeams, 1,0,0));
 		//creates each column
-		int height = (int)Math.pow(2, colnNum+1);
-		for(int j = 0; j<2*numOfTeams; j++){
+		int height = (int)Math.pow(2, colNum+1);
+		for(int j = 0; j<2*nTeams; j++){
 			panList.add(new JTextArea(2,8));
 			//Removes line in between a match 
 /*			if((j-spacers)%height == 0){
@@ -99,14 +99,14 @@ public class SingleElim extends JPanel{
 			line = BorderFactory.createMatteBorder(top, 0, bottom, side, Color.black);
 			panList.get(j).setBorder(line);
 			//removes side bar from blocks in spacing area
-			if(j < spacers || j > 2*numOfTeams-spacers){
+			if(j < spacers || j > 2*nTeams-spacers){
 				line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
 				panList.get(j).setBorder(line);
 			}
 			((JTextComponent) panList.get(j)).setEditable(false);
 		}
 		//Removes blocks that are not suppose to connect teams
-		for(int i = 0; i < (Math.pow(2,numOfColns-colnNum)-1); i++){
+		for(int i = 0; i < (Math.pow(2,columns-colNum)-1); i++){
 			for(int j = 0; j < height; j++){
 				if(i%2 == 1){
 					line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
@@ -120,23 +120,37 @@ public class SingleElim extends JPanel{
 		}
 		else{
 */			line = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
-			panList.get(2*numOfTeams-spacers).setBorder(line);
+			panList.get(2*nTeams-spacers).setBorder(line);
 //		}
 	}
 	
 	private JPanel createBoxes(int i){
 		JPanel menuPanel = new JPanel();
-		ArrayList<String> array = new ArrayList<String>();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
-		if(i < numOfTeams/2){
-			for(int j = 0; j < 2; j++){
-				array.add(b.getGames().get(i).getTeamOne().getTeamName());
-				array.add(b.getGames().get(i).getTeamTwo().getTeamName());
-			}
+		
+		JLabel teamName = new JLabel("Team");
+		JTextField scoreField = new JTextField(1);
+		scoreField.setText("" + 0);
+		
+		menuPanel.add(teamName);
+		menuPanel.add(scoreField);
+		menuPanel.setBackground(Color.WHITE);
+		return menuPanel;
+	}
+	
+	private void createTextBoxes(){
+		for(int i = 0; i <= nTeams/Math.pow(2,colNum)-1; i++){
+			int index = (int) (Math.pow(2, colNum+1)*i + Math.pow(2, colNum) - 1);
+			panList.set(index, createBoxes(i));
 		}
-		else{
-			array.add("");
+	}
+/*	private JPanel createBoxes(int i){
+		JPanel menuPanel = new JPanel();
+		ArrayList<String> array = new ArrayList<String>();
+		for(int j = 0; j < tournament.getTeamList().size(); j++){
+			array.add(tournament.getTeamList().get(j).getTeamName());
 		}
+		Bracket b = tournament.getStructure().getBrackets().get(0);
 		JComboBox teamMenu = new JComboBox(array.toArray());
 		JTextField scoreField = new JTextField(1);
 		scoreField.setText("" + 0);
@@ -147,17 +161,17 @@ public class SingleElim extends JPanel{
 		return menuPanel;
 	}
 	private void createComboBoxes(){
-		for(int i = 0; i <= numOfTeams/Math.pow(2,colnNum)-1; i++){
-			int index = (int) (Math.pow(2, colnNum+1)*i + Math.pow(2, colnNum) - 1);
+		for(int i = 0; i <= nTeams/Math.pow(2,colNum)-1; i++){
+			int index = (int) (Math.pow(2, colNum+1)*i + Math.pow(2, colNum) - 1);
 			panList.set(index, createBoxes(i));
 		}
 	}
 	
-	private void createPanel(){
-		for(int j = 0; j < 2*numOfTeams; j++){
-			panel.add(panList.get(j));
+*/	private void createPanel(){
+		for(int j = 0; j < 2*nTeams; j++){
+			treePanel.add(panList.get(j));
 		}
-		add(panel);
+		add(treePanel);
 	}
 }
 

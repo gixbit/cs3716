@@ -3,6 +3,16 @@ package GUI;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This class for making the DatePanels that appear in the GUI
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class DatePanel extends JPanel{
 	private JLabel monthLabel;
 	private JLabel dayLabel;
@@ -15,8 +25,8 @@ public class DatePanel extends JPanel{
 	private JComboBox monthBox;
 	private JComboBox dayBox;
 	private JComboBox yearBox;
-	private JPanel panel;
-	private JPanel panel1;
+	private JPanel dateMDYPanel;
+	private JPanel timeHMPanel;
 	private String[] days = new String[31]; 
 	private String[] year = new String[51];
 	private String[] min = new String[60];
@@ -74,24 +84,24 @@ public class DatePanel extends JPanel{
 	}	
 	
 	private void createPanels(){
-		panel = new JPanel();
-		panel1 = new JPanel();
+		dateMDYPanel = new JPanel();
+		timeHMPanel = new JPanel();
 		
-		panel.add(monthLabel);
-		panel.add(monthBox);
-		panel.add(dayLabel);
-		panel.add(dayBox);
-		panel.add(yearLabel);
-		panel.add(yearBox);
-		panel1.add(timeLabel);
-		panel1.add(hourBox);
-		panel1.add(sepLabel);
-		panel1.add(minBox);
-		panel1.add(ampmBox);
+		dateMDYPanel.add(monthLabel);
+		dateMDYPanel.add(monthBox);
+		dateMDYPanel.add(dayLabel);
+		dateMDYPanel.add(dayBox);
+		dateMDYPanel.add(yearLabel);
+		dateMDYPanel.add(yearBox);
+		timeHMPanel.add(timeLabel);
+		timeHMPanel.add(hourBox);
+		timeHMPanel.add(sepLabel);
+		timeHMPanel.add(minBox);
+		timeHMPanel.add(ampmBox);
 
 		this.setLayout(new GridLayout(2,1));
-		add(panel);
-		add(panel1);
+		add(dateMDYPanel);
+		add(timeHMPanel);
 	}
 	
 	public String getMonth(){

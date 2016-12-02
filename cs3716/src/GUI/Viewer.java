@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 /**
  * This is the entry point for the Tournament GUI
+ * <br>
+ * Opens {@link MainScreen} frame.
  * 
  * @author John Hollett
  * @author Keir Strickland Murphy
@@ -29,9 +31,9 @@ public class Viewer {
 	public static ArrayList<Tournament> Tournaments;
 
 	public static void main(String[] args){
-		JFrame frame = new MainScreen();
-		frame.setVisible(true);
-		frame.addWindowListener(new WindowAdapter(){
+		JFrame menu = new MainScreen();
+		menu.setVisible(true);
+		menu.addWindowListener(new WindowAdapter(){
 			public void windowOpened(WindowEvent e) {
         		try {
         			FileInputStream fis = new FileInputStream("Tournaments.txt");

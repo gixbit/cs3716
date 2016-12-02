@@ -8,8 +8,28 @@ import javax.swing.*;
 
 import SkeletonCode.Tournament;
 
+/**
+ * This class describes a Tournament panel that is shown in the ManageTournament frame
+ * Tournament panel has teams, edit, delete and generate buttons.
+ * <br><br>
+ * Generate opens the {@link TournamentType} Frame
+ * <br>
+ * Edit brings up the {@link CreateTournament} frame
+ * <br>
+ * Delete causes the panel to dispose and die
+ * <br>
+ * Teams brings up {@link ListOfTeams} frame.
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class TournamentPanel extends JPanel{
-	private JLabel tournLabel;
+	private static final long serialVersionUID = 2250135867691325206L;
+	private JLabel trnLabel;
 	private JLabel venueLabel;
 	private JLabel startDateLabel;
 	private JLabel regDateLabel;
@@ -19,11 +39,11 @@ public class TournamentPanel extends JPanel{
 	private JButton editButton;
 	private JButton deleteButton;
 	private JButton generateButton;
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
+	private JPanel finalPanel;
+	private JPanel centerPanel;
+	private JPanel southPanel;
 
-	private String tournName;
+	private String trnName;
 	private String venueName;
 	private String startDate;
 	private String regDate;
@@ -52,7 +72,7 @@ public class TournamentPanel extends JPanel{
 
 	private void getInfo(){
 		numOfTeams = tournament.getTeamList().size();
- 		tournName = tournament.getName();
+ 		trnName = tournament.getName();
  		venueName = tournament.getVenue();
  		startDate = tournament.getStartDate();
  		regDate = tournament.getEndDate();
@@ -61,8 +81,8 @@ public class TournamentPanel extends JPanel{
 	}
 
 	private void createItems(){
-		tournLabel = new JLabel("Name: " + tournName);
-		tournLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		trnLabel = new JLabel("Name: " + trnName);
+		trnLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		venueLabel = new JLabel("Location: " + venueName);
 		venueLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -128,33 +148,33 @@ public class TournamentPanel extends JPanel{
 			}
 			else{	//event.getSource() == editButton
 				Viewer.Tournaments.remove(index);
-				JFrame frame1 = new CreateTournament(tournName, venueName, orgName, orgInfo);
+				JFrame frame1 = new CreateTournament(trnName, venueName, orgName, orgInfo);
 				frame1.setVisible(true);
 			}
 		}
 	}
 		
 	private void createPanels(){
-		panel = new JPanel(new BorderLayout());
-		panel1 = new JPanel(new GridLayout(4,2));
-		panel2 = new JPanel();
+		finalPanel = new JPanel(new BorderLayout());
+		centerPanel = new JPanel(new GridLayout(4,2));
+		southPanel = new JPanel();
 
-		panel1.add(tournLabel);
-		panel1.add(structureLabel);
-		panel1.add(venueLabel);
-		panel1.add(regDateLabel);
-		panel1.add(numTeamsLabel);
-		panel1.add(startDateLabel);
+		centerPanel.add(trnLabel);
+		centerPanel.add(structureLabel);
+		centerPanel.add(venueLabel);
+		centerPanel.add(regDateLabel);
+		centerPanel.add(numTeamsLabel);
+		centerPanel.add(startDateLabel);
 
-		panel2.add(editButton);
-		panel2.add(deleteButton);
-		panel2.add(generateButton);
-		panel2.add(teamsButton);
+		southPanel.add(editButton);
+		southPanel.add(deleteButton);
+		southPanel.add(generateButton);
+		southPanel.add(teamsButton);
 
-		panel.add(panel1, BorderLayout.CENTER);
-		panel.add(panel2, BorderLayout.SOUTH);
-		panel.setBorder(BorderFactory.createRaisedBevelBorder());
+		finalPanel.add(centerPanel, BorderLayout.CENTER);
+		finalPanel.add(southPanel, BorderLayout.SOUTH);
+		finalPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 
-		add(panel);
+		add(finalPanel);
 	}
 }

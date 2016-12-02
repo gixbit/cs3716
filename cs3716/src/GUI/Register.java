@@ -17,41 +17,51 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
+/**
+ * This class describes the register team panel that 
+ * is used to register within a tournament for coaches
+ * 
+ * @author John Hollett
+ * @author Keir Strickland Murphy
+ * @author Rory Campbell
+ * @author Jaimee Bessey
+ * @author Kristan James Hart
+ * @author Karl Chiasson
+ */
 public class Register extends JFrame{
-	private JPanel panel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JPanel panel3;
-	private JPanel panel4;
-	private JPanel panel5;
-	private JPanel panel6;
-	private JPanel panel7;
-	private JPanel panel8;
+	private JPanel mainInformationPanel;
+	private JPanel selectTournamentPanel;
+	private JPanel teamPanel;
+	private JPanel organizerPanel;
+	private JPanel coachPanel;
+	private JPanel northBtns;
+	private JPanel centerBtns;
+	private JPanel playerListPanel;
+	private JPanel southPanel;
 	private JPanel playerPanel;
 	private JPanel completePanel;
 	private JPanel finalPanel;
-	private JLabel greetingLabel;
+	private JLabel northPanel;
 	private JComboBox tournamentBox;
 	private JButton registerButton;
 	private JButton addButton;
 	private JButton cancelButton;
 	private JButton clearButton;
 	private JLabel teamNameLabel;
-	private JLabel tournLabel;
-	private JLabel organizNameLabel;
-	private JLabel playerLabel;
-	private JLabel coachLabel;
-	private JLabel dateLabel;
+	private JLabel selectLabel;
+	private JLabel organizerNameLabel;
+	private JLabel playerNameLabel;
+	private JLabel coachNameLabel;
+	private JLabel regDateLabel;
 	private JTextField teamNameField;
-	private JTextField organizNameField;
+	private JTextField organizerNameField;
 	private JTextField playerNameField;
 	private JTextField playerAgeField;
-	private JTextField coachField;
-	private JScrollPane scrollFrame;
-	private ArrayList<PlayerPanel> listOfPlayers; 
-	private ArrayList<String> tournNames = new ArrayList<String>();
-	private int numOfTourns;
+	private JTextField coachNameField;
+	private JScrollPane centerPanel;
+	private ArrayList<PlayerPanel> players; 
+	private ArrayList<String> tNames = new ArrayList<String>();
+	private int nTournaments;
 	private String time;
 	private String date;
 	private int n = 1;
@@ -59,7 +69,7 @@ public class Register extends JFrame{
 
 
 	public Register(){
-		listOfPlayers = new ArrayList<PlayerPanel>();
+		players = new ArrayList<PlayerPanel>();
 		getInfo();
 		createLabels();
 		createFields();
@@ -71,9 +81,9 @@ public class Register extends JFrame{
 	}
 
 	private void getInfo(){
-		numOfTourns = Viewer.Tournaments.size();
-		for(int i = 0; i < numOfTourns; i++){
-			tournNames.add(Viewer.Tournaments.get(i).getName());
+		nTournaments = Viewer.Tournaments.size();
+		for(int i = 0; i < nTournaments; i++){
+			tNames.add(Viewer.Tournaments.get(i).getName());
 		}
 		time = "1:00AM";
 		date = "January 1, 2016";
@@ -84,48 +94,42 @@ public class Register extends JFrame{
 	}
 
 	private void createLabels(){
-		greetingLabel = new JLabel("Register For Tournament", SwingConstants.CENTER);
-		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		northPanel = new JLabel("Register For Tournament", SwingConstants.CENTER);
+		northPanel.setFont(new Font("Arial", Font.BOLD, 24));
 
-		tournLabel = new JLabel("Select a Tournament: ");
-		tournLabel.setFont(new Font("Arial", Font.PLAIN, 16));		
+		selectLabel = new JLabel("Select a Tournament: ");
+		selectLabel.setFont(new Font("Arial", Font.PLAIN, 16));		
 
 		ActionListener listener = new choiceListener();
-		tournamentBox = new JComboBox(tournNames.toArray());
+		tournamentBox = new JComboBox(tNames.toArray());
 		tournamentBox.addActionListener(listener);
 		tournamentBox.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		dateLabel = new JLabel("Registration closes on " + date + " at " + time + ".", SwingConstants.CENTER);
-		dateLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		regDateLabel = new JLabel("Registration closes on " + date + " at " + time + ".", SwingConstants.CENTER);
+		regDateLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		
 		teamNameLabel = new JLabel("Team Name:");
 		teamNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		coachLabel = new JLabel("Coach Name:");
-		coachLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		coachNameLabel = new JLabel("Coach Name:");
+		coachNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		organizNameLabel = new JLabel("Organization:");
-		organizNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		organizerNameLabel = new JLabel("Organization:");
+		organizerNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		playerLabel = new JLabel("              Player's Name                    Age", SwingConstants.CENTER);
-		playerLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+		playerNameLabel = new JLabel("              Player's Name                    Age", SwingConstants.CENTER);
+		playerNameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 	}
 
 	private void createFields(){
 		teamNameField = new JTextField(30);
 		teamNameField.setText("");
 
-		organizNameField = new JTextField(30);
-		organizNameField.setText("");
+		organizerNameField = new JTextField(30);
+		organizerNameField.setText("");
 		
-		coachField = new JTextField(30);
-		coachField.setText("");
-
-		playerNameField = new JTextField(25);
-		playerNameField.setText("");
-
-		playerAgeField = new JTextField(5);
-		playerAgeField.setText("");
+		coachNameField = new JTextField(30);
+		coachNameField.setText("");
 	}
 	
 	private void createButton(){
@@ -151,9 +155,9 @@ public class Register extends JFrame{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == tournamentBox){
 				String selected = tournamentBox.getSelectedItem().toString();
-				for(int i = 0; i < numOfTourns; i++){
+				for(int i = 0; i < nTournaments; i++){
 					if(selected.equals(Viewer.Tournaments.get(i).getName())){
-						dateLabel.setText("Registration closes on " + Viewer.Tournaments.get(i).getEndDate());
+						regDateLabel.setText("Registration closes on " + Viewer.Tournaments.get(i).getEndDate());
 						revalidate();
 						break;
 					}
@@ -167,9 +171,9 @@ public class Register extends JFrame{
 				}
 				else{
 					PlayerPanel p = new PlayerPanel();
-					listOfPlayers.add(p);
+					players.add(p);
 					playerPanel.add(p);
-					panel7.add(playerPanel);
+					playerListPanel.add(playerPanel);
 					revalidate();
 				}
 			}
@@ -185,16 +189,16 @@ public class Register extends JFrame{
 			}
 			else{
 				//Checks for empty fields
-				if (teamNameField.getText().isEmpty() || coachField.getText().isEmpty()) {
+				if (teamNameField.getText().isEmpty() || coachNameField.getText().isEmpty()) {
 					String message = "Please fill all fields";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
 							JOptionPane.ERROR_MESSAGE); 
 				}
 				else{
 					int index = 0;
-					for(int i=0; i < tournNames.size(); i++){
-						if(tournNames.get(i) == (String)tournamentBox.getSelectedItem()){
-							Viewer.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachField.getText()));
+					for(int i=0; i < tNames.size(); i++){
+						if(tNames.get(i) == (String)tournamentBox.getSelectedItem()){
+							Viewer.Tournaments.get(i).addTeam(new Team(teamNameField.getText(), coachNameField.getText()));
 							index = i;
 							break;
 						}
@@ -202,11 +206,11 @@ public class Register extends JFrame{
 					JFrame frame1 = new ListOfTeams(Viewer.Tournaments.get(index));
 					frame1.setVisible(true);
 					dispose();
-					System.out.println(organizNameField.getText());
-					for(int i=0; i < listOfPlayers.size(); i++){
-						if(listOfPlayers.get(i).getPlayerName() != null && listOfPlayers.get(i).getPlayerAge() != null){
-							System.out.println(listOfPlayers.get(i).getPlayerName());
-							System.out.println(listOfPlayers.get(i).getPlayerAge());
+					System.out.println(organizerNameField.getText());
+					for(int i=0; i < players.size(); i++){
+						if(players.get(i).getPlayerName() != null && players.get(i).getPlayerAge() != null){
+							System.out.println(players.get(i).getPlayerName());
+							System.out.println(players.get(i).getPlayerAge());
 						}
 					}
 				}
@@ -217,56 +221,56 @@ public class Register extends JFrame{
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		panel = new JPanel(new GridLayout(6,1));
-		panel1 = new JPanel();
-		panel2 = new JPanel();
-		panel3 = new JPanel();
-		panel4 = new JPanel();
-		panel5 = new JPanel();
-		panel6 = new JPanel();
-		panel7 = new JPanel();
-		panel8 = new JPanel(new BorderLayout());
+		mainInformationPanel = new JPanel(new GridLayout(6,1));
+		selectTournamentPanel = new JPanel();
+		teamPanel = new JPanel();
+		organizerPanel = new JPanel();
+		coachPanel = new JPanel();
+		northBtns = new JPanel();
+		centerBtns = new JPanel();
+		playerListPanel = new JPanel();
+		southPanel = new JPanel(new BorderLayout());
 		completePanel = new JPanel(new BorderLayout());
 		finalPanel = new JPanel(new BorderLayout());
 		
-		panel1.add(tournLabel);
-		panel1.add(tournamentBox);
-		panel2.add(teamNameLabel);
-		panel2.add(teamNameField);
-		panel3.add(organizNameLabel);
-		panel3.add(organizNameField);
-		panel4.add(coachLabel);
-		panel4.add(coachField);
+		selectTournamentPanel.add(selectLabel);
+		selectTournamentPanel.add(tournamentBox);
+		teamPanel.add(teamNameLabel);
+		teamPanel.add(teamNameField);
+		organizerPanel.add(organizerNameLabel);
+		organizerPanel.add(organizerNameField);
+		coachPanel.add(coachNameLabel);
+		coachPanel.add(coachNameField);
 
-		panel5.add(addButton);
-		panel6.add(cancelButton);
-		panel6.add(clearButton);
-		panel6.add(registerButton);
+		northBtns.add(addButton);
+		centerBtns.add(cancelButton);
+		centerBtns.add(clearButton);
+		centerBtns.add(registerButton);
 
 		PlayerPanel p = new PlayerPanel();
-		listOfPlayers.add(new PlayerPanel());
+		players.add(new PlayerPanel());
 		playerPanel = new JPanel(new GridLayout(n-1,1));
 		playerPanel.add(p);
-		panel7.add(playerPanel);
+		playerListPanel.add(playerPanel);
 
-		panel.add(panel1);
-		panel.add(dateLabel);
-		panel.add(panel2);
-		panel.add(panel3);
-		panel.add(panel4);
-		panel.add(playerLabel);
+		mainInformationPanel.add(selectTournamentPanel);
+		mainInformationPanel.add(regDateLabel);
+		mainInformationPanel.add(teamPanel);
+		mainInformationPanel.add(organizerPanel);
+		mainInformationPanel.add(coachPanel);
+		mainInformationPanel.add(playerNameLabel);
 
-		panel8.add(panel5, BorderLayout.NORTH);
-		panel8.add(panel6, BorderLayout.CENTER);
+		southPanel.add(northBtns, BorderLayout.NORTH);
+		southPanel.add(centerBtns, BorderLayout.CENTER);
 		
-		completePanel.add(panel, BorderLayout.NORTH);
-		completePanel.add(panel7, BorderLayout.CENTER);
+		completePanel.add(mainInformationPanel, BorderLayout.NORTH);
+		completePanel.add(playerListPanel, BorderLayout.CENTER);
 
-		scrollFrame = new JScrollPane(completePanel);
+		centerPanel = new JScrollPane(completePanel);
 
-		finalPanel.add(greetingLabel, BorderLayout.NORTH);
-		finalPanel.add(scrollFrame, BorderLayout.CENTER);
-		finalPanel.add(panel8, BorderLayout.SOUTH);
+		finalPanel.add(northPanel, BorderLayout.NORTH);
+		finalPanel.add(centerPanel, BorderLayout.CENTER);
+		finalPanel.add(southPanel, BorderLayout.SOUTH);
 		add(finalPanel);
 	}
 
