@@ -88,9 +88,13 @@ public class CreateBracket extends JFrame {
 						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).setScoreTwo(Integer.valueOf(singEl.getScoreArray().get(i).getText()));
 						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).completeGame();
 					}
-					tournament.getStructure().advanceTournament();
-					bracketPanel.add(createColumn(columnNum));
-					revalidate();
+					boolean complete = true;
+					for (int p = 0; p < tournament.getStructure().getBrackets().get(0).getGames().size(); p++){if (!tournament.getStructure().getBrackets().get(0).getGames().get(p).isComplete()){complete = false;}}
+					if(complete){
+						tournament.getStructure().advanceTournament();
+						bracketPanel.add(createColumn(columnNum));
+						revalidate();
+					}
 				}
 				else{
 					tournament.getStructure().getBrackets().get(0).getGames().get(0).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(0).getText()));

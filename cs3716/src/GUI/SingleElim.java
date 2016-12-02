@@ -143,10 +143,7 @@ public class SingleElim extends JPanel{
 		}
 		else{
 			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getWinners().get(0).getTeamName()));
-//			scoreArray.add(new JTextField(1));
-//			scoreArray.get(2*tournament.getStructure().getBrackets().get(0).getGames().size()).setText("" + 0);
 			menuPanel.add(labelArray.get(2*tournament.getStructure().getBrackets().get(0).getGames().size()));
-//			menuPanel.add(scoreArray.get(i));
 		}
 
 		menuPanel.setBackground(Color.WHITE);
