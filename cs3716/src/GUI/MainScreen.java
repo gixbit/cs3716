@@ -19,7 +19,7 @@ import SkeletonCode.Tournament;
  * @author Karl Chiasson
  */
 public class MainScreen extends JFrame{
-	private JPanel finalPannel;
+	private JPanel finalPanel;
 	private JButton bracketsBtn;
 	private JButton manageBtn;
 	private JButton coachBtn;
@@ -100,12 +100,12 @@ public class MainScreen extends JFrame{
 
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		finalPannel = new JPanel();
+		finalPanel = new JPanel();
 		
-		finalPannel.add(manageBtn);
-		finalPannel.add(coachBtn);
-		finalPannel.add(bracketsBtn);
-		add(finalPannel);
+		finalPanel.add(manageBtn);
+		finalPanel.add(coachBtn);
+		finalPanel.add(bracketsBtn);
+		add(finalPanel);
 	}
 
 }

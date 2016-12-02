@@ -41,7 +41,7 @@ public class Register extends JFrame{
 	private JPanel playerPanel;
 	private JPanel completePanel;
 	private JPanel finalPanel;
-	private JLabel northPanel;
+	private JLabel greetingLabel;
 	private JComboBox tournamentBox;
 	private JButton registerButton;
 	private JButton addButton;
@@ -94,8 +94,8 @@ public class Register extends JFrame{
 	}
 
 	private void createLabels(){
-		northPanel = new JLabel("Register For Tournament", SwingConstants.CENTER);
-		northPanel.setFont(new Font("Arial", Font.BOLD, 24));
+		greetingLabel = new JLabel("Register For Tournament", SwingConstants.CENTER);
+		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
 		selectLabel = new JLabel("Select a Tournament: ");
 		selectLabel.setFont(new Font("Arial", Font.PLAIN, 16));		
@@ -268,7 +268,7 @@ public class Register extends JFrame{
 
 		centerPanel = new JScrollPane(completePanel);
 
-		finalPanel.add(northPanel, BorderLayout.NORTH);
+		finalPanel.add(greetingLabel, BorderLayout.NORTH);
 		finalPanel.add(centerPanel, BorderLayout.CENTER);
 		finalPanel.add(southPanel, BorderLayout.SOUTH);
 		add(finalPanel);

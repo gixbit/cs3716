@@ -36,7 +36,7 @@ import SkeletonCode.Tournament;
 public class ManageTournament extends JFrame {
 
 	private static final long serialVersionUID = 1153755212127268824L;
-	private JLabel headerLabel;
+	private JLabel greetingLabel;
 	private JButton newBtn;
 	private JButton homeBtn;
 	private JPanel finalPanel;
@@ -57,8 +57,8 @@ public class ManageTournament extends JFrame {
 	}
 
 	private void createItems() {
-		headerLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
-		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		greetingLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
+		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 	}
 
 	private void createButtons() {
@@ -94,7 +94,7 @@ public class ManageTournament extends JFrame {
 		tListPanel = new JPanel(new GridLayout(size, 1));
 		btnPanel = new JPanel();
 
-		northPanel.add(headerLabel);
+		northPanel.add(greetingLabel);
 		btnPanel.add(homeBtn);
 		btnPanel.add(newBtn);
 		northPanel.add(btnPanel);

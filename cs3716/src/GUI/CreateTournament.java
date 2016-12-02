@@ -34,7 +34,7 @@ public class CreateTournament extends JFrame {
 	private JLabel regEndLabel;
 	private JLabel organizerNameLabel;
 	private JLabel organizerInfoLabel;
-	private JLabel northPanel;
+	private JLabel greetingLabel;
 	private JTextField trnField;
 	private JTextField venueField;
 	private JTextField organizerNameField;
@@ -68,8 +68,8 @@ public class CreateTournament extends JFrame {
 	}
 
 	private void createLabels() {
-		northPanel = new JLabel("Create Your Tournament", SwingConstants.CENTER);
-		northPanel.setFont(new Font("Arial", Font.BOLD, 24));
+		greetingLabel = new JLabel("Create Your Tournament", SwingConstants.CENTER);
+		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
 		trnNameLabel = new JLabel("Tournament Name: ");
 		trnNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -196,7 +196,7 @@ public class CreateTournament extends JFrame {
 		centerPanel.add(upperCentralPanel);
 		centerPanel.add(lowerCentralPanel);
 
-		finalPanel.add(northPanel, BorderLayout.NORTH);
+		finalPanel.add(greetingLabel, BorderLayout.NORTH);
 		finalPanel.add(centerPanel, BorderLayout.CENTER);
 		finalPanel.add(southPanel, BorderLayout.SOUTH);
 		add(finalPanel);

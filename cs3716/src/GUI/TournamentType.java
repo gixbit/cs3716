@@ -24,7 +24,7 @@ import SkeletonCode.Tournament;
  */
 public class TournamentType extends JFrame {
 	private static final long serialVersionUID = 647812786814549835L;
-	private JLabel headerLabel;
+	private JLabel greetingLabel;
 	private JLabel divLabel;
 	private JLabel teamLabel;
 	private JLabel typeLabel;
@@ -81,8 +81,8 @@ public class TournamentType extends JFrame {
 		String[] bracketTypes = { "Single Elimination", "Divisions" };
 		bracketBox = new JComboBox(bracketTypes);
 
-		headerLabel = new JLabel("Create Tournament", SwingConstants.CENTER);
-		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		greetingLabel = new JLabel("Create Tournament", SwingConstants.CENTER);
+		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
 		divLabel = new JLabel("How many divisions are needed? ", SwingConstants.CENTER);
 		divLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -144,7 +144,7 @@ public class TournamentType extends JFrame {
 		teamLabelPanel.add(typeLabel);
 		teamLabelPanel.add(bracketBox);
 
-		northPanel.add(headerLabel);
+		northPanel.add(greetingLabel);
 		northPanel.add(teamLabel);
 		northPanel.add(teamLabelPanel);
 

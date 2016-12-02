@@ -21,7 +21,7 @@ import SkeletonCode.Tournament;
 public class ListOfTeams extends JFrame{
 	private JTextArea listTeamsLabel;
 	private JScrollPane centerPanel;
-	private JLabel headerLabel;
+	private JLabel greetingLabel;
 	private JLabel teamNameLabel;
 	private JLabel trnNameLabel;
 	private JPanel finalPanel;
@@ -56,8 +56,8 @@ public class ListOfTeams extends JFrame{
 	}
 	
 	private void createItems(){
-		headerLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
-		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		greetingLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
+		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
 		trnNameLabel = new JLabel(trnName, SwingConstants.CENTER);
 		trnNameLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -118,7 +118,7 @@ public class ListOfTeams extends JFrame{
 		southPanel.add(regButton);
 		southPanel.add(contButton);
 		teamPanel.add(teamNameLabel);
-		northPanel.add(headerLabel);
+		northPanel.add(greetingLabel);
 		northPanel.add(trnNameLabel);
 		northPanel.add(teamPanel);
 		
