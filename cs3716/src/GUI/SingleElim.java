@@ -63,7 +63,7 @@ public class SingleElim extends JPanel{
 		numOfTeams = (int) Math.pow(2,teamSpaces);
 		spacers = (int) Math.pow(2, colnNum);
 		createBorders();
-		createComboBoxes();
+		createTextBoxes();
 		createPanel();
 	}
 	
@@ -126,17 +126,30 @@ public class SingleElim extends JPanel{
 	
 	private JPanel createBoxes(int i){
 		JPanel menuPanel = new JPanel();
-		ArrayList<String> array = new ArrayList<String>();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
-		if(i < numOfTeams/2){
-			for(int j = 0; j < 2; j++){
-				array.add(b.getGames().get(i).getTeamOne().getTeamName());
-				array.add(b.getGames().get(i).getTeamTwo().getTeamName());
-			}
+		
+		JLabel teamName = new JLabel("Team");
+		JTextField scoreField = new JTextField(1);
+		scoreField.setText("" + 0);
+		
+		menuPanel.add(teamName);
+		menuPanel.add(scoreField);
+		menuPanel.setBackground(Color.WHITE);
+		return menuPanel;
+	}
+	private void createTextBoxes(){
+		for(int i = 0; i <= numOfTeams/Math.pow(2,colnNum)-1; i++){
+			int index = (int) (Math.pow(2, colnNum+1)*i + Math.pow(2, colnNum) - 1);
+			panList.set(index, createBoxes(i));
 		}
-		else{
-			array.add("");
+	}
+/*	private JPanel createBoxes(int i){
+		JPanel menuPanel = new JPanel();
+		ArrayList<String> array = new ArrayList<String>();
+		for(int j = 0; j < tournament.getTeamList().size(); j++){
+			array.add(tournament.getTeamList().get(j).getTeamName());
 		}
+		Bracket b = tournament.getStructure().getBrackets().get(0);
 		JComboBox teamMenu = new JComboBox(array.toArray());
 		JTextField scoreField = new JTextField(1);
 		scoreField.setText("" + 0);
@@ -153,7 +166,7 @@ public class SingleElim extends JPanel{
 		}
 	}
 	
-	private void createPanel(){
+*/	private void createPanel(){
 		for(int j = 0; j < 2*numOfTeams; j++){
 			panel.add(panList.get(j));
 		}

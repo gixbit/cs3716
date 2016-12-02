@@ -23,6 +23,7 @@ public class CreateBracket extends JFrame{
 	private int teamsNum;
 	private int teamSpaces;
 	private Tournament tournament;
+	private int columnNum = 0;
 	
 	public CreateBracket(Tournament tourn){
 		for(int i = 0; tourn.getTeamList().size() > Math.pow(2,i); i++){
@@ -35,6 +36,14 @@ public class CreateBracket extends JFrame{
 		createPanels();
 		setSize(550,725);
 		setTitle("");
+	}
+	
+	private JPanel createColumn(int col){
+		JPanel cPanel = new JPanel();
+		columnNum = col;
+		cPanel.add(new SingleElim(tournament, columnNum, numOfColns));
+		columnNum++;
+		return cPanel;
 	}
 	
 	private void createButton(){
@@ -62,10 +71,12 @@ public class CreateBracket extends JFrame{
 		buttonPanel = new JPanel();
 		finalPanel = new JPanel(new BorderLayout());
 
-		for(int i = 0; i < numOfColns+1; i++){
+		panel = createColumn(columnNum);
+/*		for(int i = 0; i < numOfColns+1; i++){
 			panel.add(new SingleElim(tournament, i, numOfColns));
+			//
 		}
-		areaPanel.add(panel);
+*/		areaPanel.add(panel);
 		buttonPanel.add(submitButton);
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);
 		finalPanel.add(areaPanel, BorderLayout.CENTER);
