@@ -68,6 +68,9 @@ public class Register extends JTrnFrame{
 	
 
 
+	/**
+	 * Constructor for Register. Registers Teams with a tournament.
+	 */
 	public Register(){
 		super(550,725);
 		players = new ArrayList<PlayerPanel>();
@@ -79,6 +82,9 @@ public class Register extends JTrnFrame{
 		setTitle("Register for Tournament");
 	}
 
+	/**
+	 * Returns nothing, but, populates the names of all the tournaments in an arraylist.
+	 */
 	private void getInfo(){
 		nTournaments = Viewer.Tournaments.size();
 		for(int i = 0; i < nTournaments; i++){
@@ -92,6 +98,9 @@ public class Register extends JTrnFrame{
 		}
 	}
 
+	/**
+	 * Creates labels for this Register
+	 */
 	private void createLabels(){
 		greetingLabel = new JLabel("Register For Tournament", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -120,6 +129,9 @@ public class Register extends JTrnFrame{
 		playerNameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 	}
 
+	/**
+	 * Creates textfields for this Register
+	 */
 	private void createFields(){
 		teamNameField = new JTextField(30);
 		teamNameField.setText("");
@@ -131,6 +143,9 @@ public class Register extends JTrnFrame{
 		coachNameField.setText("");
 	}
 	
+	/**
+	 * Creates buttons for this Register
+	 */
 	private void createButton(){
 		ActionListener listener = new choiceListener();
 		registerButton = new JButton("Register");
@@ -150,6 +165,9 @@ public class Register extends JTrnFrame{
 		clearButton.setFont(new Font("Arial", Font.PLAIN, 14));
 	}
 
+	/**
+	 * Listens for events with buttons on this Register.
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == tournamentBox){
@@ -217,6 +235,9 @@ public class Register extends JTrnFrame{
 		}
 	}
 	
+	/**
+	 * Creates panels for this Register
+	 */
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

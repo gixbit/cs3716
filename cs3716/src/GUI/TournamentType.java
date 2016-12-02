@@ -31,6 +31,7 @@ public class TournamentType extends JTrnFrame {
 	private JTextField divField;
 	private JComboBox bracketBox;
 	private JButton submitButton;
+	private JButton backBtn;
 	private JPanel finalPanel;
 	private JPanel teamLabelPanel;
 	private JPanel northPanel;
@@ -44,7 +45,11 @@ public class TournamentType extends JTrnFrame {
 	private int nType;
 	private int nDivisions;
 	private Tournament tournament;
-
+	/**
+	 * Constructor for a TournamentType
+	 * 
+	 * @param i - Integr
+	 */
 	public TournamentType(int i) {
 		super(550, 725);
 		tournament = Viewer.Tournaments.get(i);
@@ -56,6 +61,11 @@ public class TournamentType extends JTrnFrame {
 		setTitle("Create Tournament");
 	}
 
+	/**
+	 * Constructor for a TournamentType, Takes two extra parameters for index and type.
+	 * @param i - Integer
+	 * @param type - String
+	 */
 	public TournamentType(int i, String type) {
 		super(500, 500);
 		tournament = Viewer.Tournaments.get(i);
@@ -68,6 +78,9 @@ public class TournamentType extends JTrnFrame {
 		setTitle("Create Tournament");
 	}
 
+	/**
+	 * Returns nothing, populates the name and size
+	 */
 	public void getInfo() {
 		trnName = "TOURNAMENT NAME";
 		trnName = tournament.getName();
@@ -75,6 +88,9 @@ public class TournamentType extends JTrnFrame {
 		// intTeams = 0;
 	}
 
+	/**
+	 * Creates labels and a box for TournamentType
+	 */
 	private void createItems() {
 		nTeams = Integer.toString(size);
 
@@ -98,36 +114,56 @@ public class TournamentType extends JTrnFrame {
 		divField.setText("0");
 	}
 
+	/**
+	 * Creates buttons for this TournamentType
+	 */
 	private void createButton() {
 		ActionListener listener = new choiceListener();
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(listener);
 		submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		
+		backBtn = new JButton("Back");
+		backBtn.addActionListener(listener);
+		backBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
+	/**
+	 * Listens for events with buttons with this TournamentType
+	 */
 	class choiceListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			// set type of tournament
-			JFrame tournamentTypeFrame;
-			int numOfDivs = Integer.valueOf(divField.getText());
-			if (bracketBox.getSelectedItem().equals("Single Elimination")) {
-				tournament.createSingleElim();
-			} else {
-				tournament.createDivisions(numOfDivs);
+			if(event.getSource() == backBtn){
+				JFrame frame1 = new CreateTournament();
+				frame1.setVisible(true);
+				dispose();
 			}
-			// TODO: FIX THIS
-			// tournament.setType(numType);
-			Viewer.Tournaments.set(trnIndex, tournament);
-			if (tournament.getStructure().getStructureType() == 1) {
-				tournamentTypeFrame = new Division(tournament, numOfDivs);
-			} else {
-				tournamentTypeFrame = new CreateBracket(tournament);
+			else{ 	//event.getSource() == submitBtn
+				// set type of tournament
+				JFrame tournamentTypeFrame;
+				int numOfDivs = Integer.valueOf(divField.getText());
+				if (bracketBox.getSelectedItem().equals("Single Elimination")) {
+					tournament.createSingleElim();
+				} else {
+					tournament.createDivisions(numOfDivs);
+				}
+				// TODO: FIX THIS
+				// tournament.setType(numType);
+				Viewer.Tournaments.set(trnIndex, tournament);
+				if (tournament.getStructure().getStructureType() == 1) {
+					tournamentTypeFrame = new Division(tournament, numOfDivs);
+				} else {
+					tournamentTypeFrame = new CreateBracket(tournament);
+				}
+				tournamentTypeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				tournamentTypeFrame.setVisible(true);
 			}
-			tournamentTypeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			tournamentTypeFrame.setVisible(true);
 		}
 	}
 
+	/**
+	 * Creates panels for this TournamentType
+	 */
 	private void createPanel() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

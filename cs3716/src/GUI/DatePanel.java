@@ -32,12 +32,18 @@ public class DatePanel extends JPanel{
 	private String[] min = new String[60];
 	private String[] hour = new String[12];
 	
+	/**
+	 * Constructor for a DatePanel. 
+	 */
 	public DatePanel(){
 		createLabels();
 		createBoxes();
 		createPanels();
 	}
 	
+	/**
+	 * Creates the labels for this DatePanel
+	 */
 	private void createLabels(){
 		monthLabel = new JLabel("Month: ");
 		monthLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -55,6 +61,9 @@ public class DatePanel extends JPanel{
 		sepLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 	
+	/**
+	 * Creates boxes for this DatePanel
+	 */
 	private void createBoxes(){
 		String[] ampm = {"AM", "PM"};
 		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"};
@@ -83,6 +92,9 @@ public class DatePanel extends JPanel{
 		yearBox = new JComboBox(year);
 	}	
 	
+	/**
+	 * Create Panels for this DatePanel
+	 */
 	private void createPanels(){
 		dateMDYPanel = new JPanel();
 		timeHMPanel = new JPanel();

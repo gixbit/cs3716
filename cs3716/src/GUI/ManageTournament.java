@@ -38,6 +38,7 @@ public class ManageTournament extends JTrnFrame {
 	private static final long serialVersionUID = 1153755212127268824L;
 	private JLabel greetingLabel;
 	private JButton newBtn;
+	private JButton backBtn;
 	private JButton homeBtn;
 	private JPanel finalPanel;
 	private JPanel northPanel;
@@ -47,6 +48,9 @@ public class ManageTournament extends JTrnFrame {
 	private ArrayList<TournamentPanel> tPanels = new ArrayList<TournamentPanel>();
 	private int size;
 
+	/**
+	 * Constructor for a ManageTournament
+	 */
 	public ManageTournament() {
 		super(710, 730);
 		size = Viewer.Tournaments.size();
@@ -56,11 +60,17 @@ public class ManageTournament extends JTrnFrame {
 		setTitle("Manage Tournaments");
 	}
 
+	/**
+	 * Creates a single label for ManageTournament
+	 */
 	private void createItems() {
 		greetingLabel = new JLabel("Manage Tournaments", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 	}
 
+	/**
+	 * Creates buttons for this ManageTournament.
+	 */
 	private void createButtons() {
 		ActionListener listener = new choiceListener();
 		newBtn = new JButton("Create New Tournament");
@@ -72,13 +82,17 @@ public class ManageTournament extends JTrnFrame {
 		homeBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
+	/**
+	 * Listens for events with buttons on this ManageTournament
+	 */
 	class choiceListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			if (event.getSource() == homeBtn) {
-				JFrame frame1 = new MainScreen(Viewer.Tournaments);
+				JFrame frame1 = new MainScreen();
 				frame1.setVisible(true);
 				dispose();
-			} else {// event.getSource() == newButton
+			}
+			else {// event.getSource() == newButton
 				JFrame frame1 = new CreateTournament();
 				frame1.setVisible(true);
 				dispose();
@@ -86,6 +100,9 @@ public class ManageTournament extends JTrnFrame {
 		}
 	}
 
+	/**
+	 * Create panels for ManageTournament
+	 */
 	private void createPanels() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

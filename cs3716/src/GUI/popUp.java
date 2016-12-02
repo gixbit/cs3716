@@ -17,6 +17,9 @@ public class popUp extends JFrame{
 	private JLabel alert;
 	private JPanel popUpPanel;
 	
+	/**
+	 * Constructor for a popUp. Its used for testing.
+	 */
 	public popUp(){
 		alert = new JLabel("You pushed a Button! Yayy!!");
 		alert.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -25,6 +28,11 @@ public class popUp extends JFrame{
 		setSize(500,200);
 		setTitle("Alert");
 	}
+	/**
+	 * Constructor for a popUp.
+	 * 
+	 * @param word - String
+	 */
 	public popUp(String word){
 		alert = new JLabel(word);
 		alert.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -35,6 +43,9 @@ public class popUp extends JFrame{
 		
 	}
 	
+	/**
+	 * Creates panels for this popUp
+	 */
 	public void createPanel(){
 		popUpPanel = new JPanel();
 		popUpPanel.add(alert);

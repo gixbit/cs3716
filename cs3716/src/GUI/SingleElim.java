@@ -41,14 +41,13 @@ public class SingleElim extends JPanel{
 
 //	numT needs to be replaced with an arrayList of teams and numOf divisions also need to be an input
 	
+
 	/**
-	 * Constructor for SingleElimination.
-	 * <br>
-	 * Takes three integer parameters.
+	 * Constructor for a SingleElim
 	 * 
-	 * @param n - Integer
-	 * @param i - Integer
-	 * @param c - Integer
+	 * @param t - Tournament
+	 * @param coln - Integer
+	 * @param nColumns - Integer
 	 */
 	public SingleElim(Tournament t, int coln, int nColumns){
 		super();
@@ -124,6 +123,12 @@ public class SingleElim extends JPanel{
 //		}
 	}
 	
+	/**
+	 * Creates Boxes for this SingleElim. Returns a JPanel with the boxes.
+	 * 
+	 * @param i - Integer
+	 * @return menuPanel - JPanel
+	 */
 	private JPanel createBoxes(int i){
 		JPanel menuPanel = new JPanel();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
@@ -149,6 +154,9 @@ public class SingleElim extends JPanel{
 		return menuPanel;
 	}
 	
+	/**
+	 * Creates textfields for the boxes created.
+	 */
 	private void createTextBoxes(){
 		for(int i = 0; i <= nTeams/Math.pow(2,colNum)-1; i++){
 			int index = (int) (Math.pow(2, colNum+1)*i + Math.pow(2, colNum) - 1);
@@ -178,13 +186,20 @@ public class SingleElim extends JPanel{
 		}
 	}
 	
-*/	private void createPanel(){
+	/**
+	 * Creates panels for this Register
+	 */
+	private void createPanel(){
 		for(int j = 0; j < 2*nTeams; j++){
 			treePanel.add(panList.get(j));
 		}
 		add(treePanel);
 	}
 
+	/**
+	 * Returns an ArrayList of JTextFields representing the scores.
+	 * @return scoreArray - ArrayList&ltJTextField&gt
+	 */
 	public ArrayList<JTextField> getScoreArray(){
 		return scoreArray;
 	}

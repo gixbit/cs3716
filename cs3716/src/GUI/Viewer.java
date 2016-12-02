@@ -29,6 +29,10 @@ public class Viewer {
 
 	public static ArrayList<Tournament> Tournaments;
 
+	/**
+	 * The entry point for the tournament.
+	 * @param args - String[]
+	 */
 	public static void main(String[] args) {
 		JFrame menu = new MainScreen();
 		menu.setVisible(true);

@@ -40,6 +40,12 @@ public class Division extends JTrnFrame {
 	private Tournament tournament;
 	private int columnNum = 0;
 
+	/**
+	 * Constructor for a Division. It creates the Division GUI
+	 * 
+	 * @param tourn - Tournament
+	 * @param divs - Integer
+	 */
 	public Division(Tournament tourn, int divs) {
 		super(550,725);
 		nTeamsPerDivision = (int) (tourn.getTeamList().size() / divs + 1);
@@ -55,6 +61,12 @@ public class Division extends JTrnFrame {
 		setTitle("");
 	}
 		
+	/**
+	 * Creates a column panel for this Division
+	 * 
+	 * @param col - Integer
+	 * @return cPanel - JPanel
+	 */
 	private JPanel createColumn(int col){
 		JPanel cPanel = new JPanel();
 		columnNum = col;
@@ -63,7 +75,10 @@ public class Division extends JTrnFrame {
 		columnNum++;
 		return cPanel;
 	}
-	
+	/**
+	 * Creates a Bracket panel for this Division
+	 * @return bracketPanel - JPanel
+	 */
 	private JPanel createBracPanel() {
 		JPanel bracketPanel = new JPanel(new GridLayout(1, nColumns, 0, 0));
 		for (int i = 0; i < nColumns + 1; i++) {
@@ -76,6 +91,9 @@ public class Division extends JTrnFrame {
 		return bracketPanel;
 	}
 	
+	/**
+	 * Create Buttons for a Division
+	 */
 	private void createButton() {
 
 		greetingLabel = new JLabel("Bracket", SwingConstants.CENTER);
@@ -90,6 +108,10 @@ public class Division extends JTrnFrame {
 		homeButton.addActionListener(listener);
 		homeButton.setFont(new Font("Arial", Font.PLAIN, 16));	}
 
+	/**
+	 * Listens for events on this Division 
+	 *
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == homeButton){
@@ -124,6 +146,9 @@ public class Division extends JTrnFrame {
 		}
 	}
 
+	/**
+	 * Creates panels for this Division
+	 */
 	private void createPanels(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

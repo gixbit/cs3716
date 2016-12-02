@@ -23,25 +23,22 @@ public class MainScreen extends JTrnFrame{
 	private JButton bracketsBtn;
 	private JButton manageBtn;
 	private JButton coachBtn;
-	private int nTeams;
-	private int nDivs = 3;
 	private Tournament t;
 	
+	/**
+	 * Constructor for MainScreen Frame. This is the main menu.
+	 */
 	public MainScreen(){
-		super(550,725);
-		nTeams = 13;
-		createItems();
-		createPanel();
-		setTitle("");
-	}
-
-	public MainScreen(ArrayList<Tournament> lTourns){
 		super(500,500);
 		createItems();
 		createPanel();
 		setTitle("");
 	}
 
+
+	/**
+	 * Creates buttons for this MainScreen
+	 */
 	private void createItems(){
 		ActionListener listener = new choiceListener();
 		manageBtn = new JButton("Organizers");
@@ -57,6 +54,9 @@ public class MainScreen extends JTrnFrame{
 		bracketsBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
+	/**
+	 * Listens for events with buttons on this MainScreen
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == manageBtn){
@@ -95,6 +95,9 @@ public class MainScreen extends JTrnFrame{
 		}
 	}
 
+	/**
+	 * Creates panels for this MainScreen
+	 */
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		finalPanel = new JPanel();

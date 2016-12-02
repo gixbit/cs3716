@@ -54,6 +54,9 @@ public class TournamentPanel extends JPanel{
 	private String tType;
 	private Tournament tournament;
 	
+	/**
+	 * Constructor for a TournamentPanel
+	 */
 	public TournamentPanel(){
 		getInfo();
 		createItems();
@@ -61,6 +64,11 @@ public class TournamentPanel extends JPanel{
 		createPanels();
 	}
 
+	/**
+	 * Constructor for a TournamentPanel with two parameters
+	 * @param tourn - Tournament
+	 * @param i - Integer
+	 */
 	public TournamentPanel(Tournament tourn, int i){
 		tournament = tourn;
 		index = i;
@@ -70,6 +78,9 @@ public class TournamentPanel extends JPanel{
 		createPanels();
 	}
 
+	/**
+	 * Returns nothing, populates instance strings to be displayed in the panel.
+	 */
 	private void getInfo(){
 		numOfTeams = tournament.getTeamList().size();
  		trnName = tournament.getName();
@@ -80,6 +91,9 @@ public class TournamentPanel extends JPanel{
  		tType = String.valueOf("0");
 	}
 
+	/**
+	 * Creates Labels for this TournamentPanel
+	 */
 	private void createItems(){
 		trnLabel = new JLabel("Name: " + trnName);
 		trnLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -103,7 +117,10 @@ public class TournamentPanel extends JPanel{
 		else if(tType.equals("2")){		structureLabel.setText("Structure: Double Elimination");	}
 		else 					{		structureLabel.setText("Structure: Divisions");	}
 	}
-		
+	
+	/**
+	 * Creates buttons for this TournamentPanel
+	 */
 	private void createButtons(){
 		ActionListener listener = new choiceListener();
 		editButton = new JButton("Edit");
@@ -123,6 +140,9 @@ public class TournamentPanel extends JPanel{
 		deleteButton.setFont(new Font("Arial", Font.PLAIN, 16));	
 	}
 
+	/**
+	 * Listens for events with buttons on this TournamentPanel
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == generateButton){
@@ -159,6 +179,9 @@ public class TournamentPanel extends JPanel{
 		}
 	}
 		
+	/**
+	 * Creates panels on this TournamentPanel
+	 */
 	private void createPanels(){
 		finalPanel = new JPanel(new BorderLayout());
 		centerPanel = new JPanel(new GridLayout(4,2));

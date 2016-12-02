@@ -38,6 +38,11 @@ public class CreateBracket extends JTrnFrame {
 	private Tournament tournament;
 	private int columnNum = 0;
 
+	/**
+	 * Constructor for a CreateBracket. It creates brackets
+	 * 
+	 * @param tourn - Tournament
+	 */
 	public CreateBracket(Tournament tourn) {
 		super(550, 725);
 		for (int i = 0; tourn.getTeamList().size() > Math.pow(2, i); i++) {
@@ -50,7 +55,12 @@ public class CreateBracket extends JTrnFrame {
 		createPanels();
 		setTitle("");
 	}
-	
+	/**
+	 * Creats columns for the CreateBracket
+	 * 
+	 * @param col - Integer
+	 * @return cPanel - JPanel
+	 */
 	private JPanel createColumn(int col){
 		JPanel cPanel = new JPanel();
 		columnNum = col;
@@ -60,6 +70,9 @@ public class CreateBracket extends JTrnFrame {
 		return cPanel;
 	}
 
+	/**
+	 * Creates buttons for the CreateBracket
+	 */
 	private void createButton() {
 
 		greetingLabel = new JLabel("Bracket", SwingConstants.CENTER);
@@ -74,6 +87,10 @@ public class CreateBracket extends JTrnFrame {
 		homeButton.addActionListener(listener);
 		homeButton.setFont(new Font("Arial", Font.PLAIN, 16));	}
 
+	/**
+	 * Listens to actions on this CreateBracket
+	 *
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == homeButton){
@@ -108,6 +125,9 @@ public class CreateBracket extends JTrnFrame {
 		}
 	}
 
+	/**
+	 * Creates all the panels for this CreateBracket
+	 */
 	private void createPanels(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

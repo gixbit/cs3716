@@ -16,6 +16,9 @@ public class PlayerPanel extends JPanel{
 	private JTextField playerName;
 	private JTextField playerAge;
 	
+	/**
+	 * Constructor for a PlayerPanel.
+	 */
 	public PlayerPanel(){
 		playerName = new JTextField(25);
 		playerName.setText("");
@@ -27,9 +30,17 @@ public class PlayerPanel extends JPanel{
 		add(playerAge);
 	}
 	
+	/**
+	 * Returns the player's name as a string represented by this PlayerPanel
+	 * @return playerName - String
+	 */
 	public String getPlayerName(){
 		return playerName.getText();
 	}
+	/**
+	 * Returns the player's age as a string represented by this PlayerPanel
+	 * @return playerAge - String
+	 */
 	public String getPlayerAge(){
 		return playerAge.getText();
 	}	

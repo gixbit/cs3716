@@ -36,6 +36,9 @@ public class ListOfTeams extends JTrnFrame{
 	private String trnName;
 	private int n = 0;
 
+	/**
+	 * Construct for ListOfTeams.
+	 */
 	public ListOfTeams(){
 		super(550,725);
 		createItems();
@@ -44,7 +47,11 @@ public class ListOfTeams extends JTrnFrame{
 		setSize(550,725);
 		setTitle("");
 	}
-
+	/**
+	 * Constructor for ListOfTeams with Tournament as a parameter
+	 * 
+ 	 * @param t - Tournament
+	 */
 	public ListOfTeams(Tournament t){
 		super(500,500);
 		tournament = t;
@@ -57,6 +64,9 @@ public class ListOfTeams extends JTrnFrame{
 		setTitle("");
 	}
 	
+	/**
+	 * Creates Items for this ListOfTeams
+	 */
 	private void createItems(){
 		greetingLabel = new JLabel("List Of Teams for Tournament: ", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -72,6 +82,9 @@ public class ListOfTeams extends JTrnFrame{
 		listTeamsLabel.setEditable(false);
 	}
 
+	/**
+	 * Creates buttons for this ListOfTeams
+	 */
 	private void createButton(){
 		ActionListener listener = new choiceListener();
 		contButton = new JButton("Home");
@@ -88,12 +101,18 @@ public class ListOfTeams extends JTrnFrame{
 
 	}
 
+	/**
+	 * CreateText Populates text in listTeamsLabel
+	 */
 	private void createText(){
 		for(int i = 0; i < tournament.getTeamList().size(); i++){
 			listTeamsLabel.append(tournament.getTeamList().get(i).getTeamName() + "\n");
 		}
 	}
 	
+	/**
+	 * Listens for events with buttons.
+	 */
 	class choiceListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
@@ -107,13 +126,16 @@ public class ListOfTeams extends JTrnFrame{
 				dispose();
 			}
 			else{	//event.getSource() == contButton
-				JFrame mainScrn = new MainScreen(Viewer.Tournaments);
+				JFrame mainScrn = new MainScreen();
 				mainScrn.setVisible(true);
 				dispose();
 			}
 		}
 	}
 	
+	/**
+	 * Creates panels for this ListOfTeams
+	 */
 	private void createPanel(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		finalPanel = new JPanel(new BorderLayout());
@@ -125,8 +147,9 @@ public class ListOfTeams extends JTrnFrame{
 		listTeamsPanel.add(listTeamsLabel);
 		centerPanel = new JScrollPane(listTeamsPanel);
 		
-		southPanel.add(regButton);
 		southPanel.add(contButton);
+		southPanel.add(manageButton);
+		southPanel.add(regButton);
 		teamPanel.add(teamNameLabel);
 		northPanel.add(greetingLabel);
 		northPanel.add(trnNameLabel);

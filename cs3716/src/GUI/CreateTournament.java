@@ -43,6 +43,9 @@ public class CreateTournament extends JTrnFrame {
 	private JButton cancelButton;
 	private DatePanel[] dates = new DatePanel[2];
 
+	/**
+	 * Constructor for a CreateTournament. It creates a Tournament.
+	 */
 	public CreateTournament() {
 		super(550, 725);
 		createLabels();
@@ -51,12 +54,19 @@ public class CreateTournament extends JTrnFrame {
 		createPanel();
 		setTitle("Create Tournament");
 	}
-
-	public CreateTournament(String a, String b, String c, String d) {
+	/**
+	 * Constructor for CreateTournament. This is for editting a current tournament.
+	 * 
+	 * @param trnName - String
+	 * @param venueName - String
+	 * @param oName - String
+	 * @param oInfo - String
+	 */
+	public CreateTournament(String trnName, String venueName, String oName, String oInfo) {
 		super(500,600);
 		// get current date(month, day, year)
 		createLabels();
-		createFields(a, b, c, d);
+		createFields(trnName, venueName, oName, oInfo);
 		createButton();
 		// createPanel(month, day, year)
 		// input into datePanel
@@ -67,6 +77,9 @@ public class CreateTournament extends JTrnFrame {
 		setTitle("Create Tournament");
 	}
 
+	/**
+	 * Creates labels for this CreateTournament
+	 */
 	private void createLabels() {
 		greetingLabel = new JLabel("Create Your Tournament", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -90,6 +103,9 @@ public class CreateTournament extends JTrnFrame {
 		regEndLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 	}
 
+	/**
+	 * Creates the textfields for this CreateTournament
+	 */
 	private void createFields() {
 		trnField = new JTextField(26);
 		trnField.setText("");
@@ -104,12 +120,20 @@ public class CreateTournament extends JTrnFrame {
 		organizerInfoField.setText("");
 	}
 
-	private void createFields(String t, String ven, String oName, String oInfo) {
+	/**
+	 * Creates the textfields for this CreateTournament with the fields filled with the parameters
+	 * 
+	 * @param trnName - String
+	 * @param venueName - String
+	 * @param oName - String
+	 * @param oInfo - String
+	 */
+	private void createFields(String trnName, String venueName, String oName, String oInfo) {
 		trnField = new JTextField(26);
-		trnField.setText(t);
+		trnField.setText(trnName);
 
 		venueField = new JTextField(32);
-		venueField.setText(ven);
+		venueField.setText(venueName);
 
 		organizerNameField = new JTextField(27);
 		organizerNameField.setText(oName);
@@ -118,6 +142,9 @@ public class CreateTournament extends JTrnFrame {
 		organizerInfoField.setText(oInfo);
 	}
 
+	/**
+	 * Creates buttons for this CreateTournament
+	 */
 	private void createButton() {
 		ActionListener listener = new choiceListener();
 		createButton = new JButton("Create");
@@ -129,6 +156,10 @@ public class CreateTournament extends JTrnFrame {
 		cancelButton.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
+	/**
+	 * Listens for events on this CreateTournament
+	 *
+	 */
 	class choiceListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			if (event.getSource() == cancelButton) {
