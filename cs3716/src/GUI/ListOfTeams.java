@@ -125,8 +125,9 @@ public class ListOfTeams extends JTrnFrame{
 		listTeamsPanel.add(listTeamsLabel);
 		centerPanel = new JScrollPane(listTeamsPanel);
 		
-		southPanel.add(regButton);
 		southPanel.add(contButton);
+		southPanel.add(manageButton);
+		southPanel.add(regButton);
 		teamPanel.add(teamNameLabel);
 		northPanel.add(greetingLabel);
 		northPanel.add(trnNameLabel);

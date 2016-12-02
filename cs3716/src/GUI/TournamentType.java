@@ -31,6 +31,7 @@ public class TournamentType extends JTrnFrame {
 	private JTextField divField;
 	private JComboBox bracketBox;
 	private JButton submitButton;
+	private JButton backBtn;
 	private JPanel finalPanel;
 	private JPanel teamLabelPanel;
 	private JPanel northPanel;
@@ -103,28 +104,39 @@ public class TournamentType extends JTrnFrame {
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(listener);
 		submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		
+		backBtn = new JButton("Back");
+		backBtn.addActionListener(listener);
+		backBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 
 	class choiceListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			// set type of tournament
-			JFrame tournamentTypeFrame;
-			int numOfDivs = Integer.valueOf(divField.getText());
-			if (bracketBox.getSelectedItem().equals("Single Elimination")) {
-				tournament.createSingleElim();
-			} else {
-				tournament.createDivisions(numOfDivs);
+			if(event.getSource() == backBtn){
+				JFrame frame1 = new CreateTournament();
+				frame1.setVisible(true);
+				dispose();
 			}
-			// TODO: FIX THIS
-			// tournament.setType(numType);
-			Viewer.Tournaments.set(trnIndex, tournament);
-			if (tournament.getStructure().getStructureType() == 1) {
-				tournamentTypeFrame = new Division(tournament, numOfDivs);
-			} else {
-				tournamentTypeFrame = new CreateBracket(tournament);
+			else{ 	//event.getSource() == submitBtn
+				// set type of tournament
+				JFrame tournamentTypeFrame;
+				int numOfDivs = Integer.valueOf(divField.getText());
+				if (bracketBox.getSelectedItem().equals("Single Elimination")) {
+					tournament.createSingleElim();
+				} else {
+					tournament.createDivisions(numOfDivs);
+				}
+				// TODO: FIX THIS
+				// tournament.setType(numType);
+				Viewer.Tournaments.set(trnIndex, tournament);
+				if (tournament.getStructure().getStructureType() == 1) {
+					tournamentTypeFrame = new Division(tournament, numOfDivs);
+				} else {
+					tournamentTypeFrame = new CreateBracket(tournament);
+				}
+				tournamentTypeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				tournamentTypeFrame.setVisible(true);
 			}
-			tournamentTypeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			tournamentTypeFrame.setVisible(true);
 		}
 	}
 

@@ -38,6 +38,7 @@ public class ManageTournament extends JTrnFrame {
 	private static final long serialVersionUID = 1153755212127268824L;
 	private JLabel greetingLabel;
 	private JButton newBtn;
+	private JButton backBtn;
 	private JButton homeBtn;
 	private JPanel finalPanel;
 	private JPanel northPanel;
@@ -78,7 +79,8 @@ public class ManageTournament extends JTrnFrame {
 				JFrame frame1 = new MainScreen(Viewer.Tournaments);
 				frame1.setVisible(true);
 				dispose();
-			} else {// event.getSource() == newButton
+			}
+			else {// event.getSource() == newButton
 				JFrame frame1 = new CreateTournament();
 				frame1.setVisible(true);
 				dispose();
