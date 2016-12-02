@@ -137,16 +137,10 @@ public class SingleElim extends JPanel{
 		menuPanel.setBackground(Color.WHITE);
 		return menuPanel;
 	}
-<<<<<<< HEAD
 	
 	private void createTextBoxes(){
 		for(int i = 0; i <= nTeams/Math.pow(2,colNum)-1; i++){
 			int index = (int) (Math.pow(2, colNum+1)*i + Math.pow(2, colNum) - 1);
-=======
-	private void createTextBoxes(){
-		for(int i = 0; i <= numOfTeams/Math.pow(2,colnNum)-1; i++){
-			int index = (int) (Math.pow(2, colnNum+1)*i + Math.pow(2, colnNum) - 1);
->>>>>>> branch 'master' of ssh://git@github.com/gixbit/cs3716.git
 			panList.set(index, createBoxes(i));
 		}
 	}
@@ -174,13 +168,8 @@ public class SingleElim extends JPanel{
 	}
 	
 */	private void createPanel(){
-<<<<<<< HEAD
 		for(int j = 0; j < 2*nTeams; j++){
 			treePanel.add(panList.get(j));
-=======
-		for(int j = 0; j < 2*numOfTeams; j++){
-			panel.add(panList.get(j));
->>>>>>> branch 'master' of ssh://git@github.com/gixbit/cs3716.git
 		}
 		add(treePanel);
 	}
