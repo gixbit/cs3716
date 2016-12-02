@@ -32,6 +32,9 @@ public interface Structure {
 	 * @return brackets - ArrayList&ltBracket&gt
 	 */
 	public ArrayList<Bracket> getBrackets();
-	
+	/**
+	 * Returns an integer that describes the tournament type used.
+	 * @return type - Integer
+	 */
 	public int getStructureType();
 }
