@@ -59,6 +59,7 @@ public class CreateBracket extends JFrame {
 	}
 
 	private void createButton() {
+
 		greetingLabel = new JLabel("Bracket", SwingConstants.CENTER);
 		greetingLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
@@ -99,6 +100,7 @@ public class CreateBracket extends JFrame {
 		*/
 		centerPanel.add(bracketPanel);
 		southPanel.add(submitBtn);
+
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);
 		finalPanel.add(centerPanel, BorderLayout.CENTER);
 		finalPanel.add(southPanel, BorderLayout.SOUTH);
