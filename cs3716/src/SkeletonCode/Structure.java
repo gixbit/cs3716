@@ -33,9 +33,5 @@ public interface Structure {
 	 */
 	public ArrayList<Bracket> getBrackets();
 	
-	/**
-	 * Returns the integer representation of the structure type
-	 * @return type - Integer
-	 */
 	public int getStructureType();
 }

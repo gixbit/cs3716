@@ -144,23 +144,15 @@ public class Tournament implements Serializable {
 	public void setVenue(String venue) {
 		this.venue = venue;
 	}
-	/**
-	 * Transforms into a Single Elimination style tournament from the data collected
-	 */
+	
 	public void createSingleElim(){
 		structure = new SingleElimination(teamList);
 	}
-	/**
-	 * Transforms into a Divisions style tournament from the data collected
-	 * @param nDivisions - Integer
-	 */
-	public void createDivisions(int nDivisions){
-		structure = new Divisions(teamList, nDivisions);
+	
+	public void createDivisions(int i){
+		structure = new Divisions(teamList, i);
 	}
-	/**
-	 * Returns the structure style of this tournament
-	 * @return structure - Structure
-	 */
+	
 	public Structure getStructure(){
 		return structure;
 	}

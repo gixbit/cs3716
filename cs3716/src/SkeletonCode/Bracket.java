@@ -1,5 +1,4 @@
 package SkeletonCode;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +14,7 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Bracket implements Serializable {
-	private static final long serialVersionUID = 6432207559387660919L;
+public class Bracket {
 	/**
 	 * List of teams
 	 */
@@ -42,8 +40,17 @@ public class Bracket implements Serializable {
 	 * Does not currently do seeding.
 	 */
 	public void makeGames(){
-		for (int i = 0; i < (this.teamList.size() / 2); i++){
-			this.makeGame(this.teamList.get(i * 2), this.teamList.get(i * 2 + 1));
+		if (this.teamList.size() > 1){
+		for (int i = 0; i < ((this.teamList.size() / 2) + (this.teamList.size() % 2)); i++){
+			this.gameList.add(new Game(teamList.get(i)));
+			//			this.makeGame(this.teamList.get(i * 2), this.teamList.get(i * 2 + 1));
+		}
+		int counter = 0;
+		for (int i = ((this.teamList.size() / 2) + (this.teamList.size() % 2)) ; i < this.teamList.size(); i++){
+			this.gameList.get(counter).setTeamTwo(teamList.get(i));
+			counter++;
+			
+		}
 		}
 	}
 	/**
@@ -98,19 +105,11 @@ public class Bracket implements Serializable {
 	public ArrayList<Team> getLosers(){		//Only call if all games are complete, returns all losers, useful for double elim
 		ArrayList<Team> losers = new ArrayList<Team>();
 		for (int i = 0; i < this.gameList.size(); i++){
-			losers.add(this.gameList.get(i).getLoser());
+			if (!this.gameList.get(i).bye()) {losers.add(this.gameList.get(i).getLoser());}
 		}
 		return losers;
 	}
 	
-	/**
-	 * Swap the teams between two games.
-	 * 
-	 * @param g1 - Game
-	 * @param teamOne - Team
-	 * @param g2 - Game
-	 * @param teamTwo - Team
-	 */
 	public void swapTeams(Game g1, Team teamOne, Game g2, Team teamTwo){
 		if (teamOne == g1.getTeamOne()){g1.setTeamOne(teamTwo);}
 		else if (teamOne == g1.getTeamTwo()){g1.setTeamTwo(teamTwo);}

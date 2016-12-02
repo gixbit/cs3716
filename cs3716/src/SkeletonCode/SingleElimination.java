@@ -1,5 +1,4 @@
 package SkeletonCode;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +11,7 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class SingleElimination implements Structure, Serializable{
-
-	private static final long serialVersionUID = -2978504004609230274L;
+public class SingleElimination implements Structure{
 	/**
 	 * List of brackets this Single Elimination holds
 	 */
@@ -54,7 +51,7 @@ public class SingleElimination implements Structure, Serializable{
 					this.bList.get(i).getGames().get(j).getWinner().win();
 					this.bList.get(i).getGames().get(j).getWinner().addPoints(this.bList.get(i).getGames().get(j).getWinnerScore());
 
-					this.bList.get(i).getGames().get(j).getLoser().addPoints(this.bList.get(i).getGames().get(j).getLoserScore());
+					if (!this.bList.get(i).getGames().get(j).bye()){this.bList.get(i).getGames().get(j).getLoser().addPoints(this.bList.get(i).getGames().get(j).getLoserScore());}
 				}
 				this.bList.set(i, new Bracket(this.bList.get(i).getWinners() ));
 				this.bList.get(i).makeGames();

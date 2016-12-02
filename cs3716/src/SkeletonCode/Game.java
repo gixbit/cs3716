@@ -1,7 +1,5 @@
 package SkeletonCode;
-
-import java.io.Serializable;
-
+	
 /**
  * Describes a Game used in a tournament.
  * Each game has two teams and scores for both.
@@ -14,8 +12,7 @@ import java.io.Serializable;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Game implements Serializable {		//coming back later to add time and venue if we want them
-	private static final long serialVersionUID = 3220772690839005333L;
+public class Game {		//coming back later to add time and venue if we want them
 	/**
 	 * The venue this game is located
 	 */
@@ -50,27 +47,43 @@ public class Game implements Serializable {		//coming back later to add time and
 	 * @param one - Team
 	 * @param two - Team
 	 */
+	private boolean bye;
+	
 	public Game(Team one, Team two){
 		this.teamOne = one;
 		this.teamTwo = two;
 //		this.venue = location;
 		this.complete = false;
+		bye = false;
 	}
+	
+	public Game(Team one){
+		this.teamOne = one;
+		teamTwo = null;
+		bye = true;
+		teamOneScore = 0;
+		complete = true;
+	}
+	
 	/**
 	 * Set the score for the first team to i
 	 * @param i - score
 	 */
 	public void setScoreOne(int i){
+		if (!bye){
 		this.teamOneScore = i;
 		this.complete = false;						//To prevent completing the game and then going back and entering a new result that doesn't work.
-	}
+		}
+		}
 	/**
 	 * Set the score for the second team to i
 	 * @param i - score
 	 */
 	public void setScoreTwo(int i){
+		if (!bye){
 		this.teamTwoScore = i;
 		this.complete = false;	
+		}
 	}
 	/**
 	 * Get the score of the first team
@@ -120,11 +133,13 @@ public class Game implements Serializable {		//coming back later to add time and
 	 * Completes the game described by this class
 	 */
 	public void completeGame(){
-		if (this.teamOneScore + this.teamTwoScore > 27){
-			if ((this.teamOneScore > this.teamTwoScore) || (this.teamTwoScore > this.teamOneScore)){		//Normally you have to be ahead by 2 points but in the following case a valid score could be the final score of a game: the receiving team either scored the last point or earned a side-out in the last point and the receiving team is ahead by 1 point. In this case the receiving team wins.
-				this.complete = true;
+		if (!bye){
+			if (this.teamOneScore + this.teamTwoScore > 27){
+				if ((this.teamOneScore > this.teamTwoScore) || (this.teamTwoScore > this.teamOneScore)){		//Normally you have to be ahead by 2 points but in the following case a valid score could be the final score of a game: the receiving team either scored the last point or earned a side-out in the last point and the receiving team is ahead by 1 point. In this case the receiving team wins.
+					this.complete = true;
+				}
 			}
-		}
+		}else {this.complete = true;}
 	}
 	/**
 	 * Returns a boolean representing the completion of a game
@@ -138,7 +153,9 @@ public class Game implements Serializable {		//coming back later to add time and
 	 * @return winner - Team
 	 */
 	public Team getWinner(){		//Don't call this unless you've already checked if the game is complete
+		if (!bye){
 		if (this.teamOneScore > this.teamTwoScore){return this.teamOne;} else {return this.teamTwo;}
+		}else{return this.teamOne;}
 	}
 	/**
 	 * Returns the loser of this game; This should not be called unless the game is complete
@@ -161,32 +178,22 @@ public class Game implements Serializable {		//coming back later to add time and
 	public int getLoserScore(){
 		if (this.teamOneScore < this.teamTwoScore){return this.teamOneScore;} else {return this.teamTwoScore;}
 	}
-	/**
-	 * Returns the first team of this game
-	 * @return teamOne - Team
-	 */
 	public Team getTeamOne(){
 		return teamOne;
 	}
-	/**
-	 * Returns the second team of this game
-	 * @return teamTwo - Team
-	 */
 	public Team getTeamTwo(){
 		return teamTwo;
 	}
-	/**
-	 * Sets the first team of this game
-	 * @param t - Team
-	 */
 	public void setTeamOne(Team t){
 		teamOne = t;
+		complete = false;
 	}
-	/**
-	 * Sets the second team of this game
-	 * @param t - Team
-	 */
 	public void setTeamTwo(Team t){
 		teamTwo = t;
+		complete = false;
+		bye = false;
+	}
+	public boolean bye(){
+		return bye;
 	}
 }
