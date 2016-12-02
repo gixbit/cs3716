@@ -140,8 +140,8 @@ public class CreateTournament extends JFrame {
 				if (venueField.getText().isEmpty() || trnField.getText().isEmpty()) {
 					String message = "Please fill all fields";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
-				} // event.getSource() == createButton
-				else {
+				}
+				else {// event.getSource() == createButton
 					String startDate = (String) dates[0].getMonth() + " " + (String) dates[0].getDay() + ", " + (String) dates[0].getYear();
 					String startTime = (String) dates[0].getHour() + ":" + (String) dates[0].getMin() + " " + (String) dates[0].getAmPm();
 					String endDate = (String) dates[1].getMonth() + " " + (String) dates[1].getDay() + ", " + (String) dates[1].getYear();
