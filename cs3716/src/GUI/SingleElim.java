@@ -129,17 +129,26 @@ public class SingleElim extends JPanel{
 		JPanel menuPanel = new JPanel();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
 		ArrayList<JLabel> labelArray = new ArrayList<JLabel>();
-		
-		for(int j = 0; j < tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
-			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
-			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+		if(colNum != columns){
+			for(int j = 0; j < tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
+				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
+				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+			}
+			for(int j = 0; j < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
+				scoreArray.add(new JTextField(1));
+				scoreArray.get(j).setText("" + 0);
+			}
+			menuPanel.add(labelArray.get(i));
+			menuPanel.add(scoreArray.get(i));
 		}
-		for(int j = 0; j < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
-			scoreArray.add(new JTextField(1));
-			scoreArray.get(j).setText("" + 0);
+		else{
+			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getWinners().get(0).getTeamName()));
+//			scoreArray.add(new JTextField(1));
+//			scoreArray.get(2*tournament.getStructure().getBrackets().get(0).getGames().size()).setText("" + 0);
+			menuPanel.add(labelArray.get(2*tournament.getStructure().getBrackets().get(0).getGames().size()));
+//			menuPanel.add(scoreArray.get(i));
 		}
-		menuPanel.add(labelArray.get(i));
-		menuPanel.add(scoreArray.get(i));
+
 		menuPanel.setBackground(Color.WHITE);
 		return menuPanel;
 	}
