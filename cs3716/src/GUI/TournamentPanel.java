@@ -130,26 +130,31 @@ public class TournamentPanel extends JPanel{
 					JFrame frame1 = new TournamentType(index);
 					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame1.setVisible(true);
+					((ManageTournament)finalPanel.getRootPane().getParent()).dispose();
 				}
 				else{
 					JFrame frame1 = new TournamentType(index, tType);
 					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					frame1.setVisible(true);
+					((ManageTournament)finalPanel.getRootPane().getParent()).dispose();
 				}
 			}
 			else if(event.getSource() == teamsButton){
 				JFrame frame1 = new ListOfTeams(tournament);
 				frame1.setVisible(true);
+				((ManageTournament)finalPanel.getRootPane().getParent()).dispose();
 			}
 			else if(event.getSource() == deleteButton){
 				Viewer.Tournaments.remove(index);
 				JFrame frame1 = new ManageTournament();
 				frame1.setVisible(true);
+				((ManageTournament)finalPanel.getRootPane().getParent()).dispose();
 			}
 			else{	//event.getSource() == editButton
 				Viewer.Tournaments.remove(index);
 				JFrame frame1 = new CreateTournament(trnName, venueName, orgName, orgInfo);
 				frame1.setVisible(true);
+				((ManageTournament)finalPanel.getRootPane().getParent()).dispose();
 			}
 		}
 	}
