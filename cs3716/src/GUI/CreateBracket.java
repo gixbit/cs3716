@@ -27,8 +27,9 @@ public class CreateBracket extends JFrame {
 	private JPanel southPanel;
 	private JPanel centerPanel;
 	private JPanel finalPanel;
-	private JLabel northPanel;
 	private JButton submitBtn;
+	private JLabel headerLabel;
+	private JButton homeButton;
 	private JScrollPane area;
 	private int nColumns;
 	private int nTeams;
@@ -58,15 +59,18 @@ public class CreateBracket extends JFrame {
 	}
 
 	private void createButton() {
-		northPanel = new JLabel("Bracket", SwingConstants.CENTER);
-		northPanel.setFont(new Font("Arial", Font.BOLD, 24));
+		headerLabel = new JLabel("Bracket", SwingConstants.CENTER);
+		headerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
 		ActionListener listener = new choiceListener();
 		submitBtn = new JButton("Submit");
 		submitBtn.addActionListener(listener);
 		submitBtn.setFont(new Font("Arial", Font.PLAIN, 16));
-	}
-
+		
+		homeButton = new JButton("Home");
+		homeButton.addActionListener(listener);
+		homeButton.setFont(new Font("Arial", Font.PLAIN, 16));	}
+	
 	class choiceListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			JFrame popUpPanel = new popUp();
@@ -90,7 +94,7 @@ public class CreateBracket extends JFrame {
 		*/
 		centerPanel.add(bracketPanel);
 		southPanel.add(submitBtn);
-		finalPanel.add(northPanel, BorderLayout.NORTH);
+		finalPanel.add(headerLabel, BorderLayout.NORTH);
 		finalPanel.add(centerPanel, BorderLayout.CENTER);
 		finalPanel.add(southPanel, BorderLayout.SOUTH);
 

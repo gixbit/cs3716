@@ -127,12 +127,16 @@ public class SingleElim extends JPanel{
 	private JPanel createBoxes(int i){
 		JPanel menuPanel = new JPanel();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
+		ArrayList<JLabel> labelArray = new ArrayList<JLabel>();
 		
-		JLabel teamName = new JLabel("Team");
+		for(int j = 0; j < tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
+			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
+			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+		}
 		JTextField scoreField = new JTextField(1);
 		scoreField.setText("" + 0);
 		
-		menuPanel.add(teamName);
+		menuPanel.add(labelArray.get(i));
 		menuPanel.add(scoreField);
 		menuPanel.setBackground(Color.WHITE);
 		return menuPanel;
