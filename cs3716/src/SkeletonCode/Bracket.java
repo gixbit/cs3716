@@ -101,6 +101,14 @@ public class Bracket {
 		return losers;
 	}
 	
+	/**
+	 * Swap the teams between two games.
+	 * 
+	 * @param g1 - Game
+	 * @param teamOne - Team
+	 * @param g2 - Game
+	 * @param teamTwo - Team
+	 */
 	public void swapTeams(Game g1, Team teamOne, Game g2, Team teamTwo){
 		if (teamOne == g1.getTeamOne()){g1.setTeamOne(teamTwo);}
 		else if (teamOne == g1.getTeamTwo()){g1.setTeamTwo(teamTwo);}
