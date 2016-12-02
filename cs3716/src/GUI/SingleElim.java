@@ -81,13 +81,12 @@ public class SingleElim extends JPanel{
 		for(int j = 0; j<2*nTeams; j++){
 			panList.add(new JTextArea(2,8));
 			//Removes line in between a match 
-/*			if((j-spacers)%height == 0){
+			if((j-spacers)%height == 0){
 				top = 1;
 				bottom = 0;
 				side = 5;
 			}
-*/	//		else
-			if((j-spacers)%height == height-1){
+			else if((j-spacers)%height == height-1){
 				top = 0;
 				bottom = 1;
 				side = 5;	
@@ -135,7 +134,7 @@ public class SingleElim extends JPanel{
 				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
 			}
 			for(int j = 0; j < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
-				scoreArray.add(new JTextField(1));
+				scoreArray.add(new JTextField(3));
 				scoreArray.get(j).setText("" + 0);
 			}
 			menuPanel.add(labelArray.get(i));
