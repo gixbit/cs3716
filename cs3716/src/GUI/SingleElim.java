@@ -79,7 +79,7 @@ public class SingleElim extends JPanel{
 				bottom = 0;
 				side = 5;
 			}
-			else if((j-spacers)%height == height-1){
+			else if((j-spacers)%height == height-2){
 				top = 0;
 				bottom = 1;
 				side = 5;	

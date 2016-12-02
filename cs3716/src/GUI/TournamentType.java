@@ -134,7 +134,7 @@ public class TournamentType extends JTrnFrame {
 	class choiceListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			if(event.getSource() == backBtn){
-				JFrame frame1 = new CreateTournament();
+				JFrame frame1 = new ManageTournament();
 				frame1.setVisible(true);
 				dispose();
 			}

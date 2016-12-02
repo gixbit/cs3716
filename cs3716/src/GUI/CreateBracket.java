@@ -94,10 +94,7 @@ public class CreateBracket extends JTrnFrame {
 			}
 			else{	//event.getSource() == submitBtn
 				//Checks for empty fields
-/*				String message = "Please input valid scores";
-				JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
-				JOptionPane.ERROR_MESSAGE); 			
-*/				if(tournament.getStructure().getBrackets().get(0).getGames().size() >= 1){
+				if(tournament.getStructure().getBrackets().get(0).getGames().size() >= 1){
 					for(int i = 0; i < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); i++){
 						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(i).getText()));
 						i++;
@@ -110,6 +107,11 @@ public class CreateBracket extends JTrnFrame {
 						tournament.getStructure().advanceTournament();
 						bracketPanel.add(createColumn(columnNum));
 						revalidate();
+					}
+					else{
+						String message = "Please input valid scores";
+						JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", 
+						JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else{
