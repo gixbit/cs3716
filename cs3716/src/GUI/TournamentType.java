@@ -22,7 +22,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class TournamentType extends JFrame {
+public class TournamentType extends JTrnFrame {
 	private static final long serialVersionUID = 647812786814549835L;
 	private JLabel greetingLabel;
 	private JLabel divLabel;
@@ -46,17 +46,18 @@ public class TournamentType extends JFrame {
 	private Tournament tournament;
 
 	public TournamentType(int i) {
+		super(550, 725);
 		tournament = Viewer.Tournaments.get(i);
 		trnIndex = i;
 		getInfo();
 		createItems();
 		createButton();
 		createPanel();
-		setSize(550, 725);
 		setTitle("Create Tournament");
 	}
 
 	public TournamentType(int i, String type) {
+		super(500, 500);
 		tournament = Viewer.Tournaments.get(i);
 		trnIndex = i;
 		trnType = type;
@@ -64,7 +65,6 @@ public class TournamentType extends JFrame {
 		createItems();
 		createButton();
 		createPanel();
-		setSize(500, 500);
 		setTitle("Create Tournament");
 	}
 
@@ -96,7 +96,6 @@ public class TournamentType extends JFrame {
 		divField = new JTextField(2);
 		divField.setFont(new Font("Arial", Font.PLAIN, 16));
 		divField.setText("0");
-
 	}
 
 	private void createButton() {

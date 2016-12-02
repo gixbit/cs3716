@@ -22,11 +22,12 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class CreateBracket extends JFrame {
+public class CreateBracket extends JTrnFrame {
 	private JPanel bracketPanel;
 	private JPanel southPanel;
 	private JPanel centerPanel;
 	private JPanel finalPanel;
+	private SingleElim singEl;
 	private JButton submitBtn;
 	private JLabel greetingLabel;
 	private JButton homeButton;
@@ -38,6 +39,7 @@ public class CreateBracket extends JFrame {
 	private int columnNum = 0;
 
 	public CreateBracket(Tournament tourn) {
+		super(550, 725);
 		for (int i = 0; tourn.getTeamList().size() > Math.pow(2, i); i++) {
 			nSpaces = i + 1;
 		}
@@ -46,14 +48,14 @@ public class CreateBracket extends JFrame {
 		nColumns = (int) (Math.log(nTeams) / Math.log(2));
 		createButton();
 		createPanels();
-		setSize(550, 725);
 		setTitle("");
 	}
 	
 	private JPanel createColumn(int col){
 		JPanel cPanel = new JPanel();
 		columnNum = col;
-		cPanel.add(new SingleElim(tournament, columnNum, nColumns));
+		singEl = new SingleElim(tournament, columnNum, nColumns);
+		cPanel.add(singEl);
 		columnNum++;
 		return cPanel;
 	}
@@ -79,7 +81,29 @@ public class CreateBracket extends JFrame {
 				frame1.setVisible(true);
 			}
 			else{	//event.getSource() == submitBtn
-				
+				if(tournament.getStructure().getBrackets().get(0).getGames().size() >= 1){
+					for(int i = 0; i < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); i++){
+						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(i).getText()));
+						i++;
+						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).setScoreTwo(Integer.valueOf(singEl.getScoreArray().get(i).getText()));
+						tournament.getStructure().getBrackets().get(0).getGames().get(i/2).completeGame();
+					}
+					boolean complete = true;
+					for (int p = 0; p < tournament.getStructure().getBrackets().get(0).getGames().size(); p++){if (!tournament.getStructure().getBrackets().get(0).getGames().get(p).isComplete()){complete = false;}}
+					if(complete){
+						tournament.getStructure().advanceTournament();
+						bracketPanel.add(createColumn(columnNum));
+						revalidate();
+					}
+				}
+				else{
+					tournament.getStructure().getBrackets().get(0).getGames().get(0).setScoreOne(Integer.valueOf(singEl.getScoreArray().get(0).getText()));
+					//i++;
+					tournament.getStructure().getBrackets().get(0).getGames().get(0).setScoreTwo(Integer.valueOf(singEl.getScoreArray().get(1).getText()));
+					tournament.getStructure().getBrackets().get(0).getGames().get(0).completeGame();
+					bracketPanel.add(createColumn(columnNum));
+					revalidate();
+				}
 			}
 		}
 	}
@@ -99,6 +123,7 @@ public class CreateBracket extends JFrame {
 		}
 		*/
 		centerPanel.add(bracketPanel);
+		southPanel.add(homeButton);
 		southPanel.add(submitBtn);
 
 		finalPanel.add(greetingLabel, BorderLayout.NORTH);

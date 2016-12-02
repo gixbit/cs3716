@@ -1,4 +1,5 @@
 package SkeletonCode;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Team {
+public class Team implements Serializable {
+	private static final long serialVersionUID = -6666961750526550773L;
 	/**
 	 * The name of a team
 	 */

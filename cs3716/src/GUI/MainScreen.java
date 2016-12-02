@@ -18,7 +18,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class MainScreen extends JFrame{
+public class MainScreen extends JTrnFrame{
 	private JPanel finalPanel;
 	private JButton bracketsBtn;
 	private JButton manageBtn;
@@ -28,20 +28,17 @@ public class MainScreen extends JFrame{
 	private Tournament t;
 	
 	public MainScreen(){
+		super(550,725);
 		nTeams = 13;
-//		t1 = new Tournament("name", "one", "two", "three");
-//		t1.createSingleElim();
-		
 		createItems();
 		createPanel();
-		setSize(550,725);
 		setTitle("");
 	}
 
 	public MainScreen(ArrayList<Tournament> lTourns){
+		super(500,500);
 		createItems();
 		createPanel();
-		setSize(500,500);
 		setTitle("");
 	}
 

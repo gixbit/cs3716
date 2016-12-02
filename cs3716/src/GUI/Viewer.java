@@ -15,8 +15,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
- * This is the entry point for the Tournament GUI
- * <br>
+ * This is the entry point for the Tournament GUI <br>
  * Opens {@link MainScreen} frame.
  * 
  * @author John Hollett
@@ -30,53 +29,56 @@ public class Viewer {
 
 	public static ArrayList<Tournament> Tournaments;
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		JFrame menu = new MainScreen();
 		menu.setVisible(true);
-		menu.addWindowListener(new WindowAdapter(){
+		menu.addWindowListener(new WindowAdapter() {
+			@SuppressWarnings("unchecked")
 			public void windowOpened(WindowEvent e) {
-        		try {
-        			FileInputStream fis = new FileInputStream("Tournaments.txt");
-        			ObjectInputStream ois = new ObjectInputStream(fis);
-        			try {
-        				Tournaments = (ArrayList<Tournament>)ois.readObject();
-        				if(Tournaments == null) {
-        					Tournaments = new ArrayList<Tournament>();
-        				}
-        			} catch(IOException | ClassNotFoundException err) {
-        				Tournaments = new ArrayList<Tournament>();
-        			} finally {
-        				ois.close();
-        				fis.close();	
-        			}
-        		} catch (FileNotFoundException err) {
-    				Tournaments = new ArrayList<Tournament>();
-        		} catch (IOException err) {
-        			//Could not close
-        		}
-            }
-        });
+				try {
+					FileInputStream fis = new FileInputStream("Tournaments.txt");
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					try {
+						Object o = ois.readObject();
+						if (o == null) {
+							Tournaments = new ArrayList<Tournament>();
+						} else
+							Tournaments = (ArrayList<Tournament>) o;
+
+					} catch (IOException | ClassNotFoundException err) {
+						Tournaments = new ArrayList<Tournament>();
+					} finally {
+						ois.close();
+						fis.close();
+					}
+				} catch (FileNotFoundException err) {
+					Tournaments = new ArrayList<Tournament>();
+				} catch (IOException err) {
+					// Could not close
+				}
+			}
+		});
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-		    public void run() {
-                try {
-                    FileOutputStream fos = new FileOutputStream("Tournaments.txt");
-                    ObjectOutputStream oos = new ObjectOutputStream(fos);
-                    try {
-                        oos.writeObject(Tournaments);
+			public void run() {
+				try {
+					FileOutputStream fos = new FileOutputStream("Tournaments.txt");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+					try {
+						oos.writeObject(Tournaments);
 
-                    } catch (IOException err) {
+					} catch (IOException err) {
 
-                    } finally {
-                        oos.flush();
-                        oos.close();
-                        fos.flush();
-                        fos.close();
-                    }
+					} finally {
+						oos.flush();
+						oos.close();
+						fos.flush();
+						fos.close();
+					}
 
-                } catch (IOException err) {
-                    // Could not find file or open file.
-                }
-		    }
+				} catch (IOException err) {
+					// Could not find file or open file.
+				}
+			}
 		}));
 	}
 }

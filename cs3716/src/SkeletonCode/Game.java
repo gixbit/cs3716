@@ -1,5 +1,7 @@
 package SkeletonCode;
-	
+
+import java.io.Serializable;
+
 /**
  * Describes a Game used in a tournament.
  * Each game has two teams and scores for both.
@@ -12,7 +14,8 @@ package SkeletonCode;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Game {		//coming back later to add time and venue if we want them
+public class Game implements Serializable {		//coming back later to add time and venue if we want them
+	private static final long serialVersionUID = 3220772690839005333L;
 	/**
 	 * The venue this game is located
 	 */

@@ -18,7 +18,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class ListOfTeams extends JFrame{
+public class ListOfTeams extends JTrnFrame{
 	private JTextArea listTeamsLabel;
 	private JScrollPane centerPanel;
 	private JLabel greetingLabel;
@@ -30,12 +30,14 @@ public class ListOfTeams extends JFrame{
 	private JPanel northPanel;
 	private JPanel listTeamsPanel;
 	private JButton contButton;
+	private JButton manageButton;
 	private JButton regButton;
 	private Tournament tournament;
 	private String trnName;
 	private int n = 0;
 
 	public ListOfTeams(){
+		super(550,725);
 		createItems();
 		createText();
 		createPanel();
@@ -44,6 +46,7 @@ public class ListOfTeams extends JFrame{
 	}
 
 	public ListOfTeams(Tournament t){
+		super(500,500);
 		tournament = t;
 		trnName = t.getName();
 		n++;
@@ -51,7 +54,6 @@ public class ListOfTeams extends JFrame{
 		createButton();
 		createText();
 		createPanel();
-		setSize(500,500);
 		setTitle("");
 	}
 	
@@ -79,6 +81,11 @@ public class ListOfTeams extends JFrame{
 		regButton = new JButton("Register Another Team");
 		regButton.addActionListener(listener);
 		regButton.setFont(new Font("Arial", Font.PLAIN, 16));
+
+		manageButton = new JButton("Manage Tournaments");
+		manageButton.addActionListener(listener);
+		manageButton.setFont(new Font("Arial", Font.PLAIN, 16));
+
 	}
 
 	private void createText(){
@@ -91,13 +98,16 @@ public class ListOfTeams extends JFrame{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource() == regButton){
 				JFrame register = new Register();
-//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				register.setVisible(true);
+				dispose();
+			}
+			else if(event.getSource() == manageButton){
+				JFrame register = new ManageTournament();
 				register.setVisible(true);
 				dispose();
 			}
 			else{	//event.getSource() == contButton
 				JFrame mainScrn = new MainScreen(Viewer.Tournaments);
-//				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				mainScrn.setVisible(true);
 				dispose();
 			}

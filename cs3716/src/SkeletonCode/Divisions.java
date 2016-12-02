@@ -1,4 +1,5 @@
 package SkeletonCode;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,9 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Divisions implements Structure {
+public class Divisions implements Structure, Serializable {
+
+	private static final long serialVersionUID = 6216478678885904248L;
 	/**
 	 * List of brackets this division holds
 	 */

@@ -1,4 +1,5 @@
 package SkeletonCode;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,8 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Bracket {
+public class Bracket implements Serializable {
+	private static final long serialVersionUID = 6432207559387660919L;
 	/**
 	 * List of teams
 	 */

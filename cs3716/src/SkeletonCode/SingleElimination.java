@@ -1,4 +1,5 @@
 package SkeletonCode;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,9 @@ import java.util.ArrayList;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class SingleElimination implements Structure{
+public class SingleElimination implements Structure, Serializable{
+
+	private static final long serialVersionUID = -2978504004609230274L;
 	/**
 	 * List of brackets this Single Elimination holds
 	 */

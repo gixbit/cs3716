@@ -33,7 +33,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class ManageTournament extends JFrame {
+public class ManageTournament extends JTrnFrame {
 
 	private static final long serialVersionUID = 1153755212127268824L;
 	private JLabel greetingLabel;
@@ -48,11 +48,11 @@ public class ManageTournament extends JFrame {
 	private int size;
 
 	public ManageTournament() {
+		super(710, 730);
 		size = Viewer.Tournaments.size();
 		createItems();
 		createButtons();
 		createPanels();
-		setSize(710, 730);
 		setTitle("Manage Tournaments");
 	}
 

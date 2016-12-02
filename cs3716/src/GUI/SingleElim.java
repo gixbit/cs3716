@@ -36,6 +36,7 @@ public class SingleElim extends JPanel{
 	private int teamSpaces;
 	private Tournament tournament;
 	private ArrayList<JComponent> panList = new ArrayList<JComponent>();
+	ArrayList<JTextField> scoreArray = new ArrayList<JTextField>();
 //	private ArrayList<Team> teamArray = new ArrayList<Team>();
 
 //	numT needs to be replaced with an arrayList of teams and numOf divisions also need to be an input
@@ -128,16 +129,23 @@ public class SingleElim extends JPanel{
 		JPanel menuPanel = new JPanel();
 		Bracket b = tournament.getStructure().getBrackets().get(0);
 		ArrayList<JLabel> labelArray = new ArrayList<JLabel>();
-		
-		for(int j = 0; j < tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
-			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
-			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+		if(colNum != columns){
+			for(int j = 0; j < tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
+				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
+				labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
+			}
+			for(int j = 0; j < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
+				scoreArray.add(new JTextField(1));
+				scoreArray.get(j).setText("" + 0);
+			}
+			menuPanel.add(labelArray.get(i));
+			menuPanel.add(scoreArray.get(i));
 		}
-		JTextField scoreField = new JTextField(1);
-		scoreField.setText("" + 0);
-		
-		menuPanel.add(labelArray.get(i));
-		menuPanel.add(scoreField);
+		else{
+			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getWinners().get(0).getTeamName()));
+			menuPanel.add(labelArray.get(2*tournament.getStructure().getBrackets().get(0).getGames().size()));
+		}
+
 		menuPanel.setBackground(Color.WHITE);
 		return menuPanel;
 	}
@@ -176,5 +184,9 @@ public class SingleElim extends JPanel{
 			treePanel.add(panList.get(j));
 		}
 		add(treePanel);
+	}
+
+	public ArrayList<JTextField> getScoreArray(){
+		return scoreArray;
 	}
 }

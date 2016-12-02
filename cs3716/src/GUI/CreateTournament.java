@@ -18,7 +18,7 @@ import SkeletonCode.Tournament;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class CreateTournament extends JFrame {
+public class CreateTournament extends JTrnFrame {
 	private JPanel finalPanel;
 	private JPanel upperCentralPanel;
 	private JPanel lowerCentralPanel;
@@ -44,15 +44,16 @@ public class CreateTournament extends JFrame {
 	private DatePanel[] dates = new DatePanel[2];
 
 	public CreateTournament() {
+		super(550, 725);
 		createLabels();
 		createFields();
 		createButton();
 		createPanel();
-		setSize(550, 725);
 		setTitle("Create Tournament");
 	}
 
 	public CreateTournament(String a, String b, String c, String d) {
+		super(500,600);
 		// get current date(month, day, year)
 		createLabels();
 		createFields(a, b, c, d);
@@ -63,7 +64,6 @@ public class CreateTournament extends JFrame {
 		// dayBox.setSelectedItem(d);
 		// yearBox.setSelectedItem(y);
 		createPanel();
-		setSize(500, 600);
 		setTitle("Create Tournament");
 	}
 

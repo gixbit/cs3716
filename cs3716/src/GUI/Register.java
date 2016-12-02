@@ -28,7 +28,7 @@ import java.io.ObjectOutputStream;
  * @author Kristan James Hart
  * @author Karl Chiasson
  */
-public class Register extends JFrame{
+public class Register extends JTrnFrame{
 	private JPanel mainInformationPanel;
 	private JPanel selectTournamentPanel;
 	private JPanel teamPanel;
@@ -69,13 +69,13 @@ public class Register extends JFrame{
 
 
 	public Register(){
+		super(550,725);
 		players = new ArrayList<PlayerPanel>();
 		getInfo();
 		createLabels();
 		createFields();
 		createButton();
 		createPanel();
-		setSize(550,725);
 		setTitle("Register for Tournament");
 	}
 
