@@ -67,14 +67,20 @@ public class CreateBracket extends JFrame {
 		submitBtn.addActionListener(listener);
 		submitBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		
+
 		homeButton = new JButton("Home");
 		homeButton.addActionListener(listener);
 		homeButton.setFont(new Font("Arial", Font.PLAIN, 16));	}
-	
-	class choiceListener implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
-			JFrame popUpPanel = new popUp();
-			popUpPanel.setVisible(true);
+
+	class choiceListener implements ActionListener{
+		public void actionPerformed(ActionEvent event){
+			if(event.getSource() == homeButton){
+				JFrame frame1 = new MainScreen();
+				frame1.setVisible(true);
+			}
+			else{	//event.getSource() == submitBtn
+				
+			}
 		}
 	}
 

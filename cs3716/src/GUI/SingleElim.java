@@ -178,5 +178,3 @@ public class SingleElim extends JPanel{
 		add(treePanel);
 	}
 }
-
-	
