@@ -29,9 +29,6 @@ public class MainScreen extends JFrame{
 	
 	public MainScreen(){
 		nTeams = 13;
-//		t1 = new Tournament("name", "one", "two", "three");
-//		t1.createSingleElim();
-		
 		createItems();
 		createPanel();
 		setSize(550,725);

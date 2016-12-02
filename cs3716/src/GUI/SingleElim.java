@@ -36,6 +36,7 @@ public class SingleElim extends JPanel{
 	private int teamSpaces;
 	private Tournament tournament;
 	private ArrayList<JComponent> panList = new ArrayList<JComponent>();
+	ArrayList<JTextField> scoreArray = new ArrayList<JTextField>();
 //	private ArrayList<Team> teamArray = new ArrayList<Team>();
 
 //	numT needs to be replaced with an arrayList of teams and numOf divisions also need to be an input
@@ -133,7 +134,6 @@ public class SingleElim extends JPanel{
 			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamOne().getTeamName()));
 			labelArray.add(new JLabel(tournament.getStructure().getBrackets().get(0).getGames().get(j).getTeamTwo().getTeamName()));
 		}
-		ArrayList<JTextField> scoreArray = new ArrayList<JTextField>();
 		for(int j = 0; j < 2*tournament.getStructure().getBrackets().get(0).getGames().size(); j++){
 			scoreArray.add(new JTextField(1));
 			scoreArray.get(j).setText("" + 0);
@@ -178,5 +178,9 @@ public class SingleElim extends JPanel{
 			treePanel.add(panList.get(j));
 		}
 		add(treePanel);
+	}
+
+	public ArrayList<JTextField> getScoreArray(){
+		return scoreArray;
 	}
 }
